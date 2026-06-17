@@ -46,5 +46,58 @@ window.SHIURIM = [
       en: "“Each man according to his own blessing he blessed them.” — Bereishis 49:28",
       foot: "Sources noted throughout · Clinical material framed as parallel, not equivalence"
     }
+  },
+  {
+    id: "bow_of_prayer",
+    title: "The Bow of Prayer",
+    tag: "A Public Shiur · Tanach · Onkelos · Zohar · Rambam · Chassidus",
+    theme: "Keshet shel Tefillah — chinuch as spiritual archery: drawing the bow of prayer straight up the central pillar, each arrow aimed by its own grain, then released.",
+    pasuk: {
+      he: "בְּחַרְבִּי וּבְקַשְׁתִּי — בִּצְלוֹתִי וּבְבָעוּתִי",
+      en: "“…with my sword and my bow” — which Onkelos renders “with my prayer and my supplication.”",
+      src: "Bereishit 48:22; Targum Onkelos, cited by Rashi"
+    },
+    sections: [
+      { h: "Petichah — The Weapon Yaakov Named", paras: [
+        "Every parent learns one thing the hard way: you can draw the bow with all your strength, and you can aim with all your care, but you cannot fly the arrow. Once it leaves your hand its flight is no longer yours. The image of prayer, and of children, as bow and arrow is old and it is true — and it does not need to be borrowed from anywhere outside the Torah. It was handed to us in a single word of Yaakov Avinu, unlocked by the Targum, and it runs straight through Tehillim to the heart of chinuch."
+      ]},
+      { h: "1 · The Bow Was Always Prayer", paras: [
+        "Near the end of his life, Yaakov gives Yosef an extra portion and says he took it “miyad ha’Emori b’charbi uv’kashti” — from the hand of the Emori with my sword and my bow (Bereishit 48:22). But Yaakov was not a man of war. Onkelos renders the words plainly: “bitzlosi uv’ba’uti” — with my prayer and my supplication. Rashi cites it.",
+        "So in the Torah’s own reading, Yaakov’s bow is tefillah, and the arrow it looses is a word sent upward. We do not have to import a metaphor of spiritual archery; the patriarch placed it in our hands. And note who is speaking: the father of the twelve tribes — the man holding the original quiver."
+      ]},
+      { h: "2 · The Archer Must Be the Straight Line", paras: [
+        "An arrow takes the line of the bow. A bent bow cannot send a straight shaft, no matter how hard it is drawn — the harder you pull a crooked bow, the more violently the arrow goes wrong. So before the aim comes the archer’s own straightness.",
+        "In the mesorah this is not incidental to Yaakov; it is who he is. The Zohar speaks of the amuda d’emtza’ita, the central pillar — the upright middle line between the right and the left, between Avraham’s Chesed and Yitzchak’s Gevurah. Yaakov is that middle pillar, Tiferet, the straight line of the Avot. When the central pillar’s weapon is the bow of prayer, it is uprightness itself loosing its arrows straight upward.",
+        "The teaching for a parent is exact: you do not so much aim the child as straighten yourself, because the child will fly along the line that you are. This is the morning berachah of the soul — “zokef kefufim,” He straightens the bent — read as a precondition: one must be straightened before one can shoot straight."
+      ]},
+      { h: "3 · Each Arrow Its Own Grain", paras: [
+        "חֲנֹךְ לַנַּעַר עַל־פִּי דַרְכּוֹ — “Train up a child according to his way; even when he grows old he will not depart from it.” (Mishlei 22:6). Al pi DARKO — according to his way, not yours, and not one single way for every child. The Vilna Gaon reads this as the individual nature of each child: educate against a child’s innate grain and the arrow flies crooked, and what is set into him in his youth — for good or for ill — stays with him into age. The grain of the specific arrow must be known before it is drawn.",
+        "The archetype is Yaakov himself, one chapter later. Dying, he does not bless twelve sons with one blessing. Yehuda receives the lion, Yissachar the strong-boned donkey, Dan the serpent on the path, Naftali the swift hind — each blessing the aim fitted to that son’s nature (Bereishit 49). That is “chanoch al pi darko” performed by the master archer across his whole quiver.",
+        "And Yosef, the contested arrow, is described in the very language of archery: “the masters of arrows embittered him and shot at him — but his bow abode in strength” (Bereishit 49:23–24). The arrow that was aimed true withstands the arrows later shot back at it — vateshev b’eitan kashto."
+      ]},
+      { h: "4 · Kavanah Is Aim", paras: [
+        "The Hebrew gives the secret away. Kavanah is from the root כ-ו-ן — to aim, to direct, to make straight; kivun means direction. In Lashon HaKodesh, “intention” and “aiming” are the same word. To have kavanah is to draw a bead on the target.",
+        "The Rambam makes the stakes plain: prayer without kavanah is not prayer at all (Hilchot Tefillah 4:15–16). Kavanah, he writes, means clearing the heart of every other thought and seeing oneself as standing before the Shechinah. An arrow with no aim does not merely fall short — it was never a shot.",
+        "And the early chasidim show what aiming costs: “the chasidim rishonim would wait a full hour before praying, kdei sheyechavnu libam laMakom” — in order to aim their hearts at the Place (Mishnah Berachot 5:1). A whole hour nocking the arrow before a single word is loosed. For chinuch this is the same patience: a word spoken into a child without kavanah is an arrow dropped, not shot; the hour the chasidim spent aiming is the time a parent spends learning the child before speaking into him."
+      ]},
+      { h: "5 · The Arrow Strains Upward", paras: [
+        "אֶשָּׂא עֵינַי אֶל־הֶהָרִים — “I lift my eyes to the mountains — from where will my help come? My help is from Hashem, Maker of heaven and earth.” (Tehillim 121:1–2). Where is the target? Up. The eyes lift first — the aim is set upward before the help descends.",
+        "And the soul already wants this direction on its own: Tanya (chapter 19) describes the neshama as the flame of a candle, by nature straining upward toward its Source, never still. The parent does not manufacture that upward longing; he only keeps it from being aimed low. An arrow pointed at a job, a status, a name, is aimed at the ground. The true aim runs up the central pillar, toward the Source. And the One who guards the flight: “Hashem yishmor tzeitcha uvo’echa” — He guards your going out and your coming in (121:8). The arrow is not flying through empty sky."
+      ]},
+      { h: "6 · The Release", paras: [
+        "Here is the hardest movement, and it is why the psalm of the arrows opens the way it does: אִם־ה׳ לֹא־יִבְנֶה בַיִת, שָׁוְא עָמְלוּ בוֹנָיו בּוֹ — “If Hashem does not build the house, its builders labor in vain.” (Tehillim 127:1). Only after this does the same psalm give us the arrows: “Like arrows in the hand of a warrior are the children of one’s youth. Happy is the man who fills his quiver with them.” (127:4–5).",
+        "You draw the bow with all your strength and all your kavanah — and then the flight is not yours. The order of the psalm is the whole teaching: first “im Hashem lo yivneh,” then the arrows. Draw fully; let Him fly it. Because an arrow gripped forever is only a stick. The blessing is completed in the loosing: “lo yevoshu ki yedabru et oyvim basha’ar” — they will not be ashamed when they speak with the enemies at the gate (127:5). The arrow has to leave the bow and stand on its own out in the world. Maximal hishtadlut in the draw; whole bitachon in the release. That is the avodah of the parent-archer: pull with everything, and then open the hand."
+      ]},
+      { h: "7 · The Purity of the Aim", paras: [
+        "One caution holds the whole thing honest. A taut bow is not the same as a true one. “Yesh derech yashar lifnei ish, v’acharitah darkei mavet” — there is a way that looks straight to a man, and its end is the ways of death (Mishlei 16:25). An aim can feel perfectly certain and still be set on the wrong pillar.",
+        "This is the measure we keep across the whole set: Truth ≥ Coherence. Total conviction is not the same as a true target. The most zealous draw, if the archer is bent, only drives the arrow into harm with greater force. So the work circles back to the archer’s own uprightness — “zokef kefufim,” being straightened — and to the Rambam’s clearing of the heart of every foreign thought. Aim is necessary; it is not sufficient. The aim must be true, and the truth of the aim is the purity of the one who draws."
+      ]}
+    ],
+    closing: {
+      note: "❯ The quiver full, the bow of prayer drawn straight up the central pillar, each arrow aimed according to its own grain — and then released, because it is Hashem who builds the house.",
+      he: "אַשְׁרֵי הַגֶּבֶר אֲשֶׁר מִלֵּא אֶת־אַשְׁפָּתוֹ מֵהֶם",
+      en: "“Happy is the man who fills his quiver with them.” — Tehillim 127:5",
+      foot: "Bereishit 48:22 + Onkelos · Bereishit 49 · Mishlei 22:6 (Vilna Gaon) · Mishlei 16:25 · Tehillim 121 & 127 · Rambam Hil. Tefillah 4:15–16 · Berachot 5:1 · Zohar/Arizal (amuda d’emtza’ita) · Tanya ch. 19"
+    }
   }
 ];

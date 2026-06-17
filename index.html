@@ -915,7 +915,7 @@ function allTeachers(){
 }
 function renderShiurim(){
   const g=document.getElementById("shiurGrid"); if(!g) return; g.innerHTML="";
-  const list=window.SHIURIM||[];
+  const list=(window.SHIURIM||[]).concat(window.SHIURIM_PRIVATE||[]);  // private set present only in parent builds
   if(!list.length){ g.innerHTML='<p class="lead">No shiurim yet.</p>'; return; }
   const intro=document.createElement("p"); intro.className="lead";
   intro.textContent="A small Beis Medrash — Torah learning to grow into.";
@@ -934,7 +934,7 @@ function renderShiurim(){
   g.appendChild(wrap);
 }
 function openShiur(i){
-  const s=(window.SHIURIM||[])[i]; if(!s) return;
+  const s=(window.SHIURIM||[]).concat(window.SHIURIM_PRIVATE||[])[i]; if(!s) return;
   let h=`<div class="menu" style="max-width:760px;margin:0 auto 16px"><button class="btn ghost block" onclick="renderShiurim()">‹ All shiurim</button></div>`;
   h+=`<article class="chayenu"><div class="ch-tag">${s.tag||"A Shiur"}</div><h2 class="ch-title">${s.title}</h2>`;
   if(s.theme) h+=`<div class="ch-theme">${s.theme}</div>`;
