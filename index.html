@@ -183,10 +183,29 @@
   .seg button{border:0;background:#0003;color:var(--ink-dim);padding:10px 14px;cursor:pointer;font-weight:700}
   .seg button.on{background:var(--gold);color:#241a09}
   .footnote{color:var(--lock);text-align:center;font-size:.78rem;margin-top:40px;line-height:1.5}
+  /* Chayenu-style shiur reader — charcoal-grey ground, light-blue lettering */
+  .chayenu{background:#2b2d31;color:#c2def7;font-family:Georgia,"Times New Roman",serif;
+    max-width:760px;margin:0 auto;border:1px solid #39414e;border-radius:14px;
+    padding:30px 30px 40px;line-height:1.8;box-shadow:0 12px 40px #0009}
+  .chayenu .ch-tag{color:#7fa8c9;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;text-align:center}
+  .chayenu h2.ch-title{color:#e6f2ff;text-align:center;font-size:2rem;margin:.18em 0 .1em;border:0}
+  .chayenu .ch-theme{color:#9fc6e6;font-style:italic;text-align:center;margin-bottom:18px}
+  .chayenu .ch-pasuk{text-align:center;margin:14px 0 24px;padding:14px 0;border-top:1px solid #39414e;border-bottom:1px solid #39414e}
+  .chayenu .ch-pasuk .he{font-size:1.55rem;color:#d8ecff;direction:rtl;line-height:1.7}
+  .chayenu .ch-pasuk .en{color:#c2def7;font-size:1rem;margin-top:6px}
+  .chayenu .ch-pasuk .src{color:#7fa8c9;font-size:.85rem;margin-top:4px}
+  .chayenu h3.ch-h{color:#aad7ff;font-size:1.2rem;margin:26px 0 8px;padding-bottom:5px;border-bottom:1px solid #333b47}
+  .chayenu p{margin:11px 0;color:#c2def7;text-align:justify}
+  .chayenu .ch-close{margin-top:28px;text-align:center}
+  .chayenu .ch-close .note{font-style:italic;color:#9fc6e6}
+  .chayenu .ch-close .he{font-size:1.45rem;color:#d8ecff;direction:rtl;margin-top:14px}
+  .chayenu .ch-close .en{color:#c2def7;margin-top:4px}
+  .chayenu .ch-foot{color:#6f8aa3;font-size:.78rem;text-align:center;margin-top:22px}
+  .shiur-card{cursor:pointer}
 </style>
 </head>
 <body>
-<audio id="bgm" preload="auto" src="assets/audio/intro.mp3"></audio>
+<audio id="bgm" preload="none" src="assets/audio/intro.mp3"></audio>
 <button id="musicBtn" class="musicfab" title="Intro music on/off" aria-label="Music">🎵</button>
 
 <div id="intro" class="intro">
@@ -212,6 +231,7 @@
       <button class="btn block" onclick="go('modes')"><span class="icon">▶</span> Start Adventure</button>
       <button class="btn ghost block" onclick="go('worlds')"><span class="icon">🗺</span> Choose Chapter</button>
       <button class="btn ghost block" onclick="go('teachers')"><span class="icon">🕯</span> Teachers</button>
+      <button class="btn ghost block" onclick="go('shiurim')"><span class="icon">📖</span> Shiurim</button>
       <button class="btn ghost block" onclick="go('settings')"><span class="icon">⚙</span> Settings</button>
     </div>
     <p class="footnote">Torah first · Built for Yossi · v0.7.0</p>
@@ -283,6 +303,11 @@
   </section>
 
   <!-- ========================= SETTINGS ======================== -->
+  <section id="screen-shiurim" class="hidden">
+    <div class="topbar"><div class="crumb"><span class="back" onclick="go('landing')">‹ Home</span> › <b>Beis Medrash · Shiurim</b></div></div>
+    <div id="shiurGrid"></div>
+  </section>
+
   <section id="screen-settings" class="hidden">
     <div class="topbar"><div class="crumb" data-crumb></div></div>
     <h2 class="sec">Settings</h2>
@@ -317,6 +342,7 @@
 </div>
 
 <script src="assets/stories.js"></script>
+<script src="assets/shiurim.js"></script>
 <script>
 /* ============================================================
    CONTENT MODEL — Worlds -> Chapters -> Scenes
@@ -726,7 +752,7 @@ function plaguesDone(){
 /* ============================================================
    NAVIGATION
    ============================================================ */
-const SCREENS=["landing","modes","worlds","chapters","scenes","viewer","build","teachers","settings"];
+const SCREENS=["landing","modes","worlds","chapters","scenes","viewer","build","teachers","shiurim","settings"];
 function show(name){
   SCREENS.forEach(s=>document.getElementById("screen-"+s).classList.add("hidden"));
   document.getElementById("screen-"+name).classList.remove("hidden");
@@ -741,6 +767,7 @@ function go(name){
   if(name==="scenes") renderScenes();
   if(name==="build" && B) renderBuild();
   if(name==="teachers") renderTeachers();
+  if(name==="shiurim") renderShiurim();
   if(name==="settings") renderSettings();
   renderPills(); renderCrumbs();
 }
@@ -885,6 +912,41 @@ function allTeachers(){
       {wid:w.id, cid:c.id, idx:i, where:w.name+" › "+c.name, scene:s.en}));
   })));
   return out;
+}
+function renderShiurim(){
+  const g=document.getElementById("shiurGrid"); if(!g) return; g.innerHTML="";
+  const list=window.SHIURIM||[];
+  if(!list.length){ g.innerHTML='<p class="lead">No shiurim yet.</p>'; return; }
+  const intro=document.createElement("p"); intro.className="lead";
+  intro.textContent="A small Beis Medrash — Torah learning to grow into.";
+  g.appendChild(intro);
+  const wrap=document.createElement("div"); wrap.className="grid worlds";
+  list.forEach((s,i)=>{
+    const c=document.createElement("div"); c.className="card shiur-card";
+    c.innerHTML=`<div class="ph" style="background:linear-gradient(160deg,#2b2d31,#15171b)">
+        <div style="font-size:2.2rem">📖</div>
+        <div style="font-size:1.05rem;font-weight:800;color:#bfe0ff;text-align:center;padding:0 8px">${s.title}</div>
+        <div style="font-size:.72rem;opacity:.85;color:#9fc6e6">shiur</div></div>
+      <div class="cap"><span class="nm" style="color:#bfe0ff">${s.title}</span></div>`;
+    c.onclick=()=>openShiur(i);
+    wrap.appendChild(c);
+  });
+  g.appendChild(wrap);
+}
+function openShiur(i){
+  const s=(window.SHIURIM||[])[i]; if(!s) return;
+  let h=`<div class="menu" style="max-width:760px;margin:0 auto 16px"><button class="btn ghost block" onclick="renderShiurim()">‹ All shiurim</button></div>`;
+  h+=`<article class="chayenu"><div class="ch-tag">${s.tag||"A Shiur"}</div><h2 class="ch-title">${s.title}</h2>`;
+  if(s.theme) h+=`<div class="ch-theme">${s.theme}</div>`;
+  if(s.pasuk) h+=`<div class="ch-pasuk"><div class="he">${s.pasuk.he}</div><div class="en">${s.pasuk.en}</div><div class="src">${s.pasuk.src}</div></div>`;
+  (s.sections||[]).forEach(sec=>{ h+=`<h3 class="ch-h">${sec.h}</h3>`; (sec.paras||[]).forEach(p=> h+=`<p>${p}</p>`); });
+  if(s.closing){ const c=s.closing; h+=`<div class="ch-close">`;
+    if(c.note) h+=`<div class="note">${c.note}</div>`;
+    if(c.he) h+=`<div class="he">${c.he}</div>`;
+    if(c.en) h+=`<div class="en">${c.en}</div>`;
+    h+=`</div>`; if(c.foot) h+=`<div class="ch-foot">${c.foot}</div>`; }
+  h+=`</article><div class="menu" style="max-width:760px;margin:18px auto 0"><button class="btn ghost block" onclick="go('landing')">Done</button></div>`;
+  document.getElementById("shiurGrid").innerHTML=h; window.scrollTo(0,0);
 }
 function renderTeachers(){
   const list=allTeachers();
