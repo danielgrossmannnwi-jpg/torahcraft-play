@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>TorahCraft — Enter the Story</title>
+<style>
+  /* ===========================================================
+     TorahCraft v0.7.0 — Torah-first immersive learning world
+     Engine: Worlds -> Chapters -> Scenes, layered by PaRDeS.
+     New: Future Echoes (archetype links), Sod layer, family
+     discussion prompts, and read-aloud narration.
+     Palette: charcoal + gold (warm = Israel, cool = Egypt).
+     =========================================================== */
+  :root{
+    --char:#15110c; --char2:#221a12; --panel:#2b2118;
+    --gold:#e8b647; --gold-soft:#f4d489; --ink:#f3ead7;
+    --ink-dim:#bfae8e; --line:#4a3a26; --good:#7bbf6a; --lock:#6b5d49;
+    --echo:#5fa0c9; --talk:#cf9bd6; --r:14px; --tap:64px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;
+    background:
+      radial-gradient(1200px 700px at 70% -10%, #3a2c1a 0%, transparent 60%),
+      radial-gradient(900px 600px at 10% 110%, #20303f 0%, transparent 55%),
+      var(--char);
+    color:var(--ink); overflow-x:hidden; font-size:var(--fs,17px);
+  }
+  body.fs-large{--fs:21px} body.fs-xl{--fs:25px}
+  .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 64px;min-height:100%}
+  .hidden{display:none !important}
+
+  .brand{text-align:center;margin:8px 0 4px;user-select:none}
+  .brand .heb{font-size:1.5rem;color:var(--gold-soft);letter-spacing:.18em;text-shadow:0 2px 0 #00000055}
+  .brand h1{margin:.1em 0 0;font-size:clamp(2.4rem,9vw,4.4rem);line-height:.95;
+    letter-spacing:.04em;color:var(--gold);text-shadow:0 3px 0 #7a5417,0 5px 12px #0008;font-weight:800}
+  .brand .sub{color:var(--ink-dim);letter-spacing:.32em;font-size:.85rem;text-transform:uppercase;margin-top:6px}
+
+  .topbar{display:flex;align-items:center;gap:10px;margin:6px 0 18px;flex-wrap:wrap}
+  .crumb{flex:1;min-width:120px;color:var(--ink-dim);font-size:.92rem}
+  .crumb b{color:var(--gold-soft)}
+  .crumb .back{cursor:pointer;color:var(--gold);font-weight:700}
+  .modepill{display:flex;gap:6px;background:#0003;border:1px solid var(--line);border-radius:999px;padding:4px}
+  .modepill button{border:0;background:transparent;color:var(--ink-dim);padding:7px 12px;border-radius:999px;
+    font-size:.85rem;cursor:pointer;font-weight:700}
+  .modepill button.on{background:var(--gold);color:#241a09}
+  .modepill button:disabled{opacity:.4;cursor:not-allowed}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--tap);
+    padding:0 26px;border-radius:var(--r);cursor:pointer;font-weight:800;font-size:1.05rem;border:2px solid #00000033;
+    background:linear-gradient(#f4cd6a,#dca321);color:#2a1d05;box-shadow:0 4px 0 #95701a,0 8px 16px #0006;transition:transform .05s}
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #95701a}
+  .btn.ghost{background:#0000;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+  .btn.ghost:active{transform:translateY(2px)}
+  .btn.block{width:100%}
+  .musicfab{position:fixed;right:16px;bottom:16px;z-index:50;width:54px;height:54px;border-radius:50%;
+    border:2px solid #00000033;background:linear-gradient(#f4cd6a,#dca321);color:#2a1d05;font-size:1.4rem;
+    cursor:pointer;box-shadow:0 4px 0 #95701a,0 6px 14px #0007}
+  .musicfab:active{transform:translateY(2px)} .musicfab.off{filter:grayscale(.8);opacity:.7}
+  /* ---- intro sequence ---- */
+  .intro{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;transition:opacity .9s ease, background 1.6s ease}
+  .intro.playing{background:radial-gradient(1200px 800px at 50% 32%, #3a2c1a 0%, #15110c 72%)}
+  .intro.done{opacity:0;pointer-events:none}
+  .intro-heb{font-size:2.1rem;color:var(--gold-soft);letter-spacing:.22em;opacity:0;transform:scale(.7)}
+  .intro.playing .intro-heb{animation:i_heb 1.7s .3s forwards}
+  @keyframes i_heb{0%{opacity:0;transform:scale(.7);text-shadow:0 0 0 #0000}
+    60%{opacity:1;transform:scale(1.1);text-shadow:0 0 34px #f4d489}100%{opacity:1;transform:scale(1);text-shadow:0 0 16px #e8b64799}}
+  .intro-title{font-size:clamp(2.6rem,11vw,5rem);font-weight:800;color:var(--gold);letter-spacing:.04em;margin:.12em 0;
+    text-shadow:0 3px 0 #7a5417,0 6px 16px #0009}
+  .intro-title span{display:inline-block;opacity:0;transform:translateY(16px)}
+  .intro.playing .intro-title span{animation:i_letter .5s forwards}
+  @keyframes i_letter{to{opacity:1;transform:none}}
+  .intro-sub{color:var(--ink-dim);letter-spacing:.34em;text-transform:uppercase;font-size:.9rem;opacity:0}
+  .intro.playing .intro-sub{animation:i_fade 1s 2.4s forwards}
+  .intro-hint{margin-top:28px;color:var(--gold-soft);font-size:.95rem;animation:i_pulse 1.6s infinite}
+  .intro.playing .intro-hint{animation:i_fade .8s 3.6s forwards}
+  @keyframes i_fade{to{opacity:.85}}
+  @keyframes i_pulse{0%,100%{opacity:.35}50%{opacity:.95}}
+  .intro-skip{position:fixed;top:16px;right:16px;background:#0005;border:1px solid var(--line);color:var(--ink-dim);
+    padding:8px 14px;border-radius:99px;cursor:pointer;font-weight:700;z-index:101}
+  .btn.sm{min-height:46px;padding:0 16px;font-size:.95rem}
+  .menu{display:grid;gap:14px;max-width:380px;margin:26px auto 0}
+  .icon{display:inline-block;width:1.2em;text-align:center}
+
+  .grid{display:grid;gap:16px}
+  .grid.worlds{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+  .grid.scenes{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  .card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;border:1px solid var(--line);
+    background:var(--panel);box-shadow:0 6px 18px #0007;transition:transform .08s,border-color .15s}
+  .card:active{transform:translateY(2px)}
+  .card.locked{cursor:not-allowed;filter:grayscale(.7) brightness(.6)}
+  .card .thumb{aspect-ratio:3/2;width:100%;object-fit:cover;display:block;background:#000}
+  .card .ph{aspect-ratio:3/2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:10px;color:#fff;text-shadow:0 2px 6px #000a}
+  .card .ph .num{font-size:2.6rem;font-weight:800;opacity:.9;line-height:1}
+  .card .ph .heb{font-size:1.4rem;margin-top:2px}
+  .card .cap{padding:10px 12px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .card .cap .nm{font-weight:800;color:var(--gold-soft)}
+  .teachercard .cap.teachertext{display:block;line-height:1.45}
+
+  /* ---- Build Level (wireframe-style prototype) ---- */
+  .phasebar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0 18px}
+  .ph-step{font-size:.8rem;padding:7px 13px;border-radius:99px;border:1px dashed var(--line);color:var(--ink-dim)}
+  .ph-step.on{background:var(--gold);color:#241a09;border-style:solid;font-weight:800}
+  .ph-step.done{color:var(--good);border-color:var(--good)}
+  .wfbox{border:2px dashed var(--line);border-radius:16px;background:#0003;padding:18px;margin-top:14px}
+  .wfbox h3{margin:0 0 10px;color:var(--gold-soft)}
+  .navi{display:flex;gap:14px;align-items:center;background:var(--panel);border:2px dashed var(--gold);border-radius:16px;padding:16px}
+  .navi .face{width:60px;height:60px;border-radius:50%;border:2px dashed var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.9rem;flex:0 0 auto}
+  .navi .speak2{flex:1;line-height:1.45} .navi .speak2 b{color:var(--gold)}
+  .vision-list{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:8px}
+  .vision-list li{background:#0004;border:1px dashed var(--line);border-radius:10px;padding:11px 13px}
+  .toolgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .tool{border:2px dashed var(--line);border-radius:14px;padding:14px;text-align:center;cursor:pointer;background:#0003;transition:transform .06s}
+  .tool:active{transform:translateY(2px)}
+  .tool.got{border-style:solid;border-color:var(--good);background:#11280c44}
+  .tool .ic{font-size:2rem} .tool .nm{font-weight:800;color:var(--gold-soft);margin-top:4px}
+  .tool .ds{color:var(--ink-dim);font-size:.82rem;margin-top:4px;line-height:1.35}
+  .tool .got-tag{color:var(--good);font-weight:800;font-size:.78rem;margin-top:6px;visibility:hidden}
+  .tool.got .got-tag{visibility:visible}
+  .steplist{display:grid;gap:10px}
+  .step{display:flex;align-items:center;gap:12px;border:2px dashed var(--line);border-radius:12px;padding:12px 14px;color:var(--ink-dim)}
+  .step .n{width:28px;height:28px;border-radius:50%;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;flex:0 0 auto}
+  .step.next{border-color:var(--gold);color:var(--ink);cursor:pointer;background:#e8b6470f}
+  .step.next .n{border-color:var(--gold);color:var(--gold)}
+  .step.done{border-color:var(--good);color:var(--good);border-style:solid}
+  .step.done .n{background:var(--good);color:#11280c;border:0}
+  .reveal-list{display:grid;gap:10px;margin:6px 0 0;padding:0}
+  .reveal-list li{list-style:none;background:#0004;border:1px dashed var(--line);border-radius:10px;padding:13px 15px;
+    font-size:1.05rem;opacity:0;transform:translateY(8px);animation:rise .55s forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .wf-note{text-align:center;color:var(--lock);font-size:.78rem;margin-top:12px}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .card .cap .he{color:var(--ink-dim);font-size:.95rem}
+  .badge{position:absolute;top:8px;left:8px;font-size:.7rem;font-weight:800;padding:4px 8px;border-radius:999px;
+    letter-spacing:.06em;background:#000a;color:var(--ink);border:1px solid var(--line)}
+  .badge.done{background:var(--good);color:#11280c;border:0}
+  .badge.soon{background:#000a;color:var(--ink-dim)}
+  .check{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--good);
+    color:#11280c;display:none;align-items:center;justify-content:center;font-weight:900}
+  .card.visited .check{display:flex}
+
+  .lead{color:var(--ink-dim);text-align:center;max-width:640px;margin:0 auto 18px;line-height:1.5}
+  h2.sec{color:var(--gold);text-align:center;margin:10px 0 4px;font-size:1.6rem}
+  .sec-he{color:var(--gold-soft);text-align:center;font-size:1.05rem;margin:0 0 8px}
+
+  .grid.modes{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));max-width:720px;margin:0 auto}
+  .modecard{padding:20px 18px;text-align:center}
+  .modecard .mh{font-size:1.4rem;font-weight:800;color:var(--gold-soft)}
+  .modecard .pardes{font-size:.78rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-top:2px}
+  .modecard p{color:var(--ink-dim);margin:10px 0 0;line-height:1.45}
+
+  .viewer .stage{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 10px 30px #0009}
+  .viewer .stage img{width:100%;display:block}
+  .viewer .head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:16px 2px 4px}
+  .viewer .head .n{font-size:2rem;color:var(--gold);font-weight:800}
+  .viewer .head .he{font-size:1.5rem;color:var(--gold-soft)}
+  .viewer .head .en{color:var(--ink-dim)}
+  .audiorow{margin:10px 0 2px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:14px}
+  .panel h3{margin:0 0 8px;color:var(--gold-soft);font-size:1.05rem;display:flex;align-items:center;gap:8px}
+  .panel h3 small{font-weight:400;color:var(--ink-dim);font-size:.8rem}
+  .panel.story{font-size:1.05rem;line-height:1.6}
+  .panel ul{margin:0;padding-left:20px;line-height:1.6}
+  .panel.depth{border-left:4px solid var(--gold)}
+  .panel.echo{border-left:4px solid var(--echo)} .panel.echo h3{color:#bfe2f5}
+  .panel.talk{border-left:4px solid var(--talk)} .panel.talk h3{color:#ebcaf0}
+  .panel.mech{border-left:4px solid var(--good)} .panel.mech h3{color:#c9eabf}
+  .panel.teach{border-left:4px solid var(--gold);background:#211a10} .panel.teach h3{color:var(--gold)}
+  .panel.locked-hint{color:var(--ink-dim);font-style:italic;text-align:center}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+  .chip{background:#0c2433;border:1px solid #2f5e78;color:#cfe8f6;border-radius:999px;
+    padding:6px 13px;font-size:.92rem;font-weight:700}
+  .navrow{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .navrow .btn{flex:1;min-width:130px}
+
+  .setrow{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);gap:14px}
+  .setrow:last-child{border-bottom:0}
+  .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{border:0;background:#0003;color:var(--ink-dim);padding:10px 14px;cursor:pointer;font-weight:700}
+  .seg button.on{background:var(--gold);color:#241a09}
+  .footnote{color:var(--lock);text-align:center;font-size:.78rem;margin-top:40px;line-height:1.5}
+</style>
+</head>
+<body>
+<audio id="bgm" preload="auto" src="assets/audio/intro.mp3"></audio>
+<button id="musicBtn" class="musicfab" title="Intro music on/off" aria-label="Music">🎵</button>
+
+<div id="intro" class="intro">
+  <div class="intro-inner">
+    <div class="intro-heb">תּוֹרָה</div>
+    <div class="intro-title" id="introTitle">TORAHCRAFT</div>
+    <div class="intro-sub">Enter the Story</div>
+    <div class="intro-hint" id="introHint">▶ tap to begin</div>
+  </div>
+  <button class="intro-skip" id="introSkip">Skip ▶</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ========================= LANDING ========================= -->
+  <section id="screen-landing">
+    <div class="brand">
+      <div class="heb">תּוֹרָה</div>
+      <h1>TORAHCRAFT</h1>
+      <div class="sub">Enter the Story</div>
+    </div>
+    <div class="menu">
+      <button class="btn block" onclick="go('modes')"><span class="icon">▶</span> Start Adventure</button>
+      <button class="btn ghost block" onclick="go('worlds')"><span class="icon">🗺</span> Choose Chapter</button>
+      <button class="btn ghost block" onclick="go('teachers')"><span class="icon">🕯</span> Teachers</button>
+      <button class="btn ghost block" onclick="go('settings')"><span class="icon">⚙</span> Settings</button>
+    </div>
+    <p class="footnote">Torah first · Built for Yossi · v0.7.0</p>
+  </section>
+
+  <!-- ====================== MODE SELECTION ===================== -->
+  <section id="screen-modes" class="hidden">
+    <div class="topbar"><div class="crumb" data-crumb></div></div>
+    <h2 class="sec">Choose how you want to learn</h2>
+    <p class="lead">Every story has layers, like the Torah itself (PaRDeS). Pick a way in — you can switch any time.</p>
+    <div class="grid modes" id="modeGrid"></div>
+    <div class="menu"><button class="btn ghost block" onclick="go('worlds')">Continue to the map →</button></div>
+  </section>
+
+  <!-- ======================== WORLD MAP ======================== -->
+  <section id="screen-worlds" class="hidden">
+    <div class="topbar"><div class="crumb" data-crumb></div><div class="modepill" data-pill></div></div>
+    <h2 class="sec">The World Map</h2>
+    <p class="lead">Walk through the Torah's journey. Open worlds glow gold — more are being built.</p>
+    <div class="grid worlds" id="worldGrid"></div>
+  </section>
+
+  <!-- ===================== CHAPTERS (per world) ================ -->
+  <section id="screen-chapters" class="hidden">
+    <div class="topbar"><div class="crumb" data-crumb></div><div class="modepill" data-pill></div></div>
+    <h2 class="sec" id="chTitle"></h2>
+    <p class="sec-he" id="chHe"></p>
+    <p class="lead" id="chLead"></p>
+    <div class="grid worlds" id="chapterGrid"></div>
+  </section>
+
+  <!-- ====================== SCENE GALLERY ====================== -->
+  <section id="screen-scenes" class="hidden">
+    <div class="topbar"><div class="crumb" data-crumb></div><div class="modepill" data-pill></div></div>
+    <h2 class="sec" id="scTitle"></h2>
+    <p class="lead" id="scLead"></p>
+    <div class="grid scenes" id="sceneGrid"></div>
+  </section>
+
+  <!-- ======================= SCENE VIEWER ====================== -->
+  <section id="screen-viewer" class="hidden viewer">
+    <div class="topbar"><div class="crumb" data-crumb></div><div class="modepill" data-pill></div></div>
+    <div class="stage" id="vStage"></div>
+    <div class="head"><span class="n" id="vNum"></span><span class="he" id="vHe"></span><span class="en" id="vEn"></span></div>
+    <div class="audiorow"><button class="btn ghost sm" id="vSpeak">🔊 Read aloud</button></div>
+    <div id="vBody"></div>
+    <div class="navrow">
+      <button class="btn ghost" id="vPrev">← Previous</button>
+      <button class="btn ghost" id="vAll">▣ All scenes</button>
+      <button class="btn" id="vNext">Next →</button>
+    </div>
+  </section>
+
+  <!-- ===================== BUILD LEVEL ========================= -->
+  <section id="screen-build" class="hidden">
+    <div class="topbar"><div class="crumb"><span class="back" onclick="go('chapters')">‹ Levels</span> · <b id="bTitle"></b></div></div>
+    <div class="phasebar" id="bPhases"></div>
+    <div id="buildStage"></div>
+  </section>
+
+  <!-- ===================== TEACHERS COLLECTION ================= -->
+  <section id="screen-teachers" class="hidden">
+    <div class="topbar"><div class="crumb"><span class="back" onclick="go('worlds')">✡ Worlds</span> › <b>Teachers</b></div></div>
+    <h2 class="sec">Teachers — Wisdom Echoes</h2>
+    <p class="sec-he" id="tCount"></p>
+    <p class="lead">Every scene with a deeper teaching reveals a teacher. Explore the worlds to collect them all — then tap any unlocked card to revisit its scene.</p>
+    <div class="grid worlds" id="teacherGrid"></div>
+    <div class="menu"><button class="btn ghost block" onclick="go('worlds')">Back to the map</button></div>
+  </section>
+
+  <!-- ========================= SETTINGS ======================== -->
+  <section id="screen-settings" class="hidden">
+    <div class="topbar"><div class="crumb" data-crumb></div></div>
+    <h2 class="sec">Settings</h2>
+    <div class="panel">
+      <div class="setrow">
+        <div><b>Text size</b><br><span style="color:var(--ink-dim);font-size:.85rem">Bigger is easier for reading aloud</span></div>
+        <div class="seg" id="segText">
+          <button data-fs="">Normal</button><button data-fs="large">Large</button><button data-fs="xl">X-Large</button>
+        </div>
+      </div>
+      <div class="setrow">
+        <div><b>Show Hebrew names</b></div>
+        <div class="seg" id="segHeb"><button data-heb="1">On</button><button data-heb="0">Off</button></div>
+      </div>
+      <div class="setrow">
+        <div><b>Read each scene aloud automatically</b><br><span style="color:var(--ink-dim);font-size:.85rem">Narrates when a scene opens</span></div>
+        <div class="seg" id="segNarrate"><button data-n="1">On</button><button data-n="0">Off</button></div>
+      </div>
+      <div class="setrow">
+        <div><b>Intro music</b><br><span style="color:var(--ink-dim);font-size:.85rem">Niggun of the Yanuka, Rav Shlomo Yehuda</span></div>
+        <div class="seg" id="segMusic"><button data-m="1">On</button><button data-m="0">Off</button></div>
+      </div>
+      <div class="setrow">
+        <div><b>Progress</b><br><span style="color:var(--ink-dim);font-size:.85rem" id="progressTxt"></span></div>
+        <button class="btn ghost" onclick="resetProgress()">Reset</button>
+      </div>
+    </div>
+    <div class="menu"><button class="btn block" onclick="go('landing')">Done</button></div>
+    <p class="footnote">Your progress is saved automatically on this device.</p>
+  </section>
+
+</div>
+
+<script src="assets/stories.js"></script>
+<script>
+/* ============================================================
+   CONTENT MODEL — Worlds -> Chapters -> Scenes
+   A scene: {en, he, tr, art, color, story,
+             look[]  (Remez),  depth (Drash),  sod (Sod),
+             echoes[] (Future Echoes),  talk[] (family prompts)}
+   ============================================================ */
+/* TorahCraft Design Law — the rule every screen must pass.
+   "Sound over Noise": every lesson must REDUCE confusion, not add information.
+   The 9-year-old test: can a child retell this without losing the truth?
+   If not — remove words, add structure. (Chinuch framework + Rashbi.) */
+const DESIGN_LAW = {
+  name:"Sound over Noise",
+  rule:"Every lesson must reduce confusion rather than increase information.",
+  test:"Can a 9-year-old explain this without losing the truth?",
+};
+
+const MODES = [
+  {id:"explore",  name:"Explore",  pardes:"Pshat", desc:"Learn the story as it happened.", unlock:"always"},
+  {id:"discover", name:"Discover", pardes:"Remez", desc:"Find the hints and look closely for deeper meaning.", unlock:"always"},
+  {id:"build",    name:"Build",    pardes:"Drash", desc:"Connect the ideas, the lessons of our Sages, and the echoes across the Torah.", unlock:"always"},
+  {id:"hidden",   name:"Hidden",   pardes:"Sod",   desc:"A secret layer that opens once you complete the Ten Plagues.", unlock:"plagues"},
+];
+
+/* ---------- GAN EDEN ---------- */
+const CREATION_DAYS = [
+  {en:"Day One — Light", he:"יוֹם אֶחָד", tr:"Yom Echad", color:"#caa83a", art:"assets/creation/1_light.svg",
+   story:"God said, “Let there be light,” and there was light. He saw that the light was good, and separated the light from the darkness, calling them Day and Night.",
+   look:["Light bursting into the dark","Day divided from night","Light made before the sun or moon exist"],
+   depth:"This light came before the sun and moon — so it is not ordinary light. Our Sages call it the Or HaGanuz, the hidden light, stored away for the righteous in the time to come. Here, light means wisdom: the Torah itself is called light — “For a mitzvah is a lamp, and Torah is light.”",
+   sod:"Creation begins with speech — “And God said.” The Hebrew letters emerge out of the darkness, and light is the very first thing revealed. Before anything is built, there is light: the first revelation.",
+   echoes:["Sinai","The Menorah","Chanukah"],
+   mechanic:{key:"Reveal", line:"Light reveals. Truth becomes visible when what hides it is removed — signal emerging from noise."},
+   teacher:{name:"Rashbi", era:"the Zohar", idea:"Truth does not need defense. It needs concealment removed."},
+   talk:["What kind of “light” can’t you see with your eyes?","Why might Hashem hide a special light away for later?"]},
+  {en:"Day Two — Separation", he:"יוֹם שֵׁנִי", tr:"Yom Sheni", color:"#3f6e8a", art:"assets/creation/2_separation.svg",
+   story:"God made the expanse, separating the waters above from the waters below, and called the expanse Shamayim — Sky.",
+   look:["Waters above and waters below","The great sky stretched between them","No “Ki Tov” — it is never called “good”"],
+   depth:"Day Two is the only day the Torah does not call “good.” Why? Its whole work was division — and our Sages teach that division by itself is incomplete. Machloket, argument for its own sake, is dangerous. Separation is a tool, never the goal.",
+   sod:"Waters above, waters below — this is the Torah’s first separation, and it becomes the prototype for all the rest: Heaven and Earth, holy and ordinary, light and darkness, Egypt and Israel. From here on, the Torah teaches by separating.",
+   echoes:["Holy vs. ordinary (Havdalah)","Heaven and Earth","Egypt and Israel"],
+   mechanic:{key:"Structure", line:"Separation builds the structure everything else stands on. Structure comes before revelation."},
+   teacher:{name:"Yitro", era:"Shemot", idea:"Build the structure first — then the people can receive."},
+   talk:["Can you think of a time separating things made them better?","What’s the difference between a good separation and a pointless argument?"]},
+  {en:"Day Three — Gathering & Growth", he:"יוֹם שְׁלִישִׁי", tr:"Yom Shlishi", color:"#3a7d4a", art:"assets/creation/3_land.svg",
+   story:"The waters gathered so dry land could appear, and the earth brought forth grass, plants, and fruit trees. This day was called “good” twice.",
+   look:["Seas gathering into one place","Dry land rising up","Trees and plants sprouting from the earth"],
+   depth:"This day is called “good” twice — once for finishing the work of the water begun on Day Two, and once for the new life of the plants. Good things that finish what others started are doubly good. And now the earth itself is participating in creation.",
+   sod:"The ground becomes a partner, bringing forth life on its own. This is the seed of Eretz Yisrael, of farming the land, of Shemitah — the land’s own Shabbat — and of bringing the First Fruits in thanks.",
+   echoes:["Eretz Yisrael","Shemitah","First Fruits (Bikkurim)"],
+   mechanic:{key:"Tikkun", line:"Growth isn’t forced — it’s revealed when the conditions are aligned. Repair grows the same way."},
+   teacher:{name:"Ramban", era:"the Rishonim", idea:"What grows from the earth quietly reveals the Maker hidden within nature."},
+   talk:["How can the ground be a “partner” with Hashem?","What does it mean to finish something someone else started?"]},
+  {en:"Day Four — Sun, Moon & Stars", he:"יוֹם רְבִיעִי", tr:"Yom Revi'i", color:"#2f3a6a", art:"assets/creation/4_luminaries.svg",
+   story:"God set two great lights in the sky — the greater to rule the day, the lesser to rule the night — and the stars, to mark seasons, days, and years.",
+   look:["The sun to rule the day","The moon and stars by night","Signs set for the festivals and seasons"],
+   depth:"The two great lights were first created equal. The Midrash tells that the moon asked, “Can two kings share one crown?” — and so the moon was made smaller. But it is promised that the moon will be restored to its full greatness in the time to come.",
+   sod:"The moon — made small now, destined to grow again — becomes the symbol of Israel: small among the nations, waiting to be restored. And since the lights are signs for the moadim, this day is the root of the whole Jewish calendar.",
+   echoes:["Rosh Chodesh","Pesach","Sukkot","The Jewish Calendar","Redemption"],
+   mechanic:{key:"Order", line:"Time gives the world rhythm — cycles, seasons, return. (Is a cycle repetition, or a chance to grow?)"},
+   teacher:{name:"Ibn Ezra", era:"the Rishonim", idea:"Begin with the plain meaning — understanding takes intellectual honesty."},
+   talk:["Why might the smaller light become the symbol of the Jewish people?","What do we measure using the moon?"]},
+  {en:"Day Five — Birds & Fish", he:"יוֹם חֲמִישִׁי", tr:"Yom Chamishi", color:"#2f7d8a", art:"assets/creation/5_birds_fish.svg",
+   story:"The waters teemed with living creatures, and birds flew across the face of the sky. God blessed them: be fruitful and multiply, and fill the seas and the earth.",
+   look:["Fish filling the seas","Birds crossing the sky","The very first blessing is spoken"],
+   depth:"This is the first explicit blessing in the Torah: “Be fruitful and multiply.” Creation now begins to spread outward and grow on its own — blessing means the power to keep giving life.",
+   sod:"Birds and fish return again and again as symbols: Yonah and the great fish, the Leviathan kept for the time to come, and Israel carried out of Egypt “on eagles’ wings.” Once blessed, life spreads everywhere.",
+   echoes:["Yonah and the fish","The Leviathan","Eagles’ wings at the Exodus"],
+   mechanic:{key:"Expansion", line:"Blessing is life that spreads outward and keeps giving — healthy growth, not just more."},
+   teacher:{name:"Baal Shem Tov", era:"the Chassidic masters", idea:"Spread the wellsprings outward."},
+   talk:["What does it really mean to “bless” something?","Why is “be fruitful and multiply” the very first blessing?"]},
+  {en:"Day Six — Animals & Adam", he:"יוֹם שִׁשִּׁי", tr:"Yom Shishi", color:"#8a5a3a", art:"assets/creation/6_adam.svg",
+   story:"God brought forth the animals of the land, and then formed Adam and Chava in His image, giving them the garden to work and to guard.",
+   look:["The animals of the field","Adam and Chava, made in God’s image","Humanity created last of all"],
+   depth:"Adam was created last. Our Sages teach: if a person grows proud, he can be reminded that even the mosquito was created before him. But if a person is worthy, he is told — the entire universe was created for you. Both are true; it depends on the choice you make.",
+   sod:"With Adam, choice enters creation. Until now everything simply obeyed its nature; now there is a creature who can choose. This is where the moral world begins — and where free will, the heart of the whole Torah, is born.",
+   echoes:["Free will","Reward and consequence","Every mitzvah in the Torah"],
+   mechanic:{key:"Alignment", line:"Adam is the first player. Every choice either aligns with the good — or doesn’t. That is free will."},
+   teacher:{name:"Rambam", era:"Mishneh Torah", idea:"Free will is given to every person; the choice is truly yours."},
+   talk:["When is it good to feel small? When is it good to feel important?","What makes people different from animals?"]},
+  {en:"Day Seven — Shabbat", he:"שַׁבָּת", tr:"Shabbat", color:"#6b5fa0", art:"assets/creation/7_shabbat.svg",
+   story:"On the seventh day God finished, and rested. He blessed the seventh day and made it holy — the very first Shabbat.",
+   look:["All the world complete","The seventh day blessed and set apart","Rest itself becomes part of creation"],
+   depth:"The Midrash asks: when the six days were done, what was still missing? The world had everything — except menuchah, rest and calm. When Shabbat came, that was the final creation, and only then was the world whole.",
+   sod:"Shabbat is not the end — it is the destination. The calm of the seventh day points forward to the Mishkan, the Beit HaMikdash, and ultimately to Olam Haba, the world that is entirely Shabbat. We taste it every single week.",
+   echoes:["The Mishkan","The Beit HaMikdash","Olam Haba"],
+   mechanic:{key:"Integration", line:"Rest isn’t doing nothing — it’s everything becoming whole. Completion, not inactivity."},
+   teacher:{name:"Ramchal", era:"Derech Hashem", idea:"Growth follows order; rest completes the design."},
+   talk:["What’s the difference between stopping work and really resting?","If Shabbat is a “taste” of something bigger, what do you think it’s a taste of?"]},
+];
+
+const GARDEN_SCENES = [
+  {en:"The Garden of Eden", he:"גַּן עֵדֶן", tr:"Gan Eden", color:"#3a7d52",
+   story:"Hashem planted a garden in Eden and placed Adam there to work it and to guard it. Four rivers flowed out of it to water the whole earth.",
+   look:["A garden planted in the east","Four rivers flowing outward","Adam placed “to work it and to guard it”"],
+   depth:"Adam’s task was l’ovdah ul’shomrah — to work it and to guard it. Our Sages teach this is also our task with the whole world and with the Torah: to work it — learn, build, grow — and to guard it — protect and keep.",
+   sod:"The garden is a meeting place of heaven and earth, and its four rivers reach to the whole world. Eden’s blessing was never meant to stay in one place.",
+   echoes:["The Mishkan as a “garden”","Working and guarding the Torah","Eretz Yisrael, a land of rivers"],
+   talk:["What does it mean to “guard” a garden — or a whole world?","What’s something you’re supposed to both use AND protect?"]},
+  {en:"Naming the Animals", he:"קְרִיאַת שֵׁמוֹת", tr:"Kri'at Shemot", color:"#6b8a3a",
+   story:"Hashem brought every animal to Adam to name. Whatever Adam called each one, that became its name. But among them all, Adam found no true partner like himself.",
+   look:["Every animal brought before Adam","Adam giving each one its name","No partner found among them"],
+   depth:"To name is to understand. Our Sages say Adam’s wisdom was so great he grasped each creature’s true nature and named it accordingly. But wisdom alone was not enough — he was still alone.",
+   sod:"Words create and reveal. Just as the world was made with speech, Adam continues creation by naming. Language itself is a holy tool — to be used with care.",
+   echoes:["The power of speech","Guarding our words (lashon hara)","Naming and blessing"],
+   talk:["If you could rename one animal, what name would fit it better?","Why wasn’t being the smartest enough for Adam?"]},
+  {en:"Adam and Chava", he:"אָדָם וְחַוָּה", tr:"Adam v'Chava", color:"#a0683a",
+   story:"Hashem caused a deep sleep to fall upon Adam, and made Chava. Adam awoke and said, “This time — bone of my bones!” And the two became as one.",
+   look:["A deep sleep falls on Adam","Chava formed at his side","“This time — bone of my bones”"],
+   depth:"Our Sages note Chava was made from Adam’s side — not from his head to rule over him, and not from his foot to be stepped on, but from his side, to stand beside him as an equal partner.",
+   sod:"Two who become one echo the unity of all creation. The first marriage mirrors how separated things were always meant to rejoin in harmony.",
+   echoes:["Marriage and partnership","Unity drawn from separation","Building a home (bayit)"],
+   talk:["Why “from the side” — not the head or the foot?","What turns two people into a real team?"]},
+];
+
+const TREE_SCENES = [
+  {en:"The Two Trees", he:"עֵץ הַחַיִּים", tr:"Etz HaChaim", color:"#6b8a3a",
+   story:"In the middle of the garden stood the Tree of Life and the Tree of the Knowledge of Good and Evil. Hashem told Adam he could eat from every tree but that one.",
+   look:["The Tree of Life at the center","The Tree of Knowledge beside it","One single command: not from this one"],
+   depth:"Just one rule, in a whole garden of freedom. Our Sages teach that even a single boundary is what makes real choice — and real goodness — possible. Without a line to honor, there is nothing to choose.",
+   sod:"The Tree of Life is the Torah itself — “a tree of life to those who hold fast to it.” The two trees are two ways of knowing: living wisdom, or the tangled knowledge of good mixed with evil.",
+   echoes:["Torah as the Tree of Life","Mitzvot as loving boundaries","Choosing good"],
+   talk:["Why give just one rule instead of none — or a hundred?","Is a rule a wall, or a gift? Could it be both?"]},
+  {en:"The Snake", he:"הַנָּחָשׁ", tr:"HaNachash", color:"#5a6a3a",
+   story:"The serpent, most cunning of the animals, asked Chava, “Did God really say…?” and told her she would not surely die. She saw the fruit was pleasing, and ate, and gave some to Adam.",
+   look:["The cunning serpent’s question","“Did God really say…?”","The fruit that looked good to eat"],
+   depth:"The snake doesn’t begin with a lie — it begins with a question that twists the words. Our Sages warn how a small distortion (“Did God really say…”) can quietly grow into a great mistake.",
+   sod:"The serpent is the voice of the yetzer hara, the pull inside us toward what’s wrong. Notice: it works through doubt and desire, never force. Temptation always asks — it never commands.",
+   echoes:["The yetzer hara (the inner struggle)","Guarding against doubt","Words that twist the truth"],
+   talk:["How can a question be more dangerous than a lie?","What helps you stop before doing something you’ll regret?"]},
+];
+
+const EXILE_SCENES = [
+  {en:"Where Are You?", he:"אַיֶּכָּה", tr:"Ayeka", color:"#5a4a2a",
+   story:"They heard the voice of Hashem in the garden, and hid. “Where are you?” He called — not because He did not know, but to give Adam the chance to answer.",
+   look:["Adam and Chava hiding among the trees","“Ayeka — Where are you?”","A door left open to answer honestly"],
+   depth:"“Ayeka — Where are you?” Our Sages teach Hashem knew exactly where Adam stood. The question was an open door: a chance to admit, to return, to do teshuvah. It is still being asked of each of us.",
+   sod:"“Where are you?” is the Torah’s first call to teshuvah, to return. Even right after the mistake, the very first word is an invitation back — not a punishment.",
+   echoes:["Teshuvah (return)","Taking responsibility","Hashem seeking us out"],
+   talk:["Why ask “where are you” to someone you can already see?","What’s the hardest part of saying “it was me”?"]},
+  {en:"Out of the Garden", he:"גֵּרוּשׁ", tr:"Gerush", color:"#4a3a2a",
+   story:"They were sent out of the garden to work the ground. A flaming, turning sword now guarded the path back to the Tree of Life. And the long journey of history began.",
+   look:["The path leading out of Eden","A flaming, turning sword at the gate","The long work of history begins"],
+   depth:"Exile sounds like only a punishment, but our Sages see a mission hidden inside it: the work of returning — of repairing the world, tikkun, step by step — all the way back toward the garden.",
+   sod:"The road back to the Tree of Life is guarded, but it is never erased. All of history becomes the journey home — and the Torah is the map that leads there.",
+   echoes:["The long road home","Tikkun olam (repairing the world)","The future return"],
+   talk:["Can something hard also be the start of an important journey?","If the way back is “guarded,” does that mean it’s closed — or waiting?"]},
+];
+
+/* ---------- AVOT ---------- */
+const ABRAHAM_SCENES = [
+  {en:"Lech Lecha — The Journey", he:"לֶךְ לְךָ", tr:"Lech Lecha", color:"#8a6d3b",
+   story:"God said to Avram, “Go — leave your land and your father’s house, and travel to a land I will show you.” He promised to make Avram into a great nation. And Avram went, just as God had told him.",
+   look:["Avraham leaving everything he knew","A road toward a land not yet shown","A promise carried like a lamp"],
+   depth:"Avraham trusts a promise he cannot yet see. Our Sages teach that this first journey was the test that made him the father of a nation — faith is built by walking forward.",
+   sod:"“Lech lecha” also means “go to yourself.” The journey outward was also a journey inward: to become the person Avraham was created to be.",
+   echoes:["Leaving Egypt for the Promised Land","Trusting a promise unseen","Every new beginning"],
+   talk:["Would you be brave enough to go somewhere new for a great promise?","What did Avraham have to leave behind?"]},
+  {en:"The Three Visitors", he:"שְׁלֹשָׁה אֲנָשִׁים", tr:"Shlosha Anashim", color:"#b58a3a",
+   story:"Three days after his bris, Avraham sat at his tent in the heat of the day. When he saw three travelers, he ran to welcome them and hurried to make them a meal. They brought wonderful news: Sarah would have a son.",
+   look:["Avraham running to welcome strangers","A feast prepared in haste","The promise of Yitzchak"],
+   depth:"Even while recovering, and even while speaking with the Divine Presence, Avraham ran to host guests. Our Sages learn that welcoming guests is even greater than greeting the Shechinah itself.",
+   sod:"To leave the Divine Presence waiting in order to serve strangers teaches that kindness to people is itself the deepest service of Hashem.",
+   echoes:["Hachnasat orchim (welcoming guests)","Sarah’s laughter and Yitzchak’s name","Kindness as worship"],
+   talk:["Why is welcoming guests such a big deal?","How do you make a guest feel truly at home?"]},
+  {en:"The Akeidah — The Binding", he:"עֲקֵדַת יִצְחָק", tr:"Akeidat Yitzchak", color:"#6b4a2a",
+   story:"God tested Avraham, asking him to bring up his son Yitzchak as an offering. They walked three days and climbed the mountain together. As Avraham reached out his hand, an angel called from heaven — and a ram caught in the thicket was offered in his place.",
+   look:["Avraham and Yitzchak walking together","The ram caught by its horns in the thicket","The angel’s voice calling from heaven"],
+   depth:"“And the two of them went together” — the Torah says it twice. Father and son walked with one heart. We remember that ram every Rosh Hashanah, when its horn becomes our shofar.",
+   sod:"Our Sages teach the ram was prepared from the eve of the very first Shabbat of creation — the test and its rescue were always part of the plan.",
+   echoes:["The shofar of Rosh Hashanah","Walking “together” in one heart","Trust beyond understanding"],
+   talk:["What does it mean to trust even when you don’t understand?","Why do we blow a ram’s horn on Rosh Hashanah?"]},
+];
+
+const ISAAC_SCENES = [
+  {en:"A Well of His Own", he:"רְחוֹבוֹת", tr:"Rechovot", color:"#6b5a3a",
+   story:"The Philistines had filled in his father Avraham’s wells. Yitzchak dug them out again and gave them back their old names. He kept digging until he found room at last — and called the place Rechovot.",
+   look:["Wells re-dug after his father","The old names lovingly restored","Room found at last — “Rechovot”"],
+   depth:"Yitzchak’s quiet greatness was faithfulness — reopening what his father began. Our Sages see in these wells the work of keeping a tradition alive: clearing away whatever blocks the living water.",
+   sod:"Water is Torah. Re-digging the wells is each generation uncovering the same living wisdom that was always there, only covered over.",
+   echoes:["Continuing your parents’ work","Torah as living water","Faithfulness over flash"],
+   talk:["Why re-dig the old wells instead of digging brand-new ones?","What’s something worth keeping going from your own family?"]},
+  {en:"The Blessing", he:"הַבְּרָכָה", tr:"HaBeracha", color:"#8a6a3a",
+   story:"Old and blind, Yitzchak prepared to bless his sons. Through Rivka’s plan, the blessing of the dew of heaven and the richness of the earth came to Yaakov.",
+   look:["Yitzchak, old and blind","The blessing of heaven’s dew and earth’s richness","The blessing reaching Yaakov"],
+   depth:"A blessing in the Torah is not magic — it is seeing a person’s true potential and naming it aloud. The deep question of this story is which son could truly carry the future.",
+   sod:"Two brothers, two paths — and the blessing must travel where it can actually grow. The story wrestles with how the spiritual future is handed onward.",
+   echoes:["Blessing the next generation","Potential becoming destiny","Yaakov and Esav"],
+   talk:["What makes a blessing more than just nice words?","Why does it matter so much who carries the future?"]},
+];
+
+const JACOB_SCENES = [
+  {en:"Jacob’s Ladder", he:"סֻלָּם יַעֲקֹב", tr:"Sulam Yaakov", color:"#5a6a3a",
+   story:"Fleeing alone, Yaakov slept with a stone for a pillow and dreamed of a ladder set on the earth, its top reaching heaven, with angels going up and down. He awoke and said, “God is in this place — and I did not know it.”",
+   look:["A stone for a pillow","A ladder joining earth and heaven","Angels rising and descending"],
+   depth:"Our Sages teach the ladder connects earth and heaven — our actions below truly reach upward. And Yaakov wakes saying, “God was here and I did not know” — sometimes holiness is right where we are, unnoticed.",
+   sod:"The ladder rejoins the waters above and below of Day Two — heaven and earth, reconnected. Every mitzvah is another rung.",
+   echoes:["Heaven meeting earth (Day Two)","Prayer as a ladder upward","Finding holiness anywhere"],
+   talk:["Where is a place that felt special, even if it looked ordinary?","If your good actions are “rungs,” what are you climbing toward?"]},
+  {en:"Wrestling at Night", he:"יִשְׂרָאֵל", tr:"Yisrael", color:"#4a5a3a",
+   story:"Alone in the night, Yaakov wrestled a mysterious figure until the break of dawn. He would not let go without a blessing, and was given a new name: Yisrael — one who struggles with God and prevails.",
+   look:["A struggle alone in the dark","Holding on until daybreak","A new name given: Yisrael"],
+   depth:"Yaakov becomes Yisrael — “you have struggled with God and with people, and prevailed.” Our Sages teach that the very name of our people carries struggle inside it: real faith is allowed to wrestle.",
+   sod:"The night-long wrestle is the inner battle every person fights. The dawn — and the blessing — come to the one who refuses to let go.",
+   echoes:["The name “Yisrael”","Wrestling honestly with faith","Holding on until the dawn"],
+   talk:["Can it be okay to “wrestle” with big questions?","What does it mean to hold on until morning?"]},
+];
+
+const JOSEPH_SCENES = [
+  {en:"The Dreamer", he:"בַּעַל הַחֲלוֹמוֹת", tr:"Ba'al HaChalomot", color:"#7a5a2a",
+   story:"Yosef, his father’s favorite, wore a coat of many colors and dreamed of sheaves and of stars bowing down to him. His brothers’ jealousy only grew.",
+   look:["The coat of many colors","Dreams of sheaves and stars bowing","Brothers turning away in jealousy"],
+   depth:"Yosef’s dreams were true, yet our Sages note that wisdom also means knowing when to speak. The story begins the long, painful road by which those dreams would actually come true — through hardship, not shortcuts.",
+   sod:"The sun, moon, and stars of Yosef’s dream reach back to Day Four — the lights set as signs now bow down, hinting that the family’s destiny is written in the heavens.",
+   echoes:["Day Four’s sun, moon and stars","Dreams becoming destiny","Knowing when to speak"],
+   talk:["Is it always wise to share every dream or idea right away?","Why might brothers feel jealous — and how do you cool it down?"]},
+  {en:"From Pit to Palace", he:"מִן הַבּוֹר", tr:"Min HaBor", color:"#9a6a2a",
+   story:"Sold by his brothers, Yosef rose from slavery and prison to rule all of Egypt by reading Pharaoh’s dreams. When his starving brothers came before him, he said: “You meant it for bad — but God meant it for good.”",
+   look:["Sold away, then thrown in prison","Reading Pharaoh’s dreams","“You meant it for bad — God meant it for good”"],
+   depth:"Yosef’s greatest moment is forgiveness. Our Sages teach that he could finally see the whole picture: the very pit became the path that saved his family. Hashem writes a far longer story than we can see.",
+   sod:"Yosef bringing Israel down to Egypt sets the stage for the entire Exodus to come — the descent that makes the great redemption possible. It is all one continuous thread.",
+   echoes:["Forgiveness","Hidden good inside hard times","The road into Egypt (the Exodus to come)"],
+   talk:["How can something bad turn into something good later?","What makes forgiving someone so hard — and so strong?"]},
+];
+
+/* ---------- EGYPT ---------- */
+const PLAGUES = [
+  {en:"Blood", he:"דָּם", tr:"Dam", art:"assets/plagues/01_blood.svg", color:"#7e1f1f",
+   story:"Moshe lifted his staff over the Nile — the very river Egypt worshiped — and its water turned to blood. The fish died, the river stank, and no one in Egypt could drink.",
+   look:["The great river running red","Dead fish along the banks","Egyptians digging and buying water to drink"],
+   depth:"The Midrash teaches the same water stayed clear and sweet for the Children of Israel. When a Hebrew and an Egyptian drank from one cup, the Egyptian tasted blood and the Hebrew tasted water — Hashem sees the difference between people.",
+   talk:["Why begin the plagues with the river Egypt worshiped?","What does it mean that the same water was different for different people?"]},
+  {en:"Frogs", he:"צְפַרְדֵּעַ", tr:"Tzefardea", art:"assets/plagues/02_frogs.svg", color:"#2f6e3a",
+   story:"Frogs swarmed up out of the river and filled all of Egypt — the houses, the beds, even the ovens where bread was baking.",
+   look:["Frogs in the beds","Frogs leaping into the hot ovens","Frogs covering every street"],
+   depth:"Our Sages note the frogs jumped even into burning ovens to do what they were sent to do. From the little frogs we learn courage — to follow Hashem’s word even into the fire.",
+   talk:["How can a tiny frog teach us about courage?","What’s something small that did something brave?"]},
+  {en:"Lice", he:"כִּנִּים", tr:"Kinim", art:"assets/plagues/03_lice.png", color:"#6b5a2f",
+   story:"The dust of the earth itself turned to lice, covering people and animals. Pharaoh’s magicians tried to copy it and could not — “This,” they said, “is the finger of God.”",
+   look:["Dead frogs piled from the plague before","Egyptians scratching everywhere","Even the great stone sphinx-cat scratching","A swarm filling the air"],
+   depth:"The magicians could imitate blood and frogs, but not the tiny lice. Our Sages say their magic had no power over anything so small — and at the smallest thing, they finally admitted the truth.",
+   talk:["Why did the small lice finally stump the magicians?","Why is admitting “you were right” sometimes so hard?"]},
+  {en:"Wild Animals", he:"עָרוֹב", tr:"Arov", art:"assets/plagues/04_arov.svg", color:"#5a3a1f",
+   story:"Swarms of wild beasts poured into Egypt — lions, bears, and every kind of animal filling the streets and palaces. But the land of Goshen, where Israel lived, was left completely untouched.",
+   look:["Lions, bears and wild beasts in the streets","Pharaoh’s palace overrun","The land of Goshen kept perfectly safe"],
+   depth:"Hashem set Goshen apart so all would see His hand reach into the very middle of Egypt while shielding His people — this plague was a wonder of separation, not only of power.",
+   talk:["Why was it important that Goshen stayed safe?","How do you think the Egyptians felt seeing Israel protected?"]},
+  {en:"Pestilence", he:"דֶּבֶר", tr:"Dever", art:"assets/plagues/05_dever.svg", color:"#555a5e",
+   story:"A sickness struck the animals of the Egyptians in the fields — their horses, donkeys, camels, cattle, and sheep — yet not one animal belonging to Israel was harmed.",
+   look:["Egyptian herds fallen in the fields","Israel’s flocks standing healthy nearby"],
+   depth:"The Torah stresses that “not one” of Israel’s animals died. Even among the animals, Hashem kept watch over what belonged to His people.",
+   talk:["Why does the Torah point out that “not one” animal of Israel was harmed?","What does this teach about how Hashem watches over us?"]},
+  {en:"Boils", he:"שְׁחִין", tr:"Shechin", art:"assets/plagues/06_boils.svg", color:"#7a3f6e",
+   story:"Moshe threw a handful of furnace soot toward the sky, and it became boils breaking out on the Egyptians and their animals. Now even the magicians could not stand before Moshe.",
+   look:["Soot thrown skyward by Moshe","Egyptians covered in painful boils","The magicians unable even to stand"],
+   depth:"Here Pharaoh’s magicians disappear from the story entirely — they could not even stand up. Stubbornness had finally met something it could not argue with.",
+   talk:["What finally happened to the magicians here?","When is being stubborn a strength, and when is it a problem?"]},
+  {en:"Hail", he:"בָּרָד", tr:"Barad", art:"assets/plagues/07_hail.svg", color:"#3f6e8a",
+   story:"Hail crashed down as never before in Egypt — and inside each stone of ice burned a flame of fire. Whoever feared Hashem’s word brought their servants and animals inside, and were saved.",
+   look:["Ice falling from the sky","Fire burning inside the ice","Those who listened sheltering safely"],
+   depth:"Fire inside ice — two opposites that should destroy one another — worked together to do Hashem’s will. Our Sages learn: if fire and water can make peace to serve their Maker, surely people can.",
+   talk:["How can fire and ice work together?","Can you think of two people who are very different working as a team?"]},
+  {en:"Locusts", he:"אַרְבֶּה", tr:"Arbeh", art:"assets/plagues/08_locusts.png", color:"#7a6a2f",
+   story:"An east wind blew all day and night, and by morning the sky went dark with locusts. They ate every green thing the hail had left, until nothing remained.",
+   look:["Moshe with his staff raised","The sky thick with locusts","Pharaoh frustrated as the crops vanish"],
+   depth:"Pharaoh’s own servants begged him, “Do you not yet know that Egypt is destroyed?” Sometimes the people around a stubborn leader see clearly long before he does.",
+   talk:["Why couldn’t Pharaoh see what his own servants saw?","Has someone ever noticed a problem before you did?"]},
+  {en:"Darkness", he:"חֹשֶׁךְ", tr:"Choshech", art:"assets/plagues/09_darkness.png", color:"#23303f",
+   story:"A thick darkness covered Egypt for three days — so heavy that no one could see another person or even rise from their place. But in the homes of Israel there was light.",
+   look:["Egypt swallowed in darkness","A Hebrew home glowing with warm light","Egyptians frozen where they sat"],
+   depth:"The Midrash teaches the darkness was so thick it could be touched. Yet Israel had light in their dwellings — those who carry light within can see even when the whole world goes dark.",
+   talk:["What helps you find “light” when things feel dark or scary?","Why could Israel see when Egypt could not?"]},
+  {en:"Firstborn", he:"מַכַּת בְּכוֹרוֹת", tr:"Makat Bechorot", art:"assets/plagues/10_firstborn.svg", color:"#1c1430",
+   story:"At midnight the final plague came. The Israelites placed the blood of the Pesach lamb on their doorposts, stayed inside together as families, and were passed over. By morning, Pharaoh sent Israel free.",
+   look:["Families gathered safely inside","Blood marked on the doorposts","The Pesach lamb of the very first Seder"],
+   depth:"This is the first Pesach. The lamb, the marked doorpost, the family gathered inside — these became the night we remember every year at the Seder, when freedom finally came.",
+   echoes:["The Seder we keep every year","Pesach and freedom","The Exodus begins"],
+   talk:["What do we still do today to remember this night?","Why do you think families had to be together inside?"]},
+];
+
+const WORLDS = [
+  {id:"creation", name:"Gan Eden", sub:"Bereishit", he:"בְּרֵאשִׁית", status:"active", color:"#3a7d52",
+   lead:"In the beginning — the world is spoken into being, day by day. The Seven Days are seven archetypes that echo through the whole Torah.",
+   chapters:[
+     {id:"days", name:"The Seven Days", he:"שִׁבְעַת יְמֵי בְּרֵאשִׁית", status:"active", color:"#2f6e4a",
+      lead:"Walk through Creation, one day at a time. In Build mode, watch each day echo forward across the Torah.", scenes:CREATION_DAYS},
+     {id:"garden", name:"The Garden", he:"גַּן עֵדֶן", status:"active", color:"#3a7d52",
+      lead:"Adam in the garden — to work it and to guard it.", scenes:GARDEN_SCENES},
+     {id:"tree", name:"Tree of Knowledge", he:"עֵץ הַדַּעַת", status:"active", color:"#6b8a3a",
+      lead:"One command, one choice — and the birth of free will.", scenes:TREE_SCENES},
+     {id:"exile", name:"Exile from Eden", he:"גֵּרוּשׁ", status:"active", color:"#5a4a2a",
+      lead:"“Where are you?” — and the long journey home begins.", scenes:EXILE_SCENES},
+   ]},
+  {id:"patriarchs", name:"Avot", sub:"The Fathers", he:"אָבוֹת", status:"active", color:"#8a6d3b",
+   lead:"The journeys of Avraham, Yitzchak, and Yaakov — and Yosef who leads the family down to Egypt.",
+   chapters:[
+     {id:"abraham", name:"Abraham", he:"אַבְרָהָם", status:"active", color:"#8a6d3b",
+      lead:"The first of the Avot — called to a new land and a new way.", scenes:ABRAHAM_SCENES},
+     {id:"isaac", name:"Isaac", he:"יִצְחָק", status:"active", color:"#6b5a3a",
+      lead:"The faithful son who keeps his father’s wells flowing.", scenes:ISAAC_SCENES},
+     {id:"jacob", name:"Jacob", he:"יַעֲקֹב", status:"active", color:"#5a6a3a",
+      lead:"Yaakov, who becomes Yisrael — the one who wrestles and prevails.", scenes:JACOB_SCENES},
+     {id:"joseph", name:"Joseph", he:"יוֹסֵף", status:"active", color:"#7a5a2a",
+      lead:"The dreamer whose long road leads the family into Egypt.", scenes:JOSEPH_SCENES},
+   ]},
+  {id:"egypt", name:"Egypt", sub:"Mitzrayim", he:"מִצְרַיִם", status:"active", color:"#2f4a63",
+   lead:"From bondage to freedom — begin with the Ten Plagues.",
+   chapters:[
+     {id:"bondage", name:"Bondage", status:"planned", color:"#4a3a2a"},
+     {id:"moshe", name:"Moshe", status:"planned", color:"#6b5a3a"},
+     {id:"confront", name:"Confrontation", status:"planned", color:"#3a4a5a"},
+     {id:"plagues", name:"Ten Plagues", he:"עֶשֶׂר הַמַּכּוֹת", status:"active", color:"#7a2f2f",
+      kind:"plagues", lead:"Tap any plague to enter its scene.", scenes:PLAGUES},
+     {id:"exodus", name:"Exodus", status:"planned", color:"#c08a2f"},
+   ]},
+  {id:"build", name:"Build It!", sub:"Make it real", he:"לִבְנוֹת", status:"active", color:"#3a6e7a",
+   lead:"Become the builder. See the finished project first, gather your holy tools, build it in order — then watch it come alive.",
+   chapters:[
+     {id:"ark", name:"Noach’s Ark", he:"תֵּבַת נֹחַ", status:"active", color:"#5a7a3a", kind:"build", level:"ark"},
+     {id:"mishkan", name:"The Mishkan", status:"planned", color:"#8a6d3b"},
+     {id:"yericho", name:"Walls of Yericho", status:"planned", color:"#7a4a3a"},
+     {id:"sea", name:"Splitting of the Sea", status:"planned", color:"#2f6e8a"},
+   ]},
+  {id:"sinai", name:"Mount Sinai", sub:"Har Sinai", he:"הַר סִינַי", status:"planned", color:"#6b5fa0", chapters:[]},
+  {id:"wilderness", name:"Midbar", sub:"Wilderness", he:"מִדְבָּר", status:"planned", color:"#a9762f", chapters:[]},
+];
+
+/* ---- Uncle Yossi's Stories — read-along world (loaded from assets/stories.js) ---- */
+if(window.UNCLE_YOSSI && window.UNCLE_YOSSI.length){
+  const scenes = window.UNCLE_YOSSI.map(s=>Object.assign({kind:"story", tr:s.subtitle||s.dedication||""}, s));
+  WORLDS.push({id:"uncleyossi", name:"Uncle Yossi", sub:"Stories for Yossi", he:"מַעֲשִׂיּוֹת", status:"active", color:"#6b4a8a",
+    lead:"Read-along Torah stories Tatty wrote — each built on a pasuk. Tap 🔊 Read aloud to hear them.",
+    chapters:[{id:"stories", name:"Uncle Yossi’s Stories", he:"מַעֲשִׂיּוֹת", status:"active", color:"#6b4a8a", kind:"story",
+      lead:"Cozy stories, perfect for reading aloud together.", scenes}]});
+  // cross-link each story to its matching Torah scene, and that scene back to the story
+  scenes.forEach((s,i)=>{
+    const L=s.link; if(!L) return;
+    const ch=chapter(L.wid,L.cid);
+    if(ch && ch.scenes && ch.scenes[L.idx])
+      ch.scenes[L.idx].crossref={wid:"uncleyossi", cid:"stories", idx:i, label:s.en};
+  });
+}
+
+/* ============================================================
+   STATE + SAVE
+   ============================================================ */
+/* ---- Build Levels (the Vision → Gather → Build → It Lives loop) ---- */
+const BUILD_LEVELS = {
+  ark: {
+    id:"ark", name:"Noach’s Ark", navi:"Noach",
+    visionLine:"This is what we will build. Hold the finished picture in your mind — then we begin.",
+    vision:[
+      "A great wooden ark — finished, strong, and tall.",
+      "The animals walking in, two by two.",
+      "The first heavy drops of rain begin to fall.",
+      "The door closes — and everyone inside is safe.",
+    ],
+    gather:[
+      {id:"blueprint", icon:"📐", name:"The Plan", desc:"Hashem’s measurements: 300 × 50 × 30 amos."},
+      {id:"gopher",    icon:"🪵", name:"Gopher Wood", desc:"The strong wood the ark is made from."},
+      {id:"pitch",     icon:"🛢️", name:"Pitch (Kofer)", desc:"To seal it inside and out, so no water gets in."},
+      {id:"tzohar",    icon:"🪟", name:"The Tzohar", desc:"A window of light for the long journey."},
+      {id:"food",      icon:"🌾", name:"Food for All", desc:"Enough for every animal, every kind."},
+    ],
+    build:[
+      {label:"Raise the wooden frame"},
+      {label:"Build the three decks and the rooms"},
+      {label:"Seal it with pitch, inside and out"},
+      {label:"Set the Tzohar — the window of light"},
+      {label:"Carry in the food"},
+      {label:"Bring the animals, two by two"},
+      {label:"Close the door — Hashem seals it shut"},
+    ],
+    revealLine:"You built it. Now stand back — and watch it work.",
+    reveal:[
+      "🌧️  The rain begins to fall, harder and harder…",
+      "🚪  The door is sealed shut.",
+      "🌊  The waters rise and lift the ark…",
+      "🛟  And the ark floats — everyone safe inside.",
+    ],
+    lesson:"Noach saw the finished ark before the first plank. He gathered what he needed, built it in the right order, and then he had to trust it to float. That is how every great thing is made: see the end, gather your tools, build step by step — and then let it live.",
+  },
+};
+let B = null;  // active build-level state
+
+const SAVE_KEY="torahcraft.save.v2";
+const DEFAULT={mode:"explore", visited:[], fs:"", heb:1, narrate:0, music:1, wid:null, cid:null, sidx:0, builtLevels:[]};
+let S = load();
+
+function load(){
+  try{ return Object.assign({}, DEFAULT, JSON.parse(localStorage.getItem(SAVE_KEY)||"{}")); }
+  catch(e){ return Object.assign({}, DEFAULT); }
+}
+function save(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }catch(e){} }
+
+function world(id){ return WORLDS.find(w=>w.id===id); }
+function chapter(wid,cid){ const w=world(wid); return w&&w.chapters? w.chapters.find(c=>c.id===cid):null; }
+function sid(wid,cid,i){ return wid+"."+cid+"."+i; }
+function playable(scenes){ return scenes? scenes.filter(s=>s.status!=="planned"):[]; }
+
+function plaguesChapter(){ return chapter("egypt","plagues"); }
+function plaguesDone(){
+  const sc=plaguesChapter().scenes;
+  return sc.every((s,i)=>S.visited.includes(sid("egypt","plagues",i)));
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+const SCREENS=["landing","modes","worlds","chapters","scenes","viewer","build","teachers","settings"];
+function show(name){
+  SCREENS.forEach(s=>document.getElementById("screen-"+s).classList.add("hidden"));
+  document.getElementById("screen-"+name).classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+function go(name){
+  stopSpeak();
+  show(name);
+  if(name==="modes") renderModes();
+  if(name==="worlds") renderWorlds();
+  if(name==="chapters") renderChapters();
+  if(name==="scenes") renderScenes();
+  if(name==="build" && B) renderBuild();
+  if(name==="teachers") renderTeachers();
+  if(name==="settings") renderSettings();
+  renderPills(); renderCrumbs();
+}
+
+function renderCrumbs(){
+  const m = MODES.find(x=>x.id===S.mode);
+  let trail = `<span class="back" onclick="go('worlds')">✡ Worlds</span>`;
+  const w=world(S.wid), c=chapter(S.wid,S.cid);
+  if(w) trail += ` › <span class="back" onclick="go('chapters')">${w.name}</span>`;
+  if(c) trail += ` › <span class="back" onclick="go('scenes')">${c.name}</span>`;
+  const tag = ` &nbsp;·&nbsp; Mode: <b>${m.name}</b> (${m.pardes})`;
+  document.querySelectorAll("[data-crumb]").forEach(el=>el.innerHTML=trail+tag);
+}
+
+/* ============================================================
+   MODE PILLS
+   ============================================================ */
+function renderPills(){
+  document.querySelectorAll("[data-pill]").forEach(el=>{
+    el.innerHTML="";
+    MODES.forEach(m=>{
+      const locked = m.unlock==="plagues" && !plaguesDone();
+      const b=document.createElement("button");
+      b.textContent = locked ? "🔒 "+m.name : m.name;
+      b.className = S.mode===m.id ? "on":"";
+      b.disabled = locked; b.title=m.pardes;
+      b.onclick=()=>{ S.mode=m.id; save(); renderPills(); renderCrumbs();
+        if(!document.getElementById("screen-viewer").classList.contains("hidden")) openScene(S.sidx,true);
+        if(!document.getElementById("screen-scenes").classList.contains("hidden")) renderScenes();
+      };
+      el.appendChild(b);
+    });
+  });
+}
+
+/* ============================================================
+   RENDERERS
+   ============================================================ */
+function renderModes(){
+  const g=document.getElementById("modeGrid"); g.innerHTML="";
+  MODES.forEach(m=>{
+    const locked = m.unlock==="plagues" && !plaguesDone();
+    const c=document.createElement("div");
+    c.className="card modecard"+(locked?" locked":"");
+    c.innerHTML=`<div class="mh">${locked?"🔒 ":""}${m.name}</div><div class="pardes">${m.pardes}</div>
+      <p>${locked?"Complete the Ten Plagues to open this hidden layer.":m.desc}</p>`;
+    if(!locked) c.onclick=()=>{ S.mode=m.id; save(); renderModes(); renderCrumbs(); };
+    if(S.mode===m.id && !locked) c.style.borderColor="var(--gold)";
+    g.appendChild(c);
+  });
+}
+
+function renderWorlds(){
+  const g=document.getElementById("worldGrid"); g.innerHTML="";
+  WORLDS.forEach(w=>{
+    const active=w.status==="active";
+    const c=document.createElement("div");
+    c.className="card"+(active?"":" locked");
+    c.innerHTML=`
+      <div class="ph" style="background:linear-gradient(160deg,${w.color},#0e0b08)">
+        <div class="heb" style="font-size:1.2rem">${w.he||""}</div>
+        <div style="font-size:1.7rem;font-weight:800">${w.name}</div>
+        <div style="font-size:.8rem;opacity:.8">${w.sub}</div>
+      </div>
+      <span class="badge ${active?'done':'soon'}">${active?'OPEN':'COMING SOON'}</span>
+      <div class="cap"><span class="nm">${w.name}</span></div>`;
+    if(active) c.onclick=()=>{ S.wid=w.id; S.cid=null; save(); go("chapters"); };
+    g.appendChild(c);
+  });
+}
+
+function renderChapters(){
+  const w=world(S.wid); if(!w) return go("worlds");
+  document.getElementById("chTitle").textContent = w.name+" — "+w.sub;
+  document.getElementById("chHe").textContent = S.heb? (w.he||"") : "";
+  document.getElementById("chLead").textContent = w.lead||"";
+  const g=document.getElementById("chapterGrid"); g.innerHTML="";
+  (w.chapters||[]).forEach(ch=>{
+    const active=ch.status==="active";
+    const c=document.createElement("div");
+    c.className="card"+(active?"":" locked");
+    const isBuild = ch.kind==="build";
+    const done = active && (isBuild
+      ? S.builtLevels.includes(ch.level)
+      : ch.scenes && ch.scenes.every((s,i)=> s.status==="planned" || S.visited.includes(sid(w.id,ch.id,i))));
+    c.innerHTML=`
+      <div class="ph" style="background:linear-gradient(160deg,${ch.color},#0e0b08)">
+        <div style="font-size:1.5rem;font-weight:800">${isBuild?"🔨 ":""}${ch.name}</div>
+        ${S.heb&&ch.he?`<div class="heb">${ch.he}</div>`:""}
+        ${isBuild?`<div style="font-size:.72rem;opacity:.85;margin-top:4px">Build Level</div>`:""}
+      </div>
+      <span class="badge ${active?'done':'soon'}">${active?(done?'✓ BUILT':'OPEN'):'COMING SOON'}</span>
+      <div class="cap"><span class="nm">${ch.name}</span></div>`;
+    if(active && isBuild) c.onclick=()=>{ S.cid=ch.id; save(); startBuildLevel(ch.level); };
+    else if(active) c.onclick=()=>{ S.cid=ch.id; save(); go("scenes"); };
+    g.appendChild(c);
+  });
+}
+
+function renderScenes(){
+  const w=world(S.wid), ch=chapter(S.wid,S.cid);
+  if(!ch) return go("chapters");
+  document.getElementById("scTitle").textContent =
+    ch.name + (S.heb&&ch.he? "  "+ch.he : "");
+  const scenes=ch.scenes||[];
+  const seen=scenes.filter((s,i)=>S.visited.includes(sid(w.id,ch.id,i))).length;
+  let lead = `You have visited <b>${seen}</b> of ${scenes.length}. ` + (ch.lead||"");
+  if(ch.kind==="plagues" && plaguesDone()) lead += " <b>The Hidden layer is open</b> — try it from the mode bar above.";
+  document.getElementById("scLead").innerHTML = lead;
+
+  const g=document.getElementById("sceneGrid"); g.innerHTML="";
+  scenes.forEach((s,i)=>{
+    const planned = s.status==="planned";
+    const c=document.createElement("div");
+    c.className="card"+(planned?" locked":"")+(S.visited.includes(sid(w.id,ch.id,i))?" visited":"");
+    const num = i+1;
+    const isStory = s.kind==="story";
+    const heb = (S.heb && !isStory)? `<span class="he">${s.he||""}</span>`:"";
+    const media = s.art
+      ? `<img class="thumb" src="${s.art}" alt="${s.en}" loading="lazy">`
+      : isStory
+        ? `<div class="ph" style="background:linear-gradient(160deg,${s.color},#0e0b08)">
+             <div style="font-size:2.6rem">📜</div>
+             <div style="font-size:.72rem;opacity:.85;margin-top:6px">read-along</div></div>`
+        : `<div class="ph" style="background:linear-gradient(160deg,${s.color},#0e0b08)">
+             <div class="num">${num}</div>${S.heb&&s.he?`<div class="heb">${s.he}</div>`:""}
+             <div style="font-size:.7rem;opacity:.8;margin-top:6px">${planned?'':'art coming soon'}</div></div>`;
+    c.innerHTML = media +
+      `<span class="badge ${planned?'soon':'done'}">${planned?'COMING SOON':(isStory?'📖 STORY':'#'+num)}</span>
+       <div class="check">✓</div>
+       <div class="cap"><span class="nm">${s.en}</span>${heb}</div>`;
+    if(!planned) c.onclick=()=>openScene(i);
+    g.appendChild(c);
+  });
+}
+
+/* ---- Teachers collection (auto-gathered from every scene with a teacher) ---- */
+function allTeachers(){
+  const out=[];
+  WORLDS.forEach(w=>(w.chapters||[]).forEach(c=>(c.scenes||[]).forEach((s,i)=>{
+    if(s.teacher) out.push(Object.assign({}, s.teacher,
+      {wid:w.id, cid:c.id, idx:i, where:w.name+" › "+c.name, scene:s.en}));
+  })));
+  return out;
+}
+function renderTeachers(){
+  const list=allTeachers();
+  const openCount=list.filter(t=>S.visited.includes(sid(t.wid,t.cid,t.idx))).length;
+  document.getElementById("tCount").textContent = `${openCount} of ${list.length} unlocked`;
+  const g=document.getElementById("teacherGrid"); g.innerHTML="";
+  list.forEach(t=>{
+    const open=S.visited.includes(sid(t.wid,t.cid,t.idx));
+    const c=document.createElement("div");
+    c.className="card teachercard"+(open?"":" locked");
+    c.innerHTML=`
+      <div class="ph" style="background:linear-gradient(160deg,#3a2c1a,#0e0b08)">
+        <div style="font-size:2.4rem">${open?"🕯":"🔒"}</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--gold-soft)">${open?t.name:"? ? ?"}</div>
+        <div style="font-size:.75rem;opacity:.85">${open?t.era:""}</div>
+      </div>
+      <div class="cap teachertext">
+        ${open
+          ? `<p style="margin:0 0 6px">“${t.idea}”</p><div style="color:var(--ink-dim);font-size:.8rem">— ${t.scene}</div>`
+          : `<div style="color:var(--ink-dim);font-size:.9rem">Find in <b>${t.where}</b></div>`}
+      </div>`;
+    if(open) c.onclick=()=>{ S.wid=t.wid; S.cid=t.cid; save(); openScene(t.idx); };
+    g.appendChild(c);
+  });
+}
+
+/* ============================================================
+   BUILD LEVEL  —  Vision → Gather → Build → It Lives
+   ============================================================ */
+function startBuildLevel(id){
+  const lv=BUILD_LEVELS[id]; if(!lv){ alert("This level is coming soon."); return; }
+  B={ id, phase:"vision", gathered:[], done:[] };
+  go("build");
+}
+function renderBuild(){
+  const lv=BUILD_LEVELS[B.id];
+  document.getElementById("bTitle").textContent = lv.name + " — Build It!";
+  const phases=[["vision","🔭 Vision"],["gather","🧰 Gather"],["build","🔨 Build"],["reveal","✨ It Lives"]];
+  const cur=phases.findIndex(p=>p[0]===B.phase);
+  document.getElementById("bPhases").innerHTML = phases.map((p,i)=>
+    `<span class="ph-step ${i===cur?'on':''} ${i<cur?'done':''}">${p[1]}</span>`).join("");
+  const st=document.getElementById("buildStage"); st.innerHTML="";
+  st.appendChild({vision:buildVision, gather:buildGather, build:buildAssemble, reveal:buildReveal}[B.phase](lv));
+  window.scrollTo(0,0);
+}
+function buildVision(lv){
+  const d=document.createElement("div");
+  d.innerHTML=`
+    <div class="navi"><div class="face">🧓</div>
+      <div class="speak2"><b>${lv.navi} says:</b> ${lv.visionLine}</div></div>
+    <div class="wfbox"><h3>🔭 See the finished project first</h3>
+      <ul class="vision-list">${lv.vision.map(v=>`<li>${v}</li>`).join("")}</ul></div>
+    <div class="navrow"><button class="btn block" id="bGo">Let’s build it →</button></div>
+    <div class="wf-note">Prototype · wireframe style — color &amp; art come next</div>`;
+  d.querySelector("#bGo").onclick=()=>{ B.phase="gather"; renderBuild(); };
+  return d;
+}
+function buildGather(lv){
+  const d=document.createElement("div");
+  const allGot=B.gathered.length>=lv.gather.length;
+  const grid=lv.gather.map(t=>{
+    const got=B.gathered.includes(t.id);
+    return `<div class="tool ${got?'got':''}" data-id="${t.id}">
+      <div class="ic">${t.icon}</div><div class="nm">${t.name}</div>
+      <div class="ds">${t.desc}</div><div class="got-tag">✓ gathered</div></div>`;
+  }).join("");
+  d.innerHTML=`<div class="wfbox"><h3>🧰 Gather your holy tools <small style="color:var(--ink-dim);font-weight:400">— tap each one</small></h3>
+      <div class="toolgrid">${grid}</div></div>
+    <div class="navrow"><button class="btn ghost" id="bBack">← Back</button>
+      <button class="btn" id="bNext" ${allGot?"":"disabled"}>Ready to build →</button></div>
+    <div class="wf-note">Gathered ${B.gathered.length} of ${lv.gather.length}${allGot?" — all set!":""}</div>`;
+  d.querySelectorAll(".tool").forEach(el=>el.onclick=()=>{
+    if(!B.gathered.includes(el.dataset.id)) B.gathered.push(el.dataset.id);
+    renderBuild();
+  });
+  d.querySelector("#bBack").onclick=()=>{ B.phase="vision"; renderBuild(); };
+  d.querySelector("#bNext").onclick=()=>{ if(allGot){ B.phase="build"; renderBuild(); } };
+  return d;
+}
+function buildAssemble(lv){
+  const d=document.createElement("div");
+  const next=B.done.length, allDone=next>=lv.build.length;
+  const list=lv.build.map((s,i)=>{
+    const done=i<next, isnext=i===next;
+    return `<div class="step ${done?'done':''} ${isnext?'next':''}" data-i="${i}">
+      <div class="n">${done?'✓':(i+1)}</div><div>${s.label}</div></div>`;
+  }).join("");
+  d.innerHTML=`<div class="wfbox"><h3>🔨 Build it in order <small style="color:var(--ink-dim);font-weight:400">— tap the highlighted step</small></h3>
+      <div class="steplist">${list}</div></div>
+    <div class="navrow"><button class="btn ghost" id="bBack">← Back</button>
+      <button class="btn" id="bNext" ${allDone?"":"disabled"}>Finish — bring it to life ✨</button></div>
+    <div class="wf-note">Step ${Math.min(next+1,lv.build.length)} of ${lv.build.length}</div>`;
+  d.querySelectorAll(".step.next").forEach(el=>el.onclick=()=>{ B.done.push(+el.dataset.i); renderBuild(); });
+  d.querySelector("#bBack").onclick=()=>{ B.phase="gather"; renderBuild(); };
+  d.querySelector("#bNext").onclick=()=>{ if(allDone){
+    B.phase="reveal"; if(!S.builtLevels.includes(B.id)){ S.builtLevels.push(B.id); save(); } renderBuild(); } };
+  return d;
+}
+function buildReveal(lv){
+  const d=document.createElement("div");
+  d.innerHTML=`
+    <div class="navi"><div class="face">🧓</div><div class="speak2"><b>${lv.navi}:</b> ${lv.revealLine}</div></div>
+    <div class="wfbox"><h3>✨ Watch it come alive</h3>
+      <ul class="reveal-list">${lv.reveal.map((r,i)=>`<li style="animation-delay:${(i*0.7).toFixed(2)}s">${r}</li>`).join("")}</ul></div>
+    <div class="wfbox" style="border-color:var(--gold)"><h3>🌱 What you really did</h3><p style="margin:0;line-height:1.55">${lv.lesson}</p></div>
+    <div class="navrow"><button class="btn ghost" id="bAgain">↺ Build again</button>
+      <button class="btn" id="bDone">Back to levels</button></div>`;
+  d.querySelector("#bAgain").onclick=()=>{ B.gathered=[]; B.done=[]; B.phase="vision"; renderBuild(); };
+  d.querySelector("#bDone").onclick=()=>{ go("chapters"); };
+  return d;
+}
+
+function openScene(i, keepScreen){
+  const w=world(S.wid), ch=chapter(S.wid,S.cid);
+  if(!ch) return;
+  const scenes=ch.scenes||[]; const s=scenes[i]; if(!s) return;
+  stopSpeak();
+  S.sidx=i;
+  const id=sid(w.id,ch.id,i);
+  if(!S.visited.includes(id)) S.visited.push(id);
+  save();
+  if(!keepScreen) go("viewer");
+
+  const stage=document.getElementById("vStage");
+  const phStyle="aspect-ratio:3/2;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 6px #000a";
+  stage.innerHTML = s.art
+    ? `<img src="${s.art}" alt="${s.en}">`
+    : s.kind==="story"
+      ? `<div class="ph" style="${phStyle};background:linear-gradient(160deg,${s.color},#0e0b08);padding:18px;text-align:center">
+           <div style="font-size:3rem">📜</div>
+           <div style="font-size:1.4rem;font-weight:800;margin-top:4px">${s.en}</div>
+           ${s.subtitle?`<div style="opacity:.85;margin-top:2px">${s.subtitle}</div>`:""}</div>`
+      : `<div class="ph" style="${phStyle};background:linear-gradient(160deg,${s.color},#0e0b08)">
+           <div style="font-size:3.4rem;font-weight:800">${i+1}</div>
+           ${S.heb&&s.he?`<div style="font-size:1.8rem">${s.he}</div>`:""}
+           <div style="opacity:.8;margin-top:8px">Artwork coming soon</div></div>`;
+
+  document.getElementById("vNum").textContent = "#"+(i+1)+" "+s.en;
+  document.getElementById("vHe").textContent  = S.heb? (s.he||"") : "";
+  document.getElementById("vEn").textContent  = s.tr||"";
+
+  const body=document.getElementById("vBody"); body.innerHTML="";
+  const mode=S.mode;
+  if(s.kind==="story"){ renderStoryBody(body, s, mode); }
+  else {
+  body.appendChild(panel("story","📖 The Story", `<p style="margin:0">${s.story}</p>`));
+
+  if(mode!=="explore" && s.look && s.look.length)
+    body.appendChild(panel("","🔎 Look closely (Remez)","<ul>"+s.look.map(l=>`<li>${l}</li>`).join("")+"</ul>"));
+
+  if((mode==="build"||mode==="hidden") && s.depth)
+    body.appendChild(panel("depth","🌱 A deeper lesson (Drash)",`<p style="margin:0">${s.depth}</p>`));
+
+  if((mode==="build"||mode==="hidden") && s.mechanic)
+    body.appendChild(panel("mech",`⚙ Core mechanic — ${s.mechanic.key}`,`<p style="margin:0">${s.mechanic.line}</p>`));
+
+  if((mode==="build"||mode==="hidden") && s.echoes && s.echoes.length)
+    body.appendChild(panel("echo","🔮 Future Echoes <small>where this returns in the Torah</small>",
+      `<div class="chips">${s.echoes.map(e=>`<span class="chip">${e}</span>`).join("")}</div>`));
+
+  if(mode==="hidden" && s.sod)
+    body.appendChild(panel("depth","✡ Hidden layer (Sod)",`<p style="margin:0">${s.sod}</p>`));
+
+  if(mode==="hidden" && s.teacher)
+    body.appendChild(panel("teach",`🕯 Teacher unlocked — ${s.teacher.name}`,
+      `<p style="margin:0 0 6px;font-size:1.06rem">“${s.teacher.idea}”</p>
+       <div style="color:var(--ink-dim);font-size:.85rem">— in the spirit of ${s.teacher.name}, ${s.teacher.era}</div>`));
+  if(mode==="hidden" && ch.kind==="plagues")
+    body.appendChild(panel("depth","✡ The pattern of the ten",
+      `<p style="margin:0">Each plague answered something Egypt worshiped — the river, the land, the sky, the sun, even Pharaoh who called himself a god. Ten times Hashem showed He alone is Master, until Israel walked free.</p>`));
+
+  if(mode!=="explore" && s.talk && s.talk.length)
+    body.appendChild(panel("talk","👨‍👩‍👧 Talk about it <small>as a family</small>",
+      "<ul>"+s.talk.map(t=>`<li>${t}</li>`).join("")+"</ul>"));
+
+  if(s.crossref) body.appendChild(crossPanel(s.crossref,"📜 Uncle Yossi has a story about this:"));
+  if(mode==="explore")
+    body.appendChild(panel("locked-hint","",`Switch to <b>Discover</b> or <b>Build</b> in the bar above to reveal more layers — including the Future Echoes.`));
+  }
+
+  // prev/next (skip planned)
+  let pi=i-1; while(pi>=0 && scenes[pi].status==="planned") pi--;
+  let ni=i+1; while(ni<scenes.length && scenes[ni].status==="planned") ni++;
+  const pb=document.getElementById("vPrev"), nb=document.getElementById("vNext");
+  pb.style.visibility = pi>=0?"visible":"hidden";
+  nb.style.visibility = ni<scenes.length?"visible":"hidden";
+  pb.onclick=()=> pi>=0 && openScene(pi);
+  nb.onclick=()=> ni<scenes.length && openScene(ni);
+  document.getElementById("vAll").onclick=()=>go("scenes");
+
+  renderPills(); renderCrumbs();
+  resetSpeakBtn();
+  if(S.narrate) speakScene(s, mode);
+}
+
+function panel(extra,title,html){
+  const d=document.createElement("div");
+  d.className="panel "+extra;
+  d.innerHTML=(title?`<h3>${title}</h3>`:"")+html;
+  return d;
+}
+
+/* a button-link from one scene to a related scene (cross-references) */
+function crossPanel(link,label){
+  const d=document.createElement("div"); d.className="panel echo";
+  d.innerHTML=`<h3>🔗 ${label}</h3>`;
+  const b=document.createElement("button"); b.className="btn ghost sm"; b.textContent="→ "+link.label;
+  b.onclick=()=>{ S.wid=link.wid; S.cid=link.cid; save(); openScene(link.idx); };
+  d.appendChild(b);
+  return d;
+}
+
+/* read-along story layout (Uncle Yossi's Stories) */
+function renderStoryBody(body, s, mode){
+  let src="";
+  if(s.parsha) src+=`<div style="color:var(--ink-dim);font-size:.88rem;margin-bottom:6px">${s.parsha}${s.dedication?" · "+s.dedication:""}</div>`;
+  if(s.he) src+=`<div style="font-size:1.3rem;color:var(--gold-soft);direction:rtl;line-height:1.6">${s.he}</div>`;
+  if(s.translit) src+=`<div style="color:var(--ink-dim);font-style:italic;margin-top:2px">${s.translit}</div>`;
+  if(s.source) src+=`<div style="margin-top:6px">${s.source}</div>`;
+  body.appendChild(panel("depth","✦ "+(s.subtitle||"A Torah story for children"), src));
+
+  body.appendChild(panel("story","📖 The Story", (s.body||[]).map(p=>`<p>${p}</p>`).join("")));
+
+  if(s.meaning) body.appendChild(panel("echo","💡 What it means", `<p style="margin:0">${s.meaning}</p>`));
+
+  if(mode!=="explore" && s.talk && s.talk.length)
+    body.appendChild(panel("talk","👨‍👩‍👧 Talk about it <small>as a family</small>",
+      "<ul>"+s.talk.map(t=>`<li>${t}</li>`).join("")+"</ul>"));
+
+  if((mode==="build"||mode==="hidden") && s.grownup)
+    body.appendChild(panel("depth","🌱 A little deeper <small>for the grown-up reading along</small>",
+      `<p style="margin:0">${s.grownup}</p>`));
+
+  if(s.closing)
+    body.appendChild(panel("teach","",`<p style="margin:0;text-align:center;font-size:1.06rem;color:var(--gold-soft)">“${s.closing}”</p>`));
+
+  if(s.link) body.appendChild(crossPanel(s.link,"This connects to a Torah scene:"));
+
+  if(mode==="explore")
+    body.appendChild(panel("locked-hint","",`Switch to <b>Build</b> in the bar above for the teaching underneath, for grown-ups.`));
+}
+
+/* ============================================================
+   READ-ALOUD NARRATION (Web Speech API)
+   ============================================================ */
+const synth = window.speechSynthesis || null;
+function buildNarration(s, mode){
+  if(s.kind==="story"){
+    let p=[s.en+".", s.subtitle||"", s.source||""].concat(s.body||[]);
+    if(s.meaning) p.push("What it means. "+s.meaning);
+    if((mode==="build"||mode==="hidden") && s.grownup) p.push(s.grownup);
+    if(s.closing) p.push(s.closing);
+    return p.filter(Boolean).join(" ");
+  }
+  let parts=[s.en+".", s.story];
+  if(mode!=="explore" && s.look && s.look.length) parts.push("Look closely. "+s.look.join(". ")+".");
+  if((mode==="build"||mode==="hidden") && s.depth) parts.push("A deeper lesson. "+s.depth);
+  if((mode==="build"||mode==="hidden") && s.mechanic) parts.push("Core mechanic: "+s.mechanic.key+". "+s.mechanic.line);
+  if((mode==="build"||mode==="hidden") && s.echoes && s.echoes.length) parts.push("Future echoes: "+s.echoes.join(", ")+".");
+  if(mode==="hidden" && s.sod) parts.push("Hidden layer. "+s.sod);
+  if(mode==="hidden" && s.teacher) parts.push("Teacher unlocked: "+s.teacher.name+". "+s.teacher.idea);
+  if(mode!=="explore" && s.talk && s.talk.length) parts.push("Talk about it. "+s.talk.join(" "));
+  return parts.join(" ");
+}
+function speakScene(s, mode){
+  if(!synth) return;
+  synth.cancel();
+  if(bgm && S.music && !bgm.paused) bgm.volume=0.10;   // duck music under the voice
+  const u=new SpeechSynthesisUtterance(buildNarration(s, mode));
+  u.rate=0.95; u.pitch=1.0; u.lang="en-US";
+  u.onend=resetSpeakBtn; u.onerror=resetSpeakBtn;
+  document.getElementById("vSpeak").textContent="⏹ Stop";
+  synth.speak(u);
+}
+function stopSpeak(){ if(synth) synth.cancel(); resetSpeakBtn(); }
+function resetSpeakBtn(){ const b=document.getElementById("vSpeak"); if(b) b.textContent="🔊 Read aloud";
+  if(bgm) bgm.volume = S.music? MUSIC_VOL : 0; }  // un-duck music when narration ends
+
+/* ============================================================
+   BACKGROUND MUSIC + INTRO SEQUENCE  (RegisterIntroTheme v1.0.0)
+   Intro niggun (Yanuka, Rav Shlomo Yehuda) · fade-in 3s · vol 0.65
+   ============================================================ */
+const bgm = document.getElementById("bgm");
+const MUSIC_VOL=0.65, FADE_IN=3000, FADE_OUT=2000;
+let musicStarted=false;
+function updateMusicBtn(){ const b=document.getElementById("musicBtn");
+  if(b){ b.textContent = S.music? "🎵":"🔇"; b.classList.toggle("off", !S.music); } }
+function fadeVol(to,ms){ if(!bgm) return; const from=bgm.volume,t0=performance.now();
+  (function step(now){ const k=Math.min(1,(now-t0)/ms); bgm.volume=from+(to-from)*k;
+    if(k<1) requestAnimationFrame(step); })(t0); }
+function startMusic(){ if(!bgm||!S.music){ updateMusicBtn(); return; }
+  bgm.play().then(()=>{ if(!musicStarted){ musicStarted=true; bgm.volume=0; fadeVol(MUSIC_VOL,FADE_IN); }
+                        else fadeVol(MUSIC_VOL,600); }).catch(()=>{});
+  updateMusicBtn(); }
+function toggleMusic(){ S.music=S.music?0:1; save(); updateMusicBtn();
+  if(S.music) startMusic();
+  else if(bgm){ fadeVol(0,FADE_OUT); setTimeout(()=>{ if(!S.music) bgm.pause(); }, FADE_OUT+60); } }
+if(bgm) document.getElementById("musicBtn").onclick=toggleMusic;
+
+let introBegan=false, introTimer=null;
+function beginIntro(){ if(introBegan) return; introBegan=true;
+  const h=document.getElementById("introHint"); if(h) h.textContent="";
+  const el=document.getElementById("intro"); if(el) el.classList.add("playing");
+  if(S.music) startMusic();
+  introTimer=setTimeout(endIntro,4800); }
+function endIntro(){ if(introTimer) clearTimeout(introTimer);
+  const el=document.getElementById("intro"); if(!el) return;
+  el.classList.add("done"); setTimeout(()=>{ el.style.display="none"; },1000); }
+function initIntro(){
+  const t=document.getElementById("introTitle");
+  if(t) t.innerHTML=[...t.textContent].map((ch,i)=>`<span style="animation-delay:${(1.0+i*0.08).toFixed(2)}s">${ch}</span>`).join("");
+  const el=document.getElementById("intro"); if(!el) return;
+  el.addEventListener("pointerdown",e=>{ if(e.target.id==="introSkip") return; introBegan?endIntro():beginIntro(); });
+  const sk=document.getElementById("introSkip");
+  if(sk) sk.addEventListener("pointerdown",e=>{ e.stopPropagation(); endIntro(); });
+  document.addEventListener("keydown",()=>{ const v=document.getElementById("intro");
+    if(!v||v.style.display==="none"||v.classList.contains("done")) return; introBegan?endIntro():beginIntro(); });
+}
+document.getElementById("vSpeak").onclick=()=>{
+  if(!synth){ alert("Read-aloud isn't supported in this browser."); return; }
+  if(synth.speaking){ stopSpeak(); return; }
+  const ch=chapter(S.wid,S.cid); if(!ch) return;
+  speakScene(ch.scenes[S.sidx], S.mode);
+};
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+function renderSettings(){
+  document.querySelectorAll("#segText button").forEach(b=>b.classList.toggle("on",(b.dataset.fs||"")===(S.fs||"")));
+  document.querySelectorAll("#segHeb button").forEach(b=>b.classList.toggle("on",String(b.dataset.heb)===String(S.heb)));
+  document.querySelectorAll("#segNarrate button").forEach(b=>b.classList.toggle("on",String(b.dataset.n)===String(S.narrate)));
+  document.querySelectorAll("#segMusic button").forEach(b=>b.classList.toggle("on",String(b.dataset.m)===String(S.music)));
+  document.getElementById("progressTxt").textContent = S.visited.length+" scenes visited";
+}
+document.querySelectorAll("#segText button").forEach(b=>b.onclick=()=>{S.fs=b.dataset.fs;applyFs();save();renderSettings();});
+document.querySelectorAll("#segHeb button").forEach(b=>b.onclick=()=>{S.heb=Number(b.dataset.heb);save();renderSettings();});
+document.querySelectorAll("#segNarrate button").forEach(b=>b.onclick=()=>{S.narrate=Number(b.dataset.n);save();renderSettings();});
+document.querySelectorAll("#segMusic button").forEach(b=>b.onclick=()=>{S.music=Number(b.dataset.m);save();renderSettings();
+  updateMusicBtn(); if(S.music) startMusic(); else if(bgm){ fadeVol(0,1500); setTimeout(()=>{if(!S.music)bgm.pause();},1560);} });
+function applyFs(){ document.body.classList.remove("fs-large","fs-xl");
+  if(S.fs==="large") document.body.classList.add("fs-large");
+  if(S.fs==="xl") document.body.classList.add("fs-xl"); }
+function resetProgress(){
+  if(confirm("Reset all progress? Every scene you have visited will be cleared.")){
+    S=Object.assign({}, DEFAULT, {fs:S.fs, heb:S.heb, narrate:S.narrate}); save(); renderSettings();
+  }
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+applyFs();
+updateMusicBtn();
+initIntro();
+go("landing");
+</script>
+</body>
+</html>

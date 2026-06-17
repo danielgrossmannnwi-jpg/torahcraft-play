@@ -1,0 +1,37 @@
+HOW TO ADD PLAGUE ARTWORK
+=========================
+
+Drop a PNG (or JPG) into this folder using EXACTLY these names. The game and
+the gallery will pick them up automatically the next time you open index.html.
+
+    01_blood     (placeholder .svg here — drop 01_blood.png to replace)
+    02_frogs     (placeholder .svg here — drop 02_frogs.png to replace)
+    03_lice.png  <-- real art
+    04_arov      (placeholder .svg here — drop 04_arov.png to replace)
+    05_dever     (placeholder .svg here)
+    06_boils     (placeholder .svg here)
+    07_hail      (placeholder .svg here)
+    08_locusts.png  <-- real art
+    09_darkness.png <-- real art
+    10_firstborn (placeholder .svg here — drop 10_firstborn.png to replace)
+
+Every plague already has art: the seven without photos use generated
+block-style .svg placeholder scenes (made by make_placeholder_art.py).
+
+To replace a placeholder with real artwork:
+  1. Drop in a PNG, e.g.  07_hail.png
+  2. In index.html, find that plague in the PLAGUES list and change its
+     "art" value from  .../07_hail.svg  to  .../07_hail.png
+  3. (optional) run  python build_portable.py  to refresh the shareable file.
+
+Notes
+-----
+* Best shape is wide / landscape (about 3 wide : 2 tall, like 1200x800).
+* A scene with no image at all shows a clean colored placeholder card — so
+  the gallery always looks complete, never broken.
+* After adding art, if you want a fresh single-file version to share, run:
+      python build_portable.py
+  ...which rebuilds TorahCraft.html with the new pictures baked in.
+
+To add a brand-new image name, also add its file path in index.html
+(in the PLAGUES list, the "art" field). Until then, use the names above.
