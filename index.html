@@ -443,6 +443,7 @@ const GARDEN_SCENES = [
    echoes:["The Mishkan as a “garden”","Working and guarding the Torah","Eretz Yisrael, a land of rivers"],
    talk:["What does it mean to “guard” a garden — or a whole world?","What’s something you’re supposed to both use AND protect?"]},
   {en:"Naming the Animals", he:"קְרִיאַת שֵׁמוֹת", tr:"Kri'at Shemot", color:"#6b8a3a",
+   game:"assets/minigames/name-the-animals.html",
    story:"Hashem brought every animal to Adam to name. Whatever Adam called each one, that became its name. But among them all, Adam found no true partner like himself.",
    look:["Every animal brought before Adam","Adam giving each one its name","No partner found among them"],
    depth:"To name is to understand. Our Sages say Adam’s wisdom was so great he grasped each creature’s true nature and named it accordingly. But wisdom alone was not enough — he was still alone.",
@@ -1103,6 +1104,14 @@ function openScene(i, keepScreen){
   if((mode==="build"||mode==="hidden") && s.mechanic)
     body.appendChild(panel("mech",`⚙ Core mechanic — ${s.mechanic.key}`,`<p style="margin:0">${s.mechanic.line}</p>`));
 
+  if((mode==="build"||mode==="hidden") && s.game){
+    body.appendChild(panel("game","🎨 Build Project — Color &amp; Name",
+      `<p style="margin:0 0 10px">Open the scroll, pop the falling bubbles to paint the animal, then gather the colors to spell its name in Hebrew — a firework for every letter.</p>
+       <button class="btn block" id="playGameBtn">▶ Play: Name the Animals</button>`));
+    const pg=document.getElementById("playGameBtn");
+    if(pg) pg.onclick=()=>launchMiniGame(s.game, s.en+" — Build Project");
+  }
+
   if((mode==="build"||mode==="hidden") && s.echoes && s.echoes.length)
     body.appendChild(panel("echo","🔮 Future Echoes <small>where this returns in the Torah</small>",
       `<div class="chips">${s.echoes.map(e=>`<span class="chip">${e}</span>`).join("")}</div>`));
@@ -1232,6 +1241,17 @@ function resetSpeakBtn(){ const b=document.getElementById("vSpeak"); if(b) b.tex
 const bgm = document.getElementById("bgm");
 const MUSIC_VOL=0.65, FADE_IN=3000, FADE_OUT=2000;
 let musicStarted=false;
+/* --- Niggun playlist (Yanuka, Rav Shlomo Yehuda). Advances on track end;
+       falls back to the intro niggun if a later track is missing. --- */
+const TRACKS=["assets/audio/intro.mp3","assets/audio/niggun-hope-yearning.mp3"];
+let trackIdx=0;
+function playTrack(idx, fadeMs){ if(!bgm) return; trackIdx=(idx+TRACKS.length)%TRACKS.length;
+  bgm.src=TRACKS[trackIdx];
+  bgm.play().then(()=>{ bgm.volume=0; fadeVol(MUSIC_VOL, fadeMs||1200); }).catch(()=>{}); }
+if(bgm){
+  bgm.addEventListener("ended", ()=>{ if(S.music) playTrack(trackIdx+1, 1200); });
+  bgm.addEventListener("error", ()=>{ if(trackIdx!==0) playTrack(0, 800); });  // missing/broken track -> intro
+}
 function updateMusicBtn(){ const b=document.getElementById("musicBtn");
   if(b){ b.textContent = S.music? "🎵":"🔇"; b.classList.toggle("off", !S.music); } }
 function fadeVol(to,ms){ if(!bgm) return; const from=bgm.volume,t0=performance.now();
@@ -1303,6 +1323,40 @@ applyFs();
 updateMusicBtn();
 initIntro();
 go("landing");
+</script>
+<!-- ===================== MINI-GAME OVERLAY ========================= -->
+<style>
+  #miniWrap{position:fixed;inset:0;z-index:200;background:#0c0a07;display:flex;flex-direction:column}
+  #miniWrap.mini-hidden{display:none}
+  #miniWrap .mini-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:8px 12px;background:#1c160e;border-bottom:1px solid #4a3a26}
+  #miniWrap .mini-bar span{color:#f4d489;font-weight:800;letter-spacing:.02em}
+  #miniWrap iframe{flex:1;width:100%;border:0;background:#15110c}
+</style>
+<div id="miniWrap" class="mini-hidden">
+  <div class="mini-bar">
+    <span id="miniTitle">Build Project</span>
+    <button id="miniClose" class="btn ghost sm">✕ Close</button>
+  </div>
+  <iframe id="miniFrame" title="TorahCraft mini-game" allow="autoplay"></iframe>
+</div>
+<script>
+  let miniMusicWasPlaying=false;
+  function launchMiniGame(url,name){
+    const w=document.getElementById("miniWrap"), f=document.getElementById("miniFrame");
+    document.getElementById("miniTitle").textContent = name||"Build Project";
+    f.src=url; w.classList.remove("mini-hidden");
+    miniMusicWasPlaying = !!(typeof bgm!=="undefined" && bgm && !bgm.paused);
+    if(miniMusicWasPlaying){ try{ bgm.pause(); }catch(e){} }
+  }
+  function closeMiniGame(){
+    const w=document.getElementById("miniWrap"), f=document.getElementById("miniFrame");
+    w.classList.add("mini-hidden"); f.src="about:blank";
+    if(miniMusicWasPlaying && typeof S!=="undefined" && S.music && typeof startMusic==="function") startMusic();
+    miniMusicWasPlaying=false;
+  }
+  document.getElementById("miniClose").onclick=closeMiniGame;
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !document.getElementById("miniWrap").classList.contains("mini-hidden")) closeMiniGame(); });
 </script>
 </body>
 </html>
