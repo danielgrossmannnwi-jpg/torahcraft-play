@@ -99,5 +99,256 @@ window.SHIURIM = [
       en: "“Happy is the man who fills his quiver with them.” — Tehillim 127:5",
       foot: "Bereishit 48:22 + Onkelos · Bereishit 49 · Mishlei 22:6 (Vilna Gaon) · Mishlei 16:25 · Tehillim 121 & 127 · Rambam Hil. Tefillah 4:15–16 · Berachot 5:1 · Zohar/Arizal (amuda d’emtza’ita) · Tanya ch. 19"
     }
+  },
+  {
+    id: "sparks_and_stars",
+    title: "Where Do the Sparks Go?",
+    tag: "A Grounded Shiur · Uncle Yossi Chinuch — for Bonnie",
+    theme: "Shevirat ha-kelim and the 288 sparks — the whole cosmos is Olam Asiyah, the lowest floor; you lift the sparks waiting right where you are led.",
+    pasuk: {
+      he: "וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם",
+      en: "“…and the Spirit of Hashem hovered over the waters.”",
+      src: "Bereishit 1:2 — in מְרַחֶפֶת the Arizal hears רח״ף, the 288 sparks waiting to be lifted"
+    },
+    sections: [
+      { h: "When Something Beautiful Breaks", paras: [
+        "You know how, when something beautiful breaks, the pieces fly farther than you’d ever think? Long before the world looked the way it does now, Hashem made special containers to hold His light. The light was so strong that the containers couldn’t hold it, and they broke. When they broke, tiny sparks of that light went flying — everywhere — scattering all the way down through every level of creation, until most of them landed at the very, very bottom."
+      ]},
+      { h: "The Bottom Floor Is Bigger Than You Think", paras: [
+        "Here’s the part most people get wrong. They think “the bottom” means only here — the dirt, the creek, the rocks you can kick. But the bottom isn’t only the ground. The whole world you can see and touch — the ground under your feet and the moon, the planets, the farthest star on a dark night — all of it is the same bottom floor. Kabbalah calls it Asiyah. A star isn’t holier than a stone. They’re roommates on the same floor. So the sparks were never stuck on Earth. They’re out among the stars too.",
+        "And the sky isn’t only decoration. One of our oldest holy books, Sefer Yetzirah, teaches that the very letters Hashem used to build the world are tied to the planets and the constellations. The light is woven right into the sky."
+      ]},
+      { h: "The Stars Aren’t the Boss of You", paras: [
+        "But the stars aren’t the boss of you. The Gemara says ein mazal l’Yisrael — a Jew isn’t ruled by the stars (Shabbos 156a–b). It’s the other way around: we’re the ones who lift the sparks up, even the ones way out in space."
+      ]},
+      { h: "You Don’t Have to Go Far", paras: [
+        "So here’s the wonder, Bonnie — and this is the real answer to your question. You don’t have to become an astronaut to find your sparks. Hashem already knows exactly which sparks are waiting just for you, and He quietly walks your feet right to them. A bracha on an apple. Helping when it’s hard. A real moment on the trail. Every time, you reach down — or up — and lift a hidden light back home.",
+        "You don’t have to go far. Just notice the light right where you’re standing, and pick it up."
+      ]}
+    ],
+    closing: {
+      note: "❯ You don’t have to go far. Just notice the light right where you’re standing, and pick it up.",
+      he: "וְרוּחַ אֱלֹהִים מְרַחֶפֶת",
+      en: "“…and the Spirit of Hashem hovered.” — Bereishit 1:2",
+      foot: "Shevirat ha-kelim and the 288 sparks (Arizal, Eitz Chaim) · the cosmos as Olam Asiyah (Lurianic) · letters of creation set in the planets and constellations (Sefer Yetzirah) · ein mazal l’Yisrael (Shabbos 156a–b) · sparks gathered where you are led, by hashgacha (Chassidus)."
+    }
+  },
+  {
+    id: "scale_and_sole",
+    title: "The Scale and the Sole",
+    tag: "A Grounded Shiur · Pirkei Avot · Shabbat 129a · Lech Lecha · Tehillim 16 · Chassidus",
+    theme: "Lekaf zechut — judging to the side of merit; empathy as footwear: sell the beams of your house to buy shoes for another’s ground.",
+    pasuk: {
+      he: "הֱוֵי דָן אֶת כָּל הָאָדָם לְכַף זְכוּת",
+      en: "“Judge every person to the side of merit.” — Yehoshua ben Perachya",
+      src: "Pirkei Avot 1:6"
+    },
+    sections: [
+      { h: "Petichah — What Is Under Our Feet", paras: [
+        "Before we judge anyone, we judge from somewhere — from inside our own house, our own assumptions, the roof we reason beneath. And from inside that house it is nearly impossible to judge another person fairly, because we are weighing his life on the scale of our own ground. The Mishnah’s answer to this runs, of all places, through the foot — the avodah of an ordinary day."
+      ]},
+      { h: "1 · Judge to the Kaf", paras: [
+        "הֱוֵי דָן אֶת כָּל הָאָדָם לְכַף זְכוּת — “Judge every person to the side of merit.” (Pirkei Avot 1:6). Yehoshua ben Perachya gives the rule: weigh every person toward the kaf of merit. Kaf is the pan of a balance — to tip the scale toward the favorable reading. But listen to the word itself. Kaf is a curved hollow, and the very same kaf is the kaf ha-regel, the hollow of the sole. The word that means “weigh him favorably” is the word that means “where he treads.” The hint is already inside the letter: to judge a person to the kaf of merit, you have to reckon with the kaf of his foot — the ground he actually stands and walks on."
+      ]},
+      { h: "2 · Sell the Beams, Buy the Shoes", paras: [
+        "לְעוֹלָם יִמְכֹּר אָדָם קוֹרוֹת בֵּיתוֹ וְיִקַּח מִנְעָלִים לְרַגְלָיו — “A person should sell the very beams of his house to buy shoes for his feet.” (Shabbat 129a). Rav’s counsel sounds extreme until you read it against the first teaching. The beams of your house — koros beisecha — are your settled structure: your fixed position, your comfortable certainties, the roof you reason from. Shoes are the opposite: mobility, the interface that lets you walk rough ground without being cut by it. Rav says — sell even the beams to acquire the shoes. Trade some of your fixed vantage for the ability to walk where another person walks and come back unwounded enough to judge him fairly. Empathy is footwear. It is the thing that lets you cross into another’s terrain at all."
+      ]},
+      { h: "3 · You Cannot Judge From Inside the House", paras: [
+        "Now the two teachings fuse, and an ordinary English phrase turns out to be pure Avos. “Walking in someone’s shoes” is exactly dan l’kaf zechus. You cannot weigh a person to merit from inside your own house; you have to leave your fixed vantage and step onto his ground — into his shoes, onto the kaf of his foot. This is the deeper face of al pi darko (Mishlei 22:6): each person walks his own derech. To judge favorably is simply to grant that the other is walking his own path, in his own shoes — and is not merely failing to walk yours."
+      ]},
+      { h: "4 · The First Step Was Lech Lecha", paras: [
+        "לֶךְ לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ — “Go for yourself — from your land, your birthplace, and your father’s house.” (Bereishit 12:1). The very first word Hashem speaks to Avraham is the command to sell the beams of the house — leave your father’s house, mibeit avicha, the inherited structure — and walk. He becomes Avraham ha-Ivri, the one who stands on the far side, the crosser (Bereishit 14:13).",
+        "Then watch what the houseless walker does: he pitches a tent open on every side, runs to draw in strangers, and the first thing he offers is water to wash their feet — rachatzu ragleichem (18:4); and in that same chapter he argues Hashem down over Sodom, pleading the kaf of merit for a city of the wicked. The man who left his own house became the one who could stand on anyone’s ground — even Sodom’s — and weigh them toward merit. The Zohar even hears lech lecha as “go to yourself” — leaving the father’s house is the very road to your own root and your own derech. He loses one house and is renamed av hamon goyim, father of a multitude. The houseless one becomes everyone’s tent."
+      ]},
+      { h: "5 · Shoes for the Road, Barefoot at the Mountain", paras: [
+        "שַׁל נְעָלֶיךָ מֵעַל רַגְלֶיךָ — “Remove your shoes from your feet.” (Shemot 3:5). One counter-motion completes the picture. The regel — the lowest limb, the one in contact with the ground — is emunah, the faculty that walks where the eye cannot yet see; Avraham goes “to the land I will show you” on the feet of faith, not the sight of comprehension. You buy shoes for the terrain and wear them the length of the road. But when the walk reaches holy ground — the bush, the Mountain — the shoe comes off: shal ne’alecha. The garment that protects you on rough ground is removed for the direct encounter — bare sole on holy earth, nothing in between. Shoes for the journey; barefoot before the Presence."
+      ]},
+      { h: "6 · The Path of Life", paras: [
+        "תּוֹדִיעֵנִי אֹרַח חַיִּים — “Make known to me the path of life.” (Tehillim 16:11). The destination of the whole walk has a name — the one the Tur and Shulchan Aruch borrow for the entire code of daily conduct: Orach Chaim, the path of life. The motif closes on itself. The kaf of Avos is the scale-pan and the sole; the manalim of Shabbos are what let the sole walk another’s ground; the orach is the path you become able to walk. Sell the beams of your house — your fixed position — to buy the shoes of empathy, so that you can judge every person to the kaf of merit, and by that very act keep to the orach chaim, the path of life."
+      ]}
+    ],
+    closing: {
+      note: "❯ Empathy is footwear: sell the beams you reason beneath, and step onto the sole of another’s foot. That is how a person is judged to merit — and how one stays on the path of life.",
+      he: "תּוֹדִיעֵנִי אֹרַח חַיִּים",
+      en: "“Make known to me the path of life.” — Tehillim 16:11",
+      foot: "Pirkei Avot 1:6 · Shabbat 129a · Mishlei 22:6 · Bereishit 12:1, 14:13, 17:5, 18:4 · Shemot 3:5 · Tehillim 16:11 · Zohar/Chassidus. The double sense of kaf (scale-pan and sole) is a derush on the shared root — held as drash, not peshat."
+    }
+  },
+  {
+    id: "hidden_flame_1",
+    title: "The Hidden Flame",
+    tag: "A Grounded Shiur · Ner Hashem I · Tanya ch. 19 · Pirkei Avot · Shaar HaYichud · the account recorded by Yaffa Eliach",
+    theme: "Ner Hashem nishmat adam — the soul is a flame that cannot be put out; the ahavah mesuteret in every Jew blazes up at the hour of testing. Rabbi Akiva’s echad and a Yom Kippur in Janowska reveal one root.",
+    pasuk: {
+      he: "נֵר ה׳ נִשְׁמַת אָדָם",
+      en: "“The soul of man is the lamp of Hashem.”",
+      src: "Mishlei 20:27 (Tanya ch. 19)"
+    },
+    sections: [
+      { h: "Petichah — A Lamp in the Darkness", paras: [
+        "The Bluzhever Rebbe, Rabbi Yisrael Spira, survived Janowska, Bełżec, and Bergen-Belsen. In Bergen-Belsen, on a Chanukah night, he kindled a menorah from a wooden clog, threads pulled from a prisoner’s uniform, and black shoe-polish, and blessed G-d for keeping the gathered Jews alive — an account recorded by Yaffa Eliach. But the brightest light he ever described seeing was not one he kindled with his own hands. It flared up on a Yom Kippur in Janowska, inside the one man in the camp whose flame seemed most thoroughly put out."
+      ]},
+      { h: "1 · The Lamp That Cannot Be Put Out", paras: [
+        "נֵר ה׳ נִשְׁמַת אָדָם — “The soul of man is the lamp of Hashem.” (Mishlei 20:27). The Alter Rebbe builds Tanya chapter 19 on this verse. A flame, he observes, never rests. It flickers and strains upward, always reaching to tear free of the wick and rise back to its source. That restlessness is the nature of the soul: it is a flame of Hashem’s own lamp, and it cannot sit still in exile from Him. A lamp can be hidden — buried under ash so thick that no one, not even the one who carries it, can see it burning. But a flame that is a piece of the Infinite cannot, in its essence, be put out."
+      ]},
+      { h: "2 · The Hidden Love", paras: [
+        "אַהֲבָה מְסֻתֶּרֶת. In that same chapter the Alter Rebbe teaches one of the most consequential ideas in all of Chassidus: every Jew, without exception — the simplest, and even one who has strayed to the very farthest place — carries an ahavah mesuteret, a hidden love of Hashem inherited from the Avot. Most of a life it lies covered, dormant, invisible, sometimes buried under years of open rebellion. But it is a flame, and a flame does not belong to the darkness around it. At the hour of ultimate test the covering burns away and the hidden love blazes up — which is why Jews who in ordinary life seemed utterly distant from G-d have given their lives rather than deny Him."
+      ]},
+      { h: "3 · In a Place Where There Are No Men", paras: [
+        "וּבְמָקוֹם שֶׁאֵין אֲנָשִׁים, הִשְׁתַּדֵּל לִהְיוֹת אִישׁ — “And in a place where there are no men, strive to be a man.” (Hillel, Pirkei Avot ch. 2). Janowska was the engineered makom she’ein anashim — a place designed with precision to erase the tzelem Elokim, to reduce a person to a number and then to ash. In such a place Hillel’s words become almost unbearable, and exactly necessary: strive, even there, to remain a human being; and where no one else can stand, be the one who stands."
+      ]},
+      { h: "4 · Yom Kippur in Janowska", paras: [
+        "This account is recorded in Yaffa Eliach’s Hasidic Tales of the Holocaust. Over the Rebbe and his chasidim stood a Jewish kapo named Schneeweiss: before the war a flagrant violator of the Torah, and in the camp known for his cruelty. By every outward measure his was the flame most thoroughly extinguished of all. On erev Yom Kippur a few chasidim asked the Rebbe to approach Schneeweiss and request that their work-detail be kept off the thirty-nine principal labors, so their unavoidable work would at least not be a Torah-level transgression. The Rebbe went, though it meant disclosing who he was — and something moved in Schneeweiss’s hard face.",
+        "In the morning he summoned them. He said plainly that he did not believe in prayer and opposed it on principle — but that he admired their courage, knowing the penalty for prayer in Janowska was death. He arranged lighter work, sparing them the worst of the day. And when an SS officer pressed the Jews to break the fast, Schneeweiss stood and said simply that Jews do not eat on Yom Kippur; it is a fast day. Ordered to repeat it, he did, without flinching. The officer drew his revolver. Schneeweiss did not blink. A single shot, and he fell — the public sinner, dying al kiddush Hashem."
+      ]},
+      { h: "5 · Even the Empty Are Full", paras: [
+        "The Rebbe would later say that only then, on that Yom Kippur in Janowska, did he truly understand the words of Chazal: even the reikanim — the “empty ones” of Israel — are as full of mitzvos as a pomegranate is full of seeds (Berachot 57a). This is the ahavah mesuteret made visible. Schneeweiss’s flame had never been absent — only hidden beneath a covering so thick that the world, and perhaps the man himself, took the darkness for the whole story. And notice what the Rebbe did not do: he did not preach, did not rebuke, did not try to reform him. He came with a small, humble request, and with respect for a man the whole camp despised. The nearness of one true flame, offered without contempt, was enough for the hidden one to catch — for a single lamp gives light to one or to a hundred and loses nothing of itself (Shabbat 122a)."
+      ]},
+      { h: "6 · Rabbi Akiva — The Dalet of Echad", paras: [
+        "שְׁמַע יִשְׂרָאֵל ה׳ אֱלֹקֵינוּ ה׳ אֶחָד — “Hear O Israel: Hashem is our G-d, Hashem is One.” (Devarim 6:4). Centuries before Janowska the same flame tore free in the open. As the Romans combed Rabbi Akiva’s flesh with iron at the hour for Shema, his students cried, “Even now?” He answered that all his life the words b’chol nafshecha had pained him — even if He takes your soul — and now that the chance had come, would he not fulfill it? He drew out the word echad until his soul departed upon it, and a heavenly voice declared: happy is Rabbi Akiva, whose neshamah went out with echad (Berachot 61b).",
+        "Why on that word? One prolongs the dalet of echad to crown the Holy One over the heavens, the earth, and the four directions (Berachot 13b). A “one” without the dalet is yachid — a solitary point. Echad is the harder Oneness: the Alter Rebbe teaches in Shaar HaYichud that echad gathers the ches and the dalet — all the heavens, all four directions, the whole spread-out world — into itself, until ein od milvado is true of the world and not only above it. Rabbi Akiva, stretching that dalet as the iron tore him, was coronating Hashem over every direction of a world that was murdering him: his final act folded the entire four-directioned world home into the One. This is the work of the yechidah, the fifth and highest level of the soul, awakened by one thing only — mesirus nefesh."
+      ]},
+      { h: "7 · One Lamp, Many Wicks", paras: [
+        "Now the two ends of the Jewish world meet — not as equals, but at a single root. The yechidah has no gradations: it is literally one with Hashem in the greatest of the sages and in the flagrant reikan alike. Rabbi Akiva is the flame that burned openly for a lifetime, so that when the iron came, echad was the last word of a life already wholly given. Schneeweiss is the flame buried to the very last, the covering of a lifetime falling away in a single defiant breath: Jews do not eat today. The root is one; the climb to it was not. What they share is not stature but source — the same Ner Hashem, the same dalet gathered into echad, the same yechidah laid bare."
+      ]}
+    ],
+    closing: {
+      note: "❯ The lamp of Hashem cannot be put out. It can only be hidden — and then, at the hour of testing, revealed.",
+      he: "נֵר ה׳ נִשְׁמַת אָדָם",
+      en: "“The soul of man is the lamp of Hashem.” — Mishlei 20:27",
+      foot: "Mishlei 20:27 · Tanya ch. 19 (the soul-flame; ahavah mesuteret) · Pirkei Avot ch. 2 (Hillel) · Berachot 57a · Shabbat 122a · Devarim 6:4 & Mishnah Berachot 9:5 · Berachot 61b (Rabbi Akiva) · Berachot 13b & Shulchan Aruch OC 61 (the dalet of echad) · Shaar HaYichud (echad vs. yachid) · yechidah (Zohar; Chassidus). Documented account: the Yom Kippur in Janowska of the Bluzhever Rebbe and the kapo Schneeweiss, recorded in Yaffa Eliach, Hasidic Tales of the Holocaust — paraphrased, with restraint, out of respect for the kedoshim."
+    }
+  },
+  {
+    id: "return_to_me_2",
+    title: "Return to Me",
+    tag: "A Grounded Shiur · Ner Hashem II · Sotah 17a · Yirmiyahu · Yeshayahu · Yechezkel · Malachi · Chassidus",
+    theme: "Ish · isha · eish — the Name between husband and wife, told at the scale of a nation: galus is niddah, not divorce; teshuvah is the returning heh that makes the Name whole again.",
+    pasuk: {
+      he: "שׁוּבוּ אֵלַי וְאָשׁוּבָה אֲלֵיכֶם",
+      en: "“Return to Me, and I will return to you.”",
+      src: "Malachi 3:7"
+    },
+    sections: [
+      { h: "Petichah — The Same Flame, the Size of a Nation", paras: [
+        "Part One followed the flame in a single soul — Rabbi Akiva drawing out the dalet, Schneeweiss’s buried spark flaring on a Yom Kippur in Janowska, the yechidah laid bare at the hour of testing. Part Two asks the same question at the scale of the whole nation: how does a people scattered to the four corners, estranged from its Source, come home? The nevi’im answer that it is not, at root, a treaty or a migration. It is a marriage repaired — and it turns on a single fire, a single Name, and a single returning letter."
+      ]},
+      { h: "1 · The Fire Between Them", paras: [
+        "אִישׁ · אִשָּׁה · אֵשׁ. Rabbi Akiva read the two words letter by letter. Ish — alef, yod, shin. Isha — alef, shin, heh. Strip away what differs and the same core stands in both: alef-shin, eish, fire. What differs is a single letter each — the yud of ish, the heh of isha — and those two letters together are the Name, Kah. If husband and wife merit, that Name rests between them and the Shechinah dwells in their home; if they do not, remove the yud and the heh and nothing is left but eish and eish, two fires, and the fire consumes them (Sotah 17a). The marriage is built to carry the Name."
+      ]},
+      { h: "2 · The Husband and the Wayward Wife", paras: [
+        "The nevi’im cast the whole bond of Hashem and Israel in exactly these terms — not ruler and subject, but husband and wife. Hoshea is told to take back a faithless wife, and Hashem turns Lo Ami, “not My people,” back into Ami. Yechezkel tells of a bride raised from abandonment who later strayed (ch. 16). So when Israel goes into exile, the Torah is not describing a stranger’s quarrel or a contract voided. It is describing a marriage in its deepest crisis — which is a wholly different thing, because a marriage in crisis is still a marriage."
+      ]},
+      { h: "3 · Niddah, Not Divorce", paras: [
+        "Yirmiyahu 3:1 presses the hardest question in the book. The Torah forbids a man to take back the wife he divorced once she has belonged to another (Devarim 24). Yet Hashem says: return to Me. How? The answer is one prophet away: אֵי זֶה סֵפֶר כְּרִיתוּת אִמְּכֶם — “Where is your mother’s bill of divorce?” (Yeshayahu 50:1). There is none. No get was ever written. The estrangement of galus was never a divorce — it was a separation within an intact marriage. In the language of halacha, galus is niddah, not kerisus. The couple is set apart for a time; the bond itself was never cut."
+      ]},
+      { h: "4 · When the Name Goes Dark", paras: [
+        "The four-letter Name — Havayah — ends in a heh, and that final heh is Malchus: the Shechinah, Knesses Yisrael, the wife, the world below. In galus that heh is fallen and set apart — galus haShechinah, the exile of the Divine Presence — and the Name is left broken. “Ki yad al keis Kah” (Shemos 17:16): Rashi teaches the Name is only half — yud and heh, Kah — and even the Throne is missing a letter, until the world’s enemy is erased and both are made whole. With the heh gone from between ish and isha, Rabbi Akiva’s lo zachu plays out at the scale of a nation: the consuming fire, “He kindled a fire in Zion” (Eichah 4:11), the Beis HaMikdash in flames — the same fire, with the Name withdrawn."
+      ]},
+      { h: "5 · Teshuvah — The Returning Heh", paras: [
+        "תְּשׁוּבָה — תָּשׁוּב הֵא. The way back is written into the word itself: teshuvah can be read tashuv heh — the heh shall return. To repent is to lift the fallen heh back to its place and rejoin it to the vav, until the Name stands whole again. And the order is precisely the order of taharah, for a niddah does not simply return — she immerses first. וְזָרַקְתִּי עֲלֵיכֶם מַיִם טְהוֹרִים וּטְהַרְתֶּם — “I will sprinkle pure waters upon you, and you shall be purified” (Yechezkel 36:25), the national tevilah. Only then, in the next chapter, do the two sticks, Yehudah and Yosef, become one nation under one king (37). Niddah ends in taharah; taharah opens into reunion."
+      ]},
+      { h: "6 · From the Four Corners into Echad", paras: [
+        "וְקַבְּצֵנוּ יַחַד מֵאַרְבַּע כַּנְפוֹת הָאָרֶץ. We ask for exactly this three times a day — the tenth blessing of the Amidah: sound the great shofar for our freedom, and gather us, together, from the four corners of the earth. The four directions, the dalet, folded into one, echad. The wife who wandered farthest is gathered home with all the rest, not left behind. And the soul of this reunion has a name in Chassidus: Moshiach is the yechidah ha’klalis, the single all-inclusive soul-root of Klal Yisrael. Every private yechidah of Part One is one facet of that one collective yechidah; the ingathering is all those scattered flames converging into the One."
+      ]},
+      { h: "7 · The Name Made Whole", paras: [
+        "So the geulah is, at its root, a remarriage. The heh returns; the Name Havayah stands whole; the fire that consumed in exile becomes again the Ner Hashem of a home filled with the Presence — now the size of an entire people, gathered from the four corners into echad under one head. The marriage was never dissolved. There was no bill of divorce. There was only a separation, a darkened Name, a fallen letter — and a wife told, across all the centuries, the two words that begin the way home."
+      ]}
+    ],
+    closing: {
+      note: "❯ The Name was never divorced — only darkened. At the hour of return, the heh comes home, and it is whole again.",
+      he: "שׁוּבוּ אֵלַי וְאָשׁוּבָה אֲלֵיכֶם",
+      en: "“Return to Me, and I will return to you.” — Malachi 3:7",
+      foot: "Sotah 17a (ish/isha/eish and the Name) · Yirmiyahu 3:1 with Devarim 24 · Yeshayahu 50:1 · Shemos 17:16 with Rashi · Eichah 4:11 · Yechezkel 36:25 & ch. 37 · Hoshea (Lo Ami → Ami) · Malachi 3:7 · the tenth blessing of the Amidah. The final heh as Malchus/Shechinah, galus haShechinah, teshuvah as tashuv-heh, and Moshiach as the yechidah ha’klalis are the language of Kabbalah and Chassidus."
+    }
+  },
+  {
+    id: "heel_of_moshiach_3",
+    title: "The Heel of Moshiach",
+    tag: "A Grounded Shiur · Ner Hashem III · Sotah 9:15 · Tanya · Yeshayahu · Zechariah · Chassidus",
+    theme: "Ikvesa diMeshicha — the last generation is the numb heel that bears the whole weight; lit not by feeling but by the oil of Torah, on the feet of pure emunah, it carries Israel across the threshold into Hashem echad u’shmo echad.",
+    pasuk: {
+      he: "בַּיּוֹם הַהוּא יִהְיֶה ה׳ אֶחָד וּשְׁמוֹ אֶחָד",
+      en: "“On that day Hashem will be One, and His Name One.”",
+      src: "Zechariah 14:9"
+    },
+    sections: [
+      { h: "Petichah — The Walk Reaches the Heel", paras: [
+        "This series has been walking downward: the flame straining up from the wick; the Name and the marriage made whole; then the foot itself — the sole, the path Avraham began the day he left his father’s house. Now the walk takes its last step down, to the lowest point of the body and the last point of history: the akev, the heel. For the generation that stands at the threshold of redemption is named by Chazal from exactly there — ikvesa diMeshicha, the heel, the footsteps, of Moshiach."
+      ]},
+      { h: "1 · The Numb Heel", paras: [
+        "עַל מִי יֵשׁ לָנוּ לְהִשָּׁעֵן? עַל אָבִינוּ שֶׁבַּשָּׁמָיִם — “On whom can we rely? On our Father in Heaven.” (Mishnah Sotah 9:15). The final mishnah of Sotah describes the generation before Moshiach without softening it: insolence rising, the cost of living soaring, truth driven into hiding — and then, at the very bottom, the one handhold that remains. Chazal name this era ikvesa — the heel — and the name is exact. The akev is the lowest limb and the numbest, the part of the body with the least sensation, farthest from the head where awareness lives. So too the last generation: coarse, dulled, the light hard to feel and hard to let in."
+      ]},
+      { h: "2 · The Secret of the Numbness", paras: [
+        "But in the heel, the numbness is not the tragedy — it is the secret. The heel feels least, yet it bears the full weight of the body, and it presses against ground the head will never touch. A generation that cannot serve from feeling is driven to serve from something deeper than feeling: from the etzem, the essence of the soul — the yechidah, the ahavah mesuteret that goes on burning whether or not it is felt. Its service, carried on bare emunah rather than inspiration, reaches the highest rung precisely because it rises from the lowest. As the foot taught us, regel is emunah — the leg walks where the eye cannot see. The numb heel still walks. It walks home."
+      ]},
+      { h: "3 · The Oil That Feeds a Numb Wick", paras: [
+        "How does a flame survive a wick that can no longer feel it? By oil — for oil needs no feeling; oil permeates. The oil of Torah seeps into the coarsest wick and gives the flame its substance. This is Ner Hashem at the end of the long night: the lamp of every Jew kept alight not by the heat of inspiration, which the numb generation cannot summon, but by the oil of Torah soaking quietly through — wisdom that penetrates where light cannot yet be felt, feeding the single flame of all Yidden, the collective yechidah."
+      ]},
+      { h: "4 · The Infinite in a Blade of Grass", paras: [
+        "וּמָלְאָה הָאָרֶץ דֵּעָה אֶת ה׳ כַּמַּיִם לַיָּם מְכַסִּים — “The earth shall be filled with the knowledge of Hashem, as the waters cover the sea.” (Yeshayahu 11:9). What that oil-fed flame at last makes visible is the Infinite hiding in the ordinary. Tanya teaches in Shaar HaYichud that the divine creative word is enclothed in every created thing at every moment, holding it in being out of nothing — there is no blade of grass not sustained, right now, by the Divinity within it; ein od milvado, literally. The Midrash says it from above: every blade of grass has a mazal that strikes it and tells it to grow (Bereishit Rabbah 10:6). When Moshiach comes, the covering simply burns away: look at the sky and you see the Infinite; look at the grass and you see G-dliness."
+      ]},
+      { h: "5 · Swords into Plowshares", paras: [
+        "וְכִתְּתוּ חַרְבוֹתָם לְאִתִּים ... וְלֹא יִלְמְדוּ עוֹד מִלְחָמָה — “They shall beat their swords into plowshares ... and they shall learn war no more.” (Yeshayahu 2:4; Micha 4:3). When the Divinity in the earth is revealed, our whole relationship to the physical world turns over. We stop forging iron into instruments of death and forge it into tools that open the ground. The plow is the exact opposite of the sword, and of the serpent: the serpent brought death and the sword studies it, while the plow opens the earth so the blade of grass, full of its hidden Divinity, can grow. War ends not by treaty but by revelation — there is nothing left to seize by force once every eye can see that it is all One."
+      ]},
+      { h: "6 · Hashem Echad u’Shmo Echad", paras: [
+        "בַּיּוֹם הַהוּא יִהְיֶה ה׳ אֶחָד וּשְׁמוֹ אֶחָד — “On that day Hashem will be One, and His Name One.” (Zechariah 14:9). Follow the echad down its three stages. In Part One it was echad in a single soul: Rabbi Akiva drawing out the dalet until his neshamah departed upon it. In Part Two it was the Name made whole: the fallen heh lifted back into place. Here, in Part Three, it is Hashem echad u’shmo echad — the Name not merely whole but One, King over all the earth. And now it is clear why the redemption had to arrive at the heel: echad is not complete while a single place is left outside it, and the numb heel is the farthest, lowest place of all. The geulah does not come in spite of the heel-generation; it comes through it."
+      ]},
+      { h: "7 · The Lamp, Everywhere", paras: [
+        "So the arc closes on itself. The flame that strained upward in Part One was always meant to return to the wick, to give its light below; the walk that began when Avraham left his father’s house was always meant to reach its final step. It walked down the body to the heel, and down the generations to the last — the numbest place, lit not by feeling but by the oil of Torah, moving on the feet of pure emunah — and there the most concealed flame of all carries the whole of Israel across the threshold."
+      ]}
+    ],
+    closing: {
+      note: "❯ Then every blade of grass is seen to be burning with the Infinite, the swords are beaten into plows, and the lamp of Hashem is One — and His Name One.",
+      he: "בַּיּוֹם הַהוּא יִהְיֶה ה׳ אֶחָד וּשְׁמוֹ אֶחָד",
+      en: "“On that day Hashem will be One, and His Name One.” — Zechariah 14:9",
+      foot: "Mishnah Sotah 9:15 (ikvesa diMeshicha) · Yeshayahu 11:9 · Yeshayahu 2:4 & Micha 4:3 · Zechariah 14:9 · Bereishit Rabbah 10:6 · Tanya, Shaar HaYichud veHaEmunah (ein od milvado) & ch. 19 (the yechidah). Ikvesa diMeshicha and the heel as the numbest limb are rendered in paraphrase from the Chassidus, not as a verbatim quotation."
+    }
+  },
+  {
+    id: "lamp_inner_chambers",
+    title: "The Lamp That Searches the Inner Chambers",
+    tag: "A Public Shiur · Ner Hashem, Tanya, and the Search for Coherence · Tanya · Tanach · Chassidus",
+    theme: "Ner Hashem nishmat adam — the soul is not a sun that floods, but a candle carried by hand into the hidden chambers; an instrument of search. Truth ≥ Coherence.",
+    pasuk: {
+      he: "נֵּר יְהֹוָה נִשְׁמַת אָדָם, חֹפֵשׂ כָּל־חַדְרֵי־בָטֶן",
+      en: "“The soul of man is the lamp of Hashem, searching all the inner chambers.”",
+      src: "Mishlei 20:27"
+    },
+    sections: [
+      { h: "Petichah — The Question the Pasuk Leaves Open", paras: [
+        "Shlomo HaMelech could have called the soul a sun. He called it a candle. A sun floods everything at once and is carried nowhere. A candle is small, held in the hand, and brought deliberately into one particular dark corner. Why a candle? Because the soul was given to a person not to illuminate the universe, but to be carried, by hand, into the specific hidden chambers of his own interior that no general light reaches."
+      ]},
+      { h: "1 · The Lamp of Hashem", paras: [
+        "נֵּר יְהֹוָה נִשְׁמַת אָדָם, חֹפֵשׂ כָּל־חַדְרֵי־בָטֶן — “The soul of man is the lamp of Hashem, searching all the inner chambers.” (Mishlei 20:27). The pasuk does not say the soul shines — it says the soul searches. It goes looking, room by room, into the chambers a person keeps even from himself. The neshama is not decoration on a human being. It is an instrument of search — and the verse the Alter Rebbe builds upon in Tanya chapter 19."
+      ]},
+      { h: "2 · Morning Discernment", paras: [
+        "Of all the gifts a person could be thanked for upon waking, the first functional berachah names a surprising one — not strength, not life, not sight, but the power to tell things apart: הַנֹּותֵן לַשֶּׂכְוִי בִינָה לְהַבְחִין בֵין יוֹם ובֵין לָיְלָה, “Who gives the heart understanding to distinguish between day and night.” Then pokeach ivrim, matir asurim, zokef kefufim. The order is the teaching. Binah — discernment — comes first. You cannot be released from what you have not first learned to tell apart, and you cannot stand straight under a weight you have not first seen clearly. All of avodah begins with havchanah."
+      ]},
+      { h: "3 · The Flame of the Soul", paras: [
+        "Tanya opens (ch. 2) with the nature of the divine soul: chelek Eloka mima’al mamash — literally a portion of G-d above; not a creation resembling its Source, but a piece of it. In chapter 19 the Alter Rebbe gives the image its motion: the soul is like the flame of a candle, never still, always straining upward, trying to tear free of the wick and dissolve back into its source — what Chassidus calls ratzo, the run upward. But the flame is bound to the wick, and that binding is the whole point. A flame that succeeded in tearing free would simply go out. The light was meant to stay bound long enough to do its work down here — in the chambers, in the body, in the world that needs searching."
+      ]},
+      { h: "4 · Both Souls Have Chabad and Middot", paras: [
+        "Here Tanya corrects an error almost everyone makes. We imagine the struggle as head against heart — cold intellect versus hot emotion. That is not the map. Both souls are fully equipped: the divine soul has its intellect (chochmah, binah, daat) and its emotions, and so does the animal soul. The animal soul is not stupid — it can be dazzlingly intelligent. This is why being clever proves nothing: a brilliant argument can be the animal soul thinking beautifully on its own behalf. The question is never “intellect or emotion?” but: whose intellect is doing the thinking right now? Two people can hold the same idea — one as bitul, the other as ego. Same faculty. Opposite allegiance."
+      ]},
+      { h: "5 · Kavanah as Weight on the Scale", paras: [
+        "Picture a balance beam. On one pan: self-oriented intellect and emotion. On the other: G-d-oriented. The faculties are evenly matched — both souls came fully armed. So what tips it? Kavanah. Focused attention is the weight you set down; wherever your attention rests, that side gains. And the weight travels a fixed path: Attention → Attachment → Emotion → Speech/Action → Habit → Derech. What you attend to, you attach to; what you attach to awakens emotion; emotion presses into speech and action; repeated action hardens into habit; habit, walked long enough, becomes a path — which is what a life actually is (Sefer HaChinuch, mitzvah 16: acharei hapeulot nimshachin halevavot)."
+      ]},
+      { h: "6 · Bedikat Chametz of the Mind", paras: [
+        "The halachah of searching for chametz is exact about its tool: not by daylight, not by a torch — by the light of a single candle, the night before, carried into the cracks a broad light would skip (Pesachim 1:1; 8a). Now read Mishlei again. The soul is that candle, turned inward: it searches the inner chambers for chametz — the hidden motive, the inherited assumption, the rationalization so familiar you no longer hear it as one. Chazal taught the leaven is the yetzer: se’or she’be’isa, the sourdough that puffs itself up (Berachot 17a). The avodah is not to pretend the chametz isn’t there. It is to find it — by a light small enough and honest enough to fit the crevice where it hides."
+      ]},
+      { h: "7 · Raw Flash to Internalized Knowledge", paras: [
+        "How does a fleeting insight become something a person lives by? Chabad maps the descent through the three mochin. Chochmah — the flash, pointlike, not yet in words (koach mah, the power of “what?”). Binah — understanding: the spark expanded, built out, distinctions drawn (mevin davar mitoch davar). Daat — attachment: the idea stops being something you merely know and becomes something you are bound to (v’haAdam yada, the verb of intimate union). Daat gives birth to the middot, which Tanya calls the toldot — the offspring — of the intellect; the middot press into the three garments, machshava, dibbur, maaseh; and finally, having been lived, the insight becomes teachable: a person’s own Torah she’be’al peh of his avodah."
+      ]},
+      { h: "8 · A Wider Vessel — and the Caution of Coherence", paras: [
+        "A finite vessel cannot hold the Ein Sof. Binah widens the kli, but never to infinity. The goal of all this inner work is not to contain all of truth — that is not on offer to a created mind — but to become a wider, humbler vessel: more kli for the same Or. And here the most important caution: a person can build a perfectly coherent inner world — every thought, feeling, word, and deed in flawless agreement — and still be coherently aligned around something false. Internal consistency is necessary; it is not sufficient. Keep the formula: Truth ≥ Coherence. The candle of the soul exists precisely to search out the places where one’s beautiful, hard-won coherence has quietly drifted from emes. The wider vessel is built not by accumulating, but by bitul. Intellect plus ego produces rationalization, however brilliant; intellect plus bitul produces a vessel for truth. Same faculty. Opposite allegiance."
+      ]}
+    ],
+    closing: {
+      note: "❯ The lamp of Hashem does not merely shine outward. It searches inward — until raw insight becomes understanding, understanding becomes attachment, and attachment becomes a life shaped by truth.",
+      he: "נֵּר יְהֹוָה נִשְׁמַת אָדָם",
+      en: "“The soul of man is the lamp of Hashem.” — Mishlei 20:27",
+      foot: "Mishlei 20:27 · Birkhot HaShachar (cf. Berachot 60b) · Tanya ch. 2, 3, 4, 19 · Iyov 31:2 · Sefer HaChinuch, mitzvah 16 · Pesachim 1:1 & 8a · Berachot 17a · the Chochmah–Binah–Daat structure and the three garments (Tanya). The scale-beam and the “raw flash → governed expression → teachable knowledge” articulation are working frameworks built on Tanya, offered as models, not citations."
+    }
   }
 ];
