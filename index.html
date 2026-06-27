@@ -202,6 +202,119 @@
   .chayenu .ch-close .en{color:#c2def7;margin-top:4px}
   .chayenu .ch-foot{color:#6f8aa3;font-size:.78rem;text-align:center;margin-top:22px}
   .shiur-card{cursor:pointer}
+
+  /* ===================== IVRIT · Learn Hebrew ===================== */
+  .iv-heb{font-family:"Frank Ruhl Libre","Times New Roman",serif;direction:rtl;unicode-bidi:isolate}
+  .iv-menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;max-width:720px;margin:18px auto 0}
+  .iv-tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 12px;text-align:center;
+    cursor:pointer;box-shadow:0 6px 18px #0007;transition:transform .08s,border-color .15s}
+  .iv-tile:active{transform:translateY(2px);border-color:var(--gold)}
+  .iv-tile .ic{font-size:2.1rem;line-height:1;color:var(--gold-soft)}
+  .iv-tile .t{font-weight:800;color:var(--gold-soft);margin-top:6px}
+  .iv-tile .d{color:var(--ink-dim);font-size:.8rem;margin-top:3px}
+  .iv-pillbar{display:flex;gap:8px;overflow-x:auto;padding:6px 0 12px;-webkit-overflow-scrolling:touch;justify-content:flex-start}
+  .iv-pill{white-space:nowrap;background:#0003;border:1px solid var(--line);color:var(--ink-dim);border-radius:999px;
+    padding:8px 14px;font-size:.9rem;cursor:pointer;font-weight:700}
+  .iv-pill.on{background:var(--gold);color:#241a09;border-color:var(--gold)}
+  .iv-speak{background:#0000;border:2px solid var(--gold);color:var(--gold);border-radius:999px;width:46px;height:46px;
+    font-size:1.2rem;cursor:pointer;flex:0 0 auto}
+  .iv-speak:active{background:var(--gold);color:#241a09}
+  .iv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:10px}
+  .iv-cell{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;cursor:pointer}
+  .iv-cell:active{border-color:var(--gold)}
+  .iv-cell .L{font-size:2rem;color:var(--ink)}
+  .iv-cell .nm{font-size:.78rem;color:var(--gold-soft);margin-top:2px}
+  .iv-cell .so{font-size:.72rem;color:var(--ink-dim)}
+  .iv-row{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;margin:10px 0}
+  .iv-row .hb{font-size:1.9rem;color:var(--ink);min-width:74px;text-align:right}
+  .iv-row .meta{flex:1}
+  .iv-row .tr{color:var(--gold-soft);font-weight:700}
+  .iv-row .en{color:var(--ink-dim);font-size:.92rem}
+  .iv-tag{display:inline-block;font-size:.68rem;background:#0004;border:1px solid var(--line);border-radius:6px;
+    padding:2px 7px;color:var(--gold-soft);margin-bottom:4px;letter-spacing:.05em}
+  .iv-rootcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:12px 0}
+  .iv-rootcard .rhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:6px}
+  .iv-rootcard .rhead .rt{font-size:1.7rem;color:var(--gold)}
+  .iv-rootcard .rhead .rmean{color:var(--gold-soft);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.85rem}
+  .iv-fc{background:linear-gradient(160deg,var(--panel),#1a1410);border:2px solid var(--gold);border-radius:18px;min-height:280px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding:24px;cursor:pointer;margin:12px 0}
+  .iv-fc .hb{font-size:4.4rem;color:var(--ink);line-height:1.05}
+  .iv-fc .tr{font-size:1.5rem;color:var(--gold-soft);font-weight:800}
+  .iv-fc .en{font-size:1.25rem;color:var(--ink)}
+  .iv-fc .hint{font-size:.85rem;color:var(--ink-dim)}
+  .iv-q{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center;margin:10px 0}
+  .iv-q .hb{font-size:3.4rem;color:var(--ink)}
+  .iv-q .tr{color:var(--gold-soft);margin-top:6px;font-weight:700}
+  .iv-opt{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    border-radius:12px;padding:14px 16px;margin:9px 0;font-size:1.05rem;cursor:pointer}
+  .iv-opt.correct{background:#11280c;border-color:var(--good);color:#d7f5cc}
+  .iv-opt.wrong{background:#2c1212;border-color:#c97a7a;color:#f5d7d7}
+  .iv-counter{text-align:center;color:var(--ink-dim);font-size:.9rem;margin:6px 0}
+  .iv-note{color:var(--lock);text-align:center;font-size:.85rem;line-height:1.5;margin:14px auto;max-width:560px}
+  .iv-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+  /* ---- difficulty bar ---- */
+  .iv-diffbar{display:flex;gap:8px;justify-content:center;align-items:center;margin:6px 0 14px;flex-wrap:wrap}
+  .iv-diffbar .lab{color:var(--ink-dim);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+  .iv-diff{background:#0003;border:1px solid var(--line);color:var(--ink-dim);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:800;font-size:.9rem}
+  .iv-diff.on{background:var(--gold);color:#241a09;border-color:var(--gold)}
+  .iv-difftip{color:var(--lock);font-size:.78rem;text-align:center;margin:-6px 0 12px}
+  /* ---- bridge reader (big Hebrew over small English, RTL, left arrows) ---- */
+  .br{direction:rtl;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;margin:12px 0}
+  .br-line{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 6px;direction:rtl}
+  .br-word{display:inline-flex;flex-direction:column;align-items:center;padding:4px 4px 2px;border-radius:8px;cursor:pointer}
+  .br-word:active{background:#0004}
+  .br-he{font-family:"Frank Ruhl Libre","Times New Roman",serif;font-size:2.5rem;line-height:1.25;color:var(--ink)}
+  .br-en{font-size:.8rem;color:var(--ink-dim);margin-top:2px;direction:ltr;transition:opacity .2s,font-size .2s}
+  .br-arrow{color:var(--gold);opacity:.5;font-size:.8rem;line-height:.6;margin-top:1px}
+  .br-flow{direction:rtl;text-align:right;color:var(--gold);opacity:.45;font-size:1.1rem;letter-spacing:.1em;margin:2px 6px 0}
+  .br-gloss{direction:ltr;color:var(--ink-dim);font-style:italic;font-size:.9rem;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  /* difficulty controls the English bridge */
+  .br.diff-medium .br-en{font-size:.7rem;opacity:.6}
+  .br.diff-hard .br-en{opacity:0;font-size:.7rem}
+  .br.diff-hard .br-word.peek .br-en{opacity:.85}
+  .br.diff-hard .br-gloss{opacity:0;height:0;padding:0;border:0;overflow:hidden}
+  /* ---- write / stroke ---- */
+  .iv-write{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:center;margin:12px 0}
+  .iv-tracebox{position:relative;width:200px;height:200px;margin:8px auto;border:2px dashed var(--line);border-radius:14px;
+    background:repeating-linear-gradient(0deg,transparent 0 49px,#ffffff10 49px 50px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .iv-traceglyph{font-family:"Frank Ruhl Libre","Times New Roman",serif;font-size:8rem;line-height:1;color:var(--gold-soft)}
+  .iv-traceglyph.cursive{font-family:var(--iv-cursive,"Frank Ruhl Libre"),serif}
+  .iv-traceglyph.draw{animation:ivdraw 2.2s ease forwards}
+  @keyframes ivdraw{from{clip-path:inset(0 0 0 0);opacity:.15;-webkit-clip-path:inset(0 0 0 0)}
+    0%{clip-path:inset(0 0 100% 0)}100%{clip-path:inset(0 0 0 0);opacity:1}}
+  .iv-flowhint{color:var(--gold);opacity:.7;font-size:1.4rem;margin-top:6px}
+  .iv-draft{display:inline-block;background:#3a2a10;border:1px solid var(--gold);color:var(--gold-soft);border-radius:8px;
+    padding:4px 10px;font-size:.72rem;font-weight:800;letter-spacing:.06em;margin:8px 0}
+  .iv-steps{text-align:left;max-width:280px;margin:10px auto 0;color:var(--ink-dim);font-size:.9rem;line-height:1.6}
+  /* ---- day / course cards ---- */
+  .iv-phasebar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 14px}
+  .iv-phase{font-size:.78rem;padding:6px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink-dim)}
+  .iv-phase.on{background:var(--gold);color:#241a09;border-color:var(--gold);font-weight:800}
+  .iv-phase.locked{opacity:.45}
+  .iv-daygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px;margin-top:6px}
+  .iv-day{aspect-ratio:1;background:var(--panel);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;cursor:pointer;color:var(--ink-dim);font-weight:800}
+  .iv-day:active{border-color:var(--gold)}
+  .iv-day.done{border-color:var(--good);color:var(--good)}
+  .iv-day .dn{font-size:1.1rem;color:var(--ink)}
+  .iv-day .dd{font-size:.6rem;color:var(--ink-dim);line-height:1;text-align:center;padding:0 2px}
+  .iv-daysec{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:12px 0}
+  .iv-daysec h4{margin:0 0 8px;color:var(--gold-soft);font-size:1rem;display:flex;align-items:center;gap:8px}
+  .iv-goal{color:var(--ink-dim);text-align:center;font-style:italic;margin:2px auto 10px;max-width:520px}
+  /* ---- closer look ---- */
+  .iv-cell{position:relative}
+  .iv-celltap{cursor:pointer}
+  .iv-look{position:absolute;top:3px;right:3px;background:#0005;border:1px solid var(--line);color:var(--gold-soft);
+    border-radius:7px;font-size:.72rem;padding:1px 5px;cursor:pointer;line-height:1.4}
+  .iv-look:active{background:var(--gold)}
+  .iv-closer{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--r);
+    padding:16px 18px;margin:14px 0;text-align:left;line-height:1.65}
+  .iv-closer h4{margin:0 0 8px;color:var(--gold-soft);font-size:1.1rem}
+  .iv-closer .cl-sound{font-style:italic;color:var(--ink-dim);margin:0 0 8px}
+  .iv-closer ul{margin:0;padding-left:20px} .iv-closer li{margin:7px 0}
+  .iv-closer .cl-src{margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-size:.85rem;color:var(--ink-dim)}
+  .iv-closer .cl-src a{color:var(--echo)} .iv-closer .cl-src ol{margin:6px 0 0;padding-left:20px}
 </style>
 </head>
 <body>
@@ -232,6 +345,7 @@
       <button class="btn ghost block" onclick="go('worlds')"><span class="icon">🗺</span> Choose Chapter</button>
       <button class="btn ghost block" onclick="go('teachers')"><span class="icon">🕯</span> Teachers</button>
       <button class="btn ghost block" onclick="go('shiurim')"><span class="icon">📖</span> Shiurim</button>
+      <button class="btn ghost block" onclick="go('ivrit')"><span class="icon">אבג</span> Learn Hebrew</button>
       <button class="btn ghost block" onclick="go('settings')"><span class="icon">⚙</span> Settings</button>
     </div>
     <p class="footnote">Torah first · Built for Yossi · v0.7.0</p>
@@ -306,6 +420,12 @@
   <section id="screen-shiurim" class="hidden">
     <div class="topbar"><div class="crumb"><span class="back" onclick="go('landing')">‹ Home</span> › <b>Beis Medrash · Shiurim</b></div></div>
     <div id="shiurGrid"></div>
+  </section>
+
+  <!-- ===================== IVRIT · LEARN HEBREW ================ -->
+  <section id="screen-ivrit" class="hidden">
+    <div class="topbar"><div class="crumb"><span class="back" onclick="go('landing')">‹ Home</span> › <b id="ivCrumb">Ivrit · Learn Hebrew</b></div></div>
+    <div id="ivritStage"></div>
   </section>
 
   <section id="screen-settings" class="hidden">
@@ -753,7 +873,7 @@ function plaguesDone(){
 /* ============================================================
    NAVIGATION
    ============================================================ */
-const SCREENS=["landing","modes","worlds","chapters","scenes","viewer","build","teachers","shiurim","settings"];
+const SCREENS=["landing","modes","worlds","chapters","scenes","viewer","build","teachers","shiurim","ivrit","settings"];
 function show(name){
   SCREENS.forEach(s=>document.getElementById("screen-"+s).classList.add("hidden"));
   document.getElementById("screen-"+name).classList.remove("hidden");
@@ -769,6 +889,7 @@ function go(name){
   if(name==="build" && B) renderBuild();
   if(name==="teachers") renderTeachers();
   if(name==="shiurim") renderShiurim();
+  if(name==="ivrit") renderIvrit("home");
   if(name==="settings") renderSettings();
   renderPills(); renderCrumbs();
 }
@@ -1357,6 +1478,459 @@ go("landing");
   }
   document.getElementById("miniClose").onclick=closeMiniGame;
   document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !document.getElementById("miniWrap").classList.contains("mini-hidden")) closeMiniGame(); });
+</script>
+
+<!-- ============================================================
+     IVRIT · LEARN HEBREW  (module v1)
+     All Hebrew is copied verbatim from our family Chinuch docs:
+     "100 most common Ivrit words" + "Yosi's Beginner Hebrew Ulpan
+     Booklet" + the Shema. Standard Alef-Bet / Nikud names added.
+     ============================================================ -->
+<script>
+const IV_ALEPHBET=[
+  ["א","Alef","silent"],["בּ","Bet","b"],["ב","Vet","v"],["גּ","Gimel","g"],["דּ","Dalet","d"],
+  ["ה","Hey","h"],["ו","Vav","v"],["ז","Zayin","z"],["ח","Chet","ch"],["ט","Tet","t"],
+  ["י","Yod","y"],["כּ","Kaf","k"],["כ","Chaf","ch"],["ל","Lamed","l"],["מ","Mem","m"],
+  ["נ","Nun","n"],["ס","Samech","s"],["ע","Ayin","silent"],["פּ","Pey","p"],["פ","Fey","f"],
+  ["צ","Tzadi","tz"],["ק","Kuf","k"],["ר","Resh","r"],["שׁ","Shin","sh"],["שׂ","Sin","s"],["תּ","Tav","t"],
+  ["ך","Chaf sofit","ch ·final"],["ם","Mem sofit","m ·final"],["ן","Nun sofit","n ·final"],
+  ["ף","Fey sofit","f ·final"],["ץ","Tzadi sofit","tz ·final"]
+];
+const IV_NIKUD=[
+  ["אַ","Patach","ah"],["אָ","Kamatz","ah"],["אֶ","Segol","eh"],["אֵ","Tzere","ay"],["אִ","Chirik","ee"],
+  ["אֹ","Cholam","oh"],["אוֹ","Cholam vav","oh"],["אֻ","Kubutz","oo"],["אוּ","Shuruk","oo"],["אְ","Sheva","(quick e)"]
+];
+const IV_WORDS=[
+  ["Pronouns",[["אֲנִי","ani","I"],["אַתָּה","ata","you (m)"],["אַתְּ","at","you (f)"],["הוּא","hu","he"],["הִיא","hi","she"],["אֲנַחְנוּ","anachnu","we"],["הֵם","hem","they (m)"],["הֵן","hen","they (f)"],["זֶה","zeh","this / it"],["זֹאת","zot","this (f)"]]],
+  ["Action words",[["לִהְיוֹת","lihyot","to be"],["לַעֲשׂוֹת","la'asot","to do / make"],["לָלֶכֶת","lalechet","to go"],["לָבוֹא","lavo","to come"],["לִרְאוֹת","lir'ot","to see"],["לָתֵת","latet","to give"],["לָקַחַת","lakachat","to take"],["לָדַעַת","lada'at","to know"],["לוֹמַר","lomar","to say"],["לַחְשׁוֹב","lachshov","to think"]]],
+  ["Question words",[["מָה","mah","what"],["מִי","mi","who"],["אֵיפֹה","eifo","where"],["לָמָּה","lama","why"],["מָתַי","matai","when"],["אֵיךְ","eich","how"],["כַּמָּה","kama","how many"]]],
+  ["Connectors",[["וְ","ve","and"],["אוֹ","o","or"],["אֲבָל","aval","but"],["כִּי","ki","because"],["אִם","im","if"],["גַּם","gam","also"],["רַק","rak","only"],["כְּבָר","kvar","already"]]],
+  ["Time",[["הַיּוֹם","hayom","today"],["מָחָר","machar","tomorrow"],["אֶתְמוֹל","etmol","yesterday"],["תָּמִיד","tamid","always"],["לִפְעָמִים","lif'amim","sometimes"],["עַכְשָׁיו","achshav","now"],["אַחַר כָּךְ","achar kach","later"]]],
+  ["People & places",[["אָדָם","adam","person"],["אִישׁ","ish","man"],["אִשָּׁה","isha","woman"],["יֶלֶד","yeled","boy / child"],["יַלְדָּה","yalda","girl"],["בַּיִת","bayit","house"],["מָקוֹם","makom","place"],["יוֹם","yom","day"]]],
+  ["Yes, no, maybe",[["כֵּן","ken","yes"],["לֹא","lo","no"],["אוּלַי","ulai","maybe"],["בֶּטַח","betach","of course"],["בְּסֵדֶר","beseder","okay"]]],
+  ["Describing",[["טוֹב","tov","good"],["רַע","ra","bad"],["גָּדוֹל","gadol","big"],["קָטָן","katan","small"],["חָדָשׁ","chadash","new"]]],
+  ["Things",[["מַיִם","mayim","water"],["אוֹכֶל","ochel","food"],["כֶּסֶף","kesef","money"],["סֵפֶר","sefer","book"],["עֲבוֹדָה","avoda","work"],["זְמַן","zman","time"],["דֶּרֶךְ","derech","way"],["עוֹלָם","olam","world"],["חַיִּים","chayim","life"],["אֱמֶת","emet","truth"]]],
+  ["Kind words",[["שָׁלוֹם","shalom","hello / peace"],["תּוֹדָה","toda","thank you"],["בְּבַקָּשָׁה","bevakasha","please"],["סְלִיחָה","slicha","sorry"],["לְהִתְרָאוֹת","lehitraot","goodbye"]]],
+  ["Numbers 1–10",[["אֶחָד","echad","one"],["שְׁתַּיִם","shtayim","two"],["שָׁלוֹשׁ","shalosh","three"],["אַרְבַּע","arba","four"],["חָמֵשׁ","chamesh","five"],["שֵׁשׁ","shesh","six"],["שֶׁבַע","sheva","seven"],["שְׁמוֹנֶה","shmone","eight"],["תֵּשַׁע","tesha","nine"],["עֶשֶׂר","eser","ten"]]],
+  ["Where things are",[["פֹּה","po","here"],["שָׁם","sham","there"],["לְמַעְלָה","lemala","up"],["לְמַטָּה","lemata","down"],["לְיַד","leyad","next to"],["הַרְבֵּה","harbeh","many"],["מְעַט","me'at","little"],["רִאשׁוֹן","rishon","first"],["אַחֲרוֹן","acharon","last"],["בָּאֶמְצַע","ba'emtza","in the middle"]]],
+  ["Useful",[["נָכוֹן","nachon","correct"],["חָשׁוּב","chashuv","important"],["אֶפְשָׁר","efshar","possible"],["צָרִיךְ","tzarikh","need"],["רוֹצֶה","rotzeh","want"]]]
+];
+const IV_ROOTS=[
+  ["כ־ת־ב","write",[["כָּתַב","katav","he wrote"],["כּוֹתֵב","kotev","writes"],["מִכְתָּב","miktav","letter"],["כְּתָב","ktav","script"],["לִכְתּוֹב","likhtov","to write"]]],
+  ["ר־א־ה","see",[["רָאָה","ra'ah","he saw"],["רוֹאֶה","ro'eh","sees"],["רְאִיָּה","re'iyah","vision"],["לִרְאוֹת","lir'ot","to see"]]],
+  ["שׁ־מ־ע","hear",[["שָׁמַע","shama","he heard"],["שׁוֹמֵעַ","shomea","hears"],["שְׁמִיעָה","shmi'ah","hearing"],["לִשְׁמוֹעַ","lishmoa","to hear"]]],
+  ["ד־ב־ר","speak",[["דִּבֵּר","diber","he spoke"],["מְדַבֵּר","medaber","speaks"],["דָּבָר","davar","thing / word"],["דִּבּוּר","dibur","speech"],["לְדַבֵּר","ledaber","to speak"]]],
+  ["ח־שׁ־ב","think",[["חָשַׁב","chashav","he thought"],["חוֹשֵׁב","choshev","thinks"],["מַחְשָׁבָה","machshava","thought"],["לַחְשׁוֹב","lachshov","to think"]]],
+  ["י־ד־ע","know",[["יָדַע","yada","he knew"],["יוֹדֵעַ","yodea","knows"],["דַּעַת","da'at","knowledge"],["מֵידָע","meida","information"],["לָדַעַת","lada'at","to know"]]],
+  ["ה־ל־ך","go / walk",[["הָלַךְ","halakh","he went"],["הוֹלֵךְ","holekh","goes"],["הֲלִיכָה","halikha","walking"],["לָלֶכֶת","lalechet","to go"]]],
+  ["ב־ו־א","come",[["בָּא","ba","came"],["בָּאָה","ba'ah","came (f)"],["בּוֹא","bo","come!"],["לָבוֹא","lavo","to come"]]],
+  ["ע־שׂ־ה","do / make",[["עָשָׂה","asa","he made"],["עוֹשֶׂה","oseh","makes"],["מַעֲשֶׂה","ma'aseh","deed"],["לַעֲשׂוֹת","la'asot","to make"]]],
+  ["נ־ת־ן","give",[["נָתַן","natan","he gave"],["נוֹתֵן","noten","gives"],["מַתָּנָה","matana","gift"],["לָתֵת","latet","to give"]]],
+  ["ל־ק־ח","take",[["לָקַח","lakach","he took"],["לוֹקֵחַ","lokeach","takes"],["לְקִיחָה","lekicha","taking"],["לָקַחַת","lakachat","to take"]]],
+  ["א־כ־ל","eat",[["אָכַל","akhal","he ate"],["אוֹכֵל","okhel","eats"],["אוֹכֶל","ochel","food"],["מַאֲכָל","ma'akhal","food item"],["לֶאֱכוֹל","le'ekhol","to eat"]]],
+  ["שׁ־ת־ה","drink",[["שָׁתָה","shata","he drank"],["שׁוֹתֶה","shoteh","drinks"],["מִשְׁתֶּה","mishteh","banquet"],["לִשְׁתּוֹת","lishtot","to drink"]]],
+  ["ג־ד־ל","big / grow",[["גָּדוֹל","gadol","big"],["גְּדוֹלָה","gdola","big (f)"],["לִגְדּוֹל","ligdol","to grow"],["גִּידּוּל","gidul","growth"]]],
+  ["ק־ט־ן","small",[["קָטָן","katan","small"],["קְטַנָּה","ktana","small (f)"],["לְהַקְטִין","lehaktin","to make smaller"]]],
+  ["ח־ד־שׁ","new / renew",[["חָדָשׁ","chadash","new"],["חֲדָשָׁה","chadasha","new (f)"],["לְחַדֵּשׁ","lechadesh","to renew"],["חִידּוּשׁ","chidush","new insight"]]]
+];
+const IV_LESSONS=[
+  {n:1,t:"First Words",lines:[["Word","שָׁלוֹם","Shalom","Hello / Peace"],["Word","תּוֹדָה","Toda","Thank you"],["Word","כֵּן","Ken","Yes"],["Word","לֹא","Lo","No"],["Shema","א","Alef","The first letter — silent, the quiet start."]]},
+  {n:2,t:"Me and You",lines:[["Word","אֲנִי","Ani","I"],["Word","אַתָּה","Ata","You (boy)"],["Word","אַתְּ","At","You (girl)"],["Speak","אֲנִי יֶלֶד","Ani yeled","I am a boy."],["Shema","ב","Bet","The first letter of the Torah."]]},
+  {n:3,t:"Daily Needs and Where",lines:[["Word","בַּיִת","Bayit","House — sounds like 'buy it'."],["Word","מַיִם","Mayim","Water — 'May I'm' thirsty."],["Word","לֶחֶם","Lechem","Bread."],["Word","סֵפֶר","Sefer","Book — like 'scribe'."],["Word","אֵיפֹה","Eifo","Where."],["Speak","אֲנִי רוֹצֶה מַיִם","Ani rotzeh mayim","I want water."],["Shema","י","Yod","The smallest, holiest letter."]]},
+  {n:4,t:"The Prefix Chant",lines:[["Pattern","וְ","Ve-","And"],["Pattern","הַ","Ha-","The"],["Pattern","בְּ","Be-","In"],["Pattern","לְ","Le-","To / For"],["Pattern","מִ","Mi-","From"],["Speak","הַבַּיִת · בַּבַּיִת · לַבַּיִת","ha/ba/la-bayit","the / in / to the house"],["Shema","ה","Heh","A gentle letter, often a girl ending."]]},
+  {n:5,t:"Shema Anchor",lines:[["Review","שָׁלוֹם","Shalom","Hello / Peace"],["Review","תּוֹדָה","Toda","Thank you"],["Word","בְּבַקָּשָׁה","Bevakasha","Please / You're welcome"],["Shema","שְׁמַע יִשְׂרָאֵל ה׳ אֱלֹהֵינוּ ה׳ אֶחָד","Shema Yisrael, Adonai Eloheinu, Adonai Echad","Hear, Israel: Hashem is our God, Hashem is One."]]},
+  {n:6,t:"The Gender Pattern",lines:[["Pattern","טוֹב","Tov","Good (boy word)"],["Pattern","טוֹבָה","Tovah","Good (girl word) — 'ah' ending."],["Speak","יֶלֶד טוֹב","Yeled tov","Good boy."],["Speak","יַלְדָּה טוֹבָה","Yaldah tovah","Good girl."],["Shema","אֶחָד","Echad","One — last word of the Shema line."]]},
+  {n:7,t:"The Plural Pattern",lines:[["Plural","יְלָדִים","Yeladim","Boys — 'im' ending."],["Plural","יְלָדוֹת","Yeladot","Girls — 'ot' ending."],["Speak","יְלָדִים טוֹבִים","Yeladim tovim","Good boys."],["Speak","יְלָדוֹת טוֹבוֹת","Yeladot tovot","Good girls."],["Shema","אֱלֹהֵינוּ","Eloheinu","Our God — '-einu' means 'our'."]]}
+];
+
+/* ---- Hebrew read-aloud (reuses the game's synth + music ducking) ---- */
+let IV_VOICE=null;
+function ivPickVoice(){ if(!synth) return; const vs=synth.getVoices()||[]; IV_VOICE=vs.find(v=>/he|iw/i.test(v.lang))||null; }
+ivPickVoice(); if(synth) synth.onvoiceschanged=ivPickVoice;
+function sayHe(txt){
+  if(!synth||!txt) return; synth.cancel();
+  if(typeof bgm!=="undefined" && bgm && S.music && !bgm.paused) bgm.volume=0.10;
+  const u=new SpeechSynthesisUtterance(txt);
+  if(IV_VOICE){ u.voice=IV_VOICE; u.lang=IV_VOICE.lang; } else { u.lang="he-IL"; }
+  u.rate=0.8; u.onend=ivUnduck; u.onerror=ivUnduck; synth.speak(u);
+}
+function ivUnduck(){ if(typeof bgm!=="undefined" && bgm) bgm.volume = S.music? MUSIC_VOL : 0; }
+
+/* ---- progress (stored alongside the game save) ---- */
+function ivBump(k){ S[k]=(S[k]||0)+1; save(); }
+
+/* ---- state + render ---- */
+const IV={view:"home",cat:0,lesson:0,day:0,letterIdx:0,deck:[],fi:0,flip:false,q:null,qScore:0,qDone:0,qLock:false,
+  diff:(S.ivDiff==="medium"||S.ivDiff==="hard")?S.ivDiff:"easy"};
+function ivStripNikud(s){ return String(s).replace(/[֑-ׇ]/g,""); }
+/* Spoken NAME of each letter (standard alef-bet names, voweled so the Hebrew
+   voice says the name — not just the consonant sound / silence). Covers plain
+   and dagesh forms + finals. Words/vowels aren't keys, so they pass through
+   unchanged. ה׳ → "Hashem" so the voice never pronounces the Divine Name. */
+const IV_SAY={
+  "א":"אָלֶף","בּ":"בֵּית","ב":"בֵית","גּ":"גִּימֶל","ג":"גִּימֶל","דּ":"דָּלֶת","ד":"דָּלֶת",
+  "ה":"הֵא","ו":"וָו","ז":"זַיִן","ח":"חֵית","ט":"טֵית","י":"יוֹד",
+  "כּ":"כַּף","כ":"כָף","ך":"כָף","ל":"לָמֶד","מ":"מֵם","ם":"מֵם","נ":"נוּן","ן":"נוּן",
+  "ס":"סָמֶךְ","ע":"עַיִן","פּ":"פֵּא","פ":"פֵא","ף":"פֵא","צ":"צָדִי","ץ":"צָדִי",
+  "ק":"קוֹף","ר":"רֵישׁ","שׁ":"שִׁין","שׂ":"שִׂין","תּ":"תָּו","ת":"תָּו",
+  "ה׳":"הַשֵּׁם"
+};
+function ivSayFor(t){ return IV_SAY[t] || t; }
+
+/* "Closer Look" — sourced facts per letter. Keyed by the display glyph in
+   IV_ALEPHBET. Authored from cited sources; every claim should be verifiable
+   from the linked sources. Letters not yet authored show "coming soon". */
+const IV_CLOSER={
+  "א":{
+    sound:"Aleph is silent — the breath before sound. The Sages connect it to the hidden, infinite light that preceded Creation.",
+    facts:[
+      "The Torah does <b>not</b> begin with Aleph — it opens with <b>Bet</b> (בְּרֵאשִׁית), the letter of <i>Brachah</i> (blessing). Aleph begins <i>Arur</i> (cursed), so it was passed over — and honored instead with <i>Anochi</i> (אָנֹכִי), the first word of the Ten Commandments. [1]",
+      "Aleph’s very shape is built from three letters: an upper <b>yud</b> (10), a lower <b>yud</b> (10), and a diagonal <b>vav</b> (6). [2]",
+      "10 + 10 + 6 = <b>26</b> — the gematria of the Divine Name יהוה (Yud-Heh-Vav-Heh). The form of Aleph itself spells Hashem’s Name. [2]",
+      "Chabad reads the picture: the upper yud is Hashem (above our grasp), the lower yud is us below, and the vav joins heaven and earth. [2]",
+      "The Baal Shem Tov saw the same Name in <i>tzedakah</i>: the <b>coin</b> is a yud, the <b>giver’s hand</b> (5 fingers) a heh, the <b>outstretched arm</b> a vav, the <b>receiver’s hand</b> a heh — giving charity unites יהוה in the world. [3]",
+      "On the numbers: 22 letters + 5 final (sofit) forms = <b>27</b>. That total is a separate count — Aleph’s own gematria-of-parts is <b>26</b>, the Name."
+    ],
+    sources:[
+      ["Bereishit Rabbah 1:10 — why the world was created with Bet","https://www.sefaria.org/Bereishit_Rabbah.1.10"],
+      ["Chabad — “Aleph, the first letter of the Hebrew alphabet”","https://www.chabad.org/library/article_cdo/aid/137073/jewish/Aleph.htm"],
+      ["Chabad — “Tzedaka: the hand giving charity unites G-d’s name”","https://www.chabad.org/kabbalah/article_cdo/aid/380661/jewish/Tzedaka.htm"]
+    ]
+  }
+};
+function ivEsc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function ivSpeakBtn(t){ return `<button class="iv-speak" data-say="${ivEsc(ivSayFor(t))}">🔊</button>`; }
+
+function renderIvrit(view){
+  if(view) IV.view=view;
+  const st=document.getElementById("ivritStage"); if(!st) return;
+  document.getElementById("ivCrumb").textContent = IV.view==="home" ? "Ivrit · Learn Hebrew" : "Ivrit › "+IV.view[0].toUpperCase()+IV.view.slice(1);
+  st.innerHTML = ({home:ivHome,course:ivCourse,day:ivDay,reader:ivReader,letters:ivLetters,letterdetail:ivLetterDetail,
+                   nikud:ivNikud,words:ivWords,roots:ivRoots,lessons:ivLessons,shema:ivShema,flash:ivFlash,quiz:ivQuiz}[IV.view]||ivHome)();
+  window.scrollTo(0,0);
+}
+function ivBack(){ return `<button class="btn ghost sm" data-iv="home">‹ Hebrew menu</button>`; }
+
+function ivDiffBar(){
+  const opt=(k,t)=>`<button class="iv-diff ${IV.diff===k?'on':''}" data-diff="${k}">${t}</button>`;
+  const tip={easy:"Easy — full English + full vowels (nikud).",
+             medium:"Medium — small, dim English · full vowels.",
+             hard:"Hard — English hidden (tap a word) · vowels removed."}[IV.diff];
+  return `<div class="iv-diffbar"><span class="lab">English ⟶ Hebrew</span>
+     ${opt("easy","Easy")}${opt("medium","Medium")}${opt("hard","Hard")}</div>
+     <div class="iv-difftip">${tip}</div>`;
+}
+function ivHome(){
+  const n=IV_WORDS.reduce((a,g)=>a+g[1].length,0);
+  const done=(S.ivDays?Object.keys(S.ivDays).length:0);
+  const tile=(go,ic,t,d)=>`<div class="iv-tile" data-iv="${go}"><div class="ic iv-heb">${ic}</div><div class="t">${t}</div><div class="d">${d}</div></div>`;
+  return `<h2 class="sec">בַּיִת עִבְרִי · Our Family Hebrew</h2>
+    <p class="lead">An Ulpan-style course built from our own Chinuch booklets. Tap 🔊 on any word to hear it.</p>
+    ${ivDiffBar()}
+    <div class="iv-menu">
+      ${tile("course","🗓","90-Day Course",(done?done+" days done · ":"")+"Phase 1 ready")}
+      ${tile("reader","📖","Bridge Reader","big Hebrew · small English")}
+      ${tile("letters","אבג","Alef-Bet","22 letters + finals")}
+      ${tile("nikud","אָ","Nikud","the vowel sounds")}
+      ${tile("words","מִלָּה",n+" Words","by topic")}
+      ${tile("roots","שֹׁרֶשׁ","Root Families","how words connect")}
+      ${tile("lessons","שִׁעוּר","Ulpan Lessons","our 7 lessons")}
+      ${tile("shema","שְׁמַע","The Shema","our anchor verse")}
+      ${tile("flash","🃏","Flashcards","flip &amp; say it")}
+      ${tile("quiz","🎯","Quiz Me","pick the meaning")}
+    </div>
+    <p class="iv-note">Cursive (ktav) writing is a separate module — it goes live once we wire a verified cursive font, so the children only ever see correct letterforms.</p>`;
+}
+function ivLetters(){
+  const cells=IV_ALEPHBET.map((x,i)=>{
+    const has=IV_CLOSER[x[0]];
+    return `<div class="iv-cell"><div class="iv-celltap" data-say="${ivEsc(ivSayFor(x[0]))}"><div class="L iv-heb">${x[0]}</div><div class="nm">${x[1]}</div><div class="so">${x[2]}</div></div>${has?`<button class="iv-look" data-look="${i}">🔍</button>`:""}</div>`;
+  }).join("");
+  return ivBack()+`<h2 class="sec">Alef-Bet · אָלֶף־בֵּית</h2>
+    <div class="iv-grid">${cells}</div>
+    <p class="iv-note">Tap a letter to hear its <b>name</b>. Tap 🔍 for a <b>Closer Look</b> — sourced facts about the letter. The last five are <b>sofit</b> (final) forms.</p>`;
+}
+function ivLetterDetail(){
+  const i=IV.letterIdx, x=IV_ALEPHBET[i]; if(!x) return ivLetters();
+  const c=IV_CLOSER[x[0]];
+  const closer=c?`<div class="iv-closer"><h4>🔍 A Closer Look — ${x[1]}</h4>
+      ${c.sound?`<p class="cl-sound">${c.sound}</p>`:""}
+      <ul>${c.facts.map(f=>`<li>${f}</li>`).join("")}</ul>
+      <div class="cl-src"><b>Sources</b><ol>${c.sources.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${ivEsc(s[0])}</a></li>`).join("")}</ol></div>
+      <p class="iv-note" style="margin:8px 0 0">Verify any teaching before sharing — the sources above are the basis for each fact.</p></div>`
+    :`<p class="iv-note">A Closer Look at ${x[1]} is coming — with real sources.</p>`;
+  return `<button class="btn ghost sm" data-iv="letters">‹ All letters</button>
+    <div class="iv-write" style="text-align:center">
+      <div class="iv-heb" style="font-size:6rem;color:var(--ink);line-height:1.1">${x[0]}</div>
+      <div style="color:var(--gold-soft);font-size:1.3rem;font-weight:800">${x[1]}</div>
+      <div style="color:var(--ink-dim)">sounds like “${x[2]}”</div>
+      <div class="iv-actions" style="margin-top:10px"><button class="btn sm" data-say="${ivEsc(ivSayFor(x[0]))}">🔊 Say the name</button></div>
+    </div>
+    ${closer}`;
+}
+function ivNikud(){
+  return ivBack()+`<h2 class="sec">Nikud · נִיקּוּד (vowels)</h2>
+    <div class="iv-grid">${IV_NIKUD.map(x=>`<div class="iv-cell" data-say="${ivEsc(x[0])}"><div class="L iv-heb">${x[0]}</div><div class="nm">${x[1]}</div><div class="so">${x[2]}</div></div>`).join("")}</div>
+    <p class="iv-note">Nikud are the dots and lines that tell us how to say each letter. Shown here on the letter Alef (א).</p>`;
+}
+function ivWords(){
+  const tabs=IV_WORDS.map((g,i)=>`<div class="iv-pill ${i===IV.cat?'on':''}" data-cat="${i}">${g[0]}</div>`).join("");
+  const list=IV_WORDS[IV.cat][1].map(w=>`<div class="iv-row"><div class="hb iv-heb">${w[0]}</div><div class="meta"><div class="tr">${w[1]}</div><div class="en">${w[2]}</div></div>${ivSpeakBtn(w[0])}</div>`).join("");
+  return ivBack()+`<h2 class="sec">Words · מִלִּים</h2><div class="iv-pillbar">${tabs}</div>${list}`;
+}
+function ivRoots(){
+  return ivBack()+`<h2 class="sec">Root Families · שֹׁרָשִׁים</h2>
+    <p class="iv-note">Hebrew words grow from 3-letter <b>roots</b>. Learn the root and a whole family opens up.</p>`+
+    IV_ROOTS.map(r=>`<div class="iv-rootcard"><div class="rhead"><div class="rt iv-heb">${r[0]}</div><div class="rmean">${r[1]}</div></div>
+      ${r[2].map(w=>`<div class="iv-row" style="margin:6px 0;background:#0003"><div class="hb iv-heb">${w[0]}</div><div class="meta"><div class="tr">${w[1]}</div><div class="en">${w[2]}</div></div>${ivSpeakBtn(w[0])}</div>`).join("")}</div>`).join("");
+}
+function ivLessons(){
+  const tabs=IV_LESSONS.map((l,i)=>`<div class="iv-pill ${i===IV.lesson?'on':''}" data-lesson="${i}">${l.n}</div>`).join("");
+  const L=IV_LESSONS[IV.lesson];
+  const lines=L.lines.map(x=>`<div class="iv-row"><div class="hb iv-heb">${x[1]}</div><div class="meta"><span class="iv-tag">${x[0]}</span><div class="tr">${x[2]}</div><div class="en">${x[3]}</div></div>${ivSpeakBtn(x[1])}</div>`).join("");
+  return ivBack()+`<h2 class="sec">Ulpan Lessons · שִׁעוּרִים</h2><div class="iv-pillbar">${tabs}</div>
+    <h2 class="sec" style="font-size:1.2rem">Lesson ${L.n}: ${L.t}</h2>${lines}
+    <p class="iv-note">Each lesson ends with a <b>Shema</b> link — one piece of the verse, so the words stay anchored.</p>`;
+}
+function ivShema(){
+  const v="שְׁמַע יִשְׂרָאֵל הַשֵּׁם אֱלֹהֵינוּ הַשֵּׁם אֶחָד";
+  return ivBack()+`<h2 class="sec">The Shema · שְׁמַע</h2>
+    <div class="panel" style="text-align:center;border:2px solid var(--gold)">
+      <div class="iv-heb" style="font-size:1.9rem;color:var(--ink);line-height:1.9">שְׁמַע יִשְׂרָאֵל<br>יְהֹוָה אֱלֹהֵינוּ<br>יְהֹוָה אֶחָד</div>
+      <div class="tr" style="color:var(--gold-soft);margin-top:12px">Shema Yisrael, Adonai Eloheinu, Adonai Echad</div>
+      <div class="en" style="color:var(--ink-dim);margin-top:4px">Hear, Israel: Hashem is our God, Hashem is One.</div>
+      <div class="iv-actions" style="margin-top:16px"><button class="btn sm" data-say="${ivEsc(v)}">🔊 Hear it</button></div>
+    </div>
+    <p class="iv-note">The anchor of our Hebrew. Each Ulpan lesson teaches one word or letter from it, so the children can read the whole verse.</p>`;
+}
+function ivAllWords(){ const a=[]; IV_WORDS.forEach(g=>g[1].forEach(w=>a.push(w))); return a; }
+function ivBuildDeck(){ IV.deck=ivAllWords().slice(); for(let i=IV.deck.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[IV.deck[i],IV.deck[j]]=[IV.deck[j],IV.deck[i]];} IV.fi=0; IV.flip=false; }
+function ivFlash(){
+  if(!IV.deck.length) ivBuildDeck();
+  const c=IV.deck[IV.fi];
+  return ivBack()+`<h2 class="sec">Flashcards · 🃏</h2>
+    <div class="iv-counter">Card ${IV.fi+1} of ${IV.deck.length}</div>
+    <div class="iv-fc" data-flip="1"><div class="hb iv-heb">${c[0]}</div>${IV.flip?`<div class="tr">${c[1]}</div><div class="en">${c[2]}</div>`:`<div class="hint">tap to flip</div>`}</div>
+    <div class="iv-actions">
+      <button class="btn sm" data-say="${ivEsc(c[0])}">🔊 Say it</button>
+      <button class="btn ghost sm" data-fnext="1">Next →</button>
+      <button class="iv-pill" data-fshuffle="1">↻ Shuffle</button>
+    </div>`;
+}
+function ivNewQ(){
+  const pool=ivAllWords(); const cur=pool[(Math.random()*pool.length)|0]; const opts=[cur];
+  while(opts.length<4){ const r=pool[(Math.random()*pool.length)|0]; if(!opts.includes(r)) opts.push(r); }
+  for(let i=opts.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[opts[i],opts[j]]=[opts[j],opts[i]];}
+  IV.q={cur,opts}; IV.qLock=false;
+}
+function ivQuiz(){
+  if(!IV.q) ivNewQ();
+  const {cur,opts}=IV.q;
+  return ivBack()+`<h2 class="sec">Quiz Me · 🎯</h2>
+    <div class="iv-counter">Score: ${IV.qScore} / ${IV.qDone}</div>
+    <div class="iv-q"><div class="hb iv-heb">${cur[0]}</div><div class="tr">${cur[1]} ${ivSpeakBtn(cur[0])}</div>
+      <div style="color:var(--ink-dim);font-size:.9rem;margin-top:8px">What does it mean?</div></div>
+    ${opts.map(o=>`<button class="iv-opt" data-ans="${ivEsc(o[2])}">${o[2]}</button>`).join("")}
+    <div class="iv-actions" id="ivQNext" style="margin-top:12px"></div>`;
+}
+
+/* ---- single delegated click handler for the whole Ivrit module ---- */
+document.getElementById("ivritStage").addEventListener("click",e=>{
+  const t=e.target.closest("[data-say],[data-iv],[data-cat],[data-lesson],[data-flip],[data-fnext],[data-fshuffle],[data-ans]");
+  if(!t) return;
+  if(t.hasAttribute("data-say")){ sayHe(t.getAttribute("data-say")); return; }
+  if(t.hasAttribute("data-iv")){ renderIvrit(t.getAttribute("data-iv")); return; }
+  if(t.hasAttribute("data-cat")){ IV.cat=+t.getAttribute("data-cat"); renderIvrit("words"); return; }
+  if(t.hasAttribute("data-lesson")){ IV.lesson=+t.getAttribute("data-lesson"); renderIvrit("lessons"); return; }
+  if(t.hasAttribute("data-flip")){ IV.flip=!IV.flip; renderIvrit("flash"); return; }
+  if(t.hasAttribute("data-fnext")){ IV.fi=(IV.fi+1)%IV.deck.length; IV.flip=false; ivBump("ivWordsSeen"); renderIvrit("flash"); return; }
+  if(t.hasAttribute("data-fshuffle")){ ivBuildDeck(); renderIvrit("flash"); return; }
+  if(t.hasAttribute("data-ans")){
+    if(IV.qLock) return; IV.qLock=true; IV.qDone++;
+    const right=IV.q.cur[2];
+    document.querySelectorAll("#ivritStage .iv-opt").forEach(b=>{
+      const v=b.getAttribute("data-ans");
+      if(v===right) b.classList.add("correct");
+      else if(b===t) b.classList.add("wrong");
+    });
+    if(t.getAttribute("data-ans")===right) IV.qScore++;
+    save();
+    document.getElementById("ivQNext").innerHTML=`<button class="btn sm" data-qnext="1">Next question →</button>`;
+    return;
+  }
+});
+document.getElementById("ivritStage").addEventListener("click",e=>{
+  const n=e.target.closest("[data-qnext]"); if(!n) return; ivNewQ(); renderIvrit("quiz");
+});
+
+/* ============================================================
+   BRIDGE READER — big Hebrew (RTL) over small English, left arrows.
+   Difficulty shrinks/hides English and (Hard) removes nikud.
+   tokens = [[hebrew, english], ...]   gloss = full English sentence
+   ============================================================ */
+function ivBridge(tokens, gloss){
+  const d=IV.diff;
+  const line=tokens.map(t=>{
+    const disp = d==="hard" ? ivStripNikud(t[0]) : t[0];
+    return `<span class="br-word" data-brword="1" data-hesay="${ivEsc(ivSayFor(t[0]))}">
+      <span class="br-he">${disp}</span>
+      <span class="br-en">${ivEsc(t[1]||"")}</span>
+      <span class="br-arrow">←</span></span>`;
+  }).join("");
+  return `<div class="br diff-${d}">
+    <div class="br-line">${line}</div>
+    <div class="br-flow">⟵ ⟵ ⟵</div>
+    ${gloss?`<div class="br-gloss">“${ivEsc(gloss)}”</div>`:""}
+  </div>`;
+}
+
+/* ============================================================
+   90-DAY COURSE — Phase 1 authored (Days 1–18). Phases 2–5 to come.
+   Every Hebrew item is from our verified data (alef-bet / nikud /
+   100 words / ulpan booklet / Shema). Reading drills early are
+   letter+vowel blends (authentic Ulpan "say-sound, say-vowel, blend").
+   ============================================================ */
+const IV_PHASES=[
+  {n:1,t:"Otiyot & Kriah",sub:"Letters & reading",days:[1,18],open:true},
+  {n:2,t:"Core Words",sub:"The 100 + greetings",days:[19,36],open:false},
+  {n:3,t:"Patterns & Roots",sub:"Shorashim & binyanim",days:[37,54],open:false},
+  {n:4,t:"Reading the Story",sub:"Bridge-read game scenes",days:[55,72],open:false},
+  {n:5,t:"Hebrew-mostly Play",sub:"Minimal English",days:[73,90],open:false}
+];
+const IV_DAYS={
+  1:{t:"First Letters · א ב ג ד",goal:"Meet 4 letters and the sound “ah” (patach).",
+     learn:[["א","Alef","silent"],["בּ","Bet","b"],["ג","Gimel","g"],["ד","Dalet","d"],["אַ","Patach","ah"]],
+     read:[[["בַּ","ba"],["גַּ","ga"],["דַּ","da"]],"Blend each letter with “ah”."],
+     tie:"These letters open many Torah words."},
+  2:{t:"More Letters · ה ו ז ח",goal:"+4 letters and the long “ah” (kamatz).",
+     learn:[["ה","Hey","h"],["ו","Vav","v"],["ז","Zayin","z"],["ח","Chet","ch"],["אָ","Kamatz","ah"]],
+     read:[[["בָּא","came"]],"Your first real word: בָּא (ba) — “came”."],
+     tie:"בָּא appears all over the Torah."},
+  3:{t:"Letters · ט י כ ל",goal:"+4 letters and “ee” (chirik).",
+     learn:[["ט","Tet","t"],["י","Yod","y"],["כּ","Kaf","k"],["ל","Lamed","l"],["אִ","Chirik","ee"]],
+     read:[[["כִּי","because"]],"כִּי (ki) — “because”."],
+     tie:"A tiny word that joins big ideas."},
+  4:{t:"Letters · מ נ ס ע",goal:"+4 letters and “oh” (cholam).",
+     learn:[["מ","Mem","m"],["נ","Nun","n"],["ס","Samech","s"],["ע","Ayin","silent"],["אוֹ","Cholam","oh"]],
+     read:[[["מִי","who"]],"מִי (mi) — “who”."],
+     tie:"Ask מִי? — “who is it?”"},
+  5:{t:"Letters · פ צ ק ר",goal:"+4 letters and “eh” (segol).",
+     learn:[["פּ","Pey","p"],["צ","Tzadi","tz"],["ק","Kuf","k"],["ר","Resh","r"],["אֶ","Segol","eh"]],
+     read:[[["רַע","bad"]],"רַע (ra) — “bad”."],
+     tie:"Good vs. רַע — a Torah theme from Gan Eden."},
+  6:{t:"Letters · שׁ שׂ ת",goal:"The last letters, Shin/Sin, and “ay” (tzere).",
+     learn:[["שׁ","Shin","sh"],["שׂ","Sin","s"],["תּ","Tav","t"],["אֵ","Tzere","ay"]],
+     read:[[["שֵׁשׁ","six"]],"שֵׁשׁ (shesh) — “six”. Now you know all 22 letters!"],
+     tie:"שֵׁשׁ days of creation, then Shabbat."},
+  7:{t:"Final Letters · ך ם ן ף ץ",goal:"The 5 sofit (final) forms used at a word’s end.",
+     learn:[["ך","Chaf sofit","ch"],["ם","Mem sofit","m"],["ן","Nun sofit","n"],["ף","Fey sofit","f"],["ץ","Tzadi sofit","tz"]],
+     read:[[["שָׁלוֹם","peace"]],"שָׁלוֹם ends in a final Mem (ם)."],
+     tie:"You can now read the word שָׁלוֹם on the game menu."},
+  8:{t:"All the Vowels",goal:"Finish the vowels: “oo” (shuruk) and the quiet sheva.",
+     learn:[["אוּ","Shuruk","oo"],["אֻ","Kubutz","oo"],["אְ","Sheva","(quick e)"]],
+     read:[[["הוּא","he"],["הִיא","she"]],"הוּא (he) · הִיא (she)."],
+     tie:"Every vowel now has a sound you know."},
+  9:{t:"Blend & Read",goal:"Blend any letter + vowel smoothly into a word.",
+     learn:[["בַּיִת","Bayit","house"]],
+     read:[[["בַּיִת","house"]],"בַּיִת (bayit) — “house / home”."],
+     tie:"Build a בַּיִת — like Adam & Chava’s first home."},
+  10:{t:"First Words · Greetings",goal:"Read real words at full speed.",
+     read:[[["שָׁלוֹם","hello"],["תּוֹדָה","thank you"],["כֵּן","yes"],["לֹא","no"]],"Hello · thank you · yes · no."],
+     tie:"These are your first spoken Hebrew."},
+  11:{t:"Me & You · Pronouns",goal:"Say who is who.",
+     read:[[["אֲנִי","I"],["אַתָּה","you (m)"],["אַתְּ","you (f)"],["הוּא","he"],["הִיא","she"]],"I · you · he · she."],
+     tie:"Point and name: אֲנִי, אַתָּה…"},
+  12:{t:"Question Words",goal:"Ask the four big questions.",
+     read:[[["מָה","what"],["מִי","who"],["אֵיפֹה","where"],["לָמָּה","why"]],"What · who · where · why."],
+     tie:"Ask the game: מָה זֶה? — “what is this?”"},
+  13:{t:"Things You Need",goal:"Name everyday things.",
+     read:[[["מַיִם","water"],["אוֹכֶל","food"],["סֵפֶר","book"],["כֶּסֶף","money"]],"Water · food · book · money."],
+     tie:"מַיִם — the waters of Day Two."},
+  14:{t:"Numbers 1–5",goal:"Count in Hebrew.",
+     read:[[["אֶחָד","one"],["שְׁתַּיִם","two"],["שָׁלוֹשׁ","three"],["אַרְבַּע","four"],["חָמֵשׁ","five"]],"One to five."],
+     tie:"אֶחָד — “One” — the last word of the Shema."},
+  15:{t:"Your First Sentence",goal:"Read a whole sentence, right to left.",
+     read:[[["אֲנִי","I"],["יֶלֶד","a boy"]],"אֲנִי יֶלֶד — “I am a boy.” (A girl says: אֲנִי יַלְדָּה.)"],
+     tie:"Say it out loud about yourself."},
+  16:{t:"Asking for Water",goal:"Make a useful daily sentence.",
+     read:[[["אֲנִי","I"],["רוֹצֶה","want"],["מַיִם","water"]],"אֲנִי רוֹצֶה מַיִם — “I want water.”"],
+     tie:"A real Ulpan first sentence."},
+  17:{t:"Good Boy · Good Girl",goal:"See the boy/girl pattern in action.",
+     read:[[["יֶלֶד","boy"],["טוֹב","good"]],"יֶלֶד טוֹב — “good boy.” And: יַלְדָּה טוֹבָה — “good girl.”"],
+     tie:"The ‘ah’ (ה) ending marks the girl word."},
+  18:{t:"Shema Anchor · Phase 1 Review",goal:"Read the first line of the Shema.",
+     read:[[["שְׁמַע","Hear"],["יִשְׂרָאֵל","Israel"],["ה׳","Hashem"],["אֱלֹהֵינוּ","our God"],["ה׳","Hashem"],["אֶחָד","One"]],
+           "Shema Yisrael, Hashem Eloheinu, Hashem Echad — “Hear, Israel: Hashem is our God, Hashem is One.”"],
+     tie:"Phase 1 complete — you can read voweled Hebrew. 🎉"}
+};
+
+function ivCourse(){
+  const phaseBar=IV_PHASES.map(p=>`<div class="iv-phase ${p.open?'on':'locked'}">P${p.n} · ${p.t}${p.open?"":" 🔒"}</div>`).join("");
+  const done=S.ivDays||{};
+  let grid="";
+  for(let d=1;d<=18;d++){
+    const info=IV_DAYS[d];
+    const kw=info?(info.learn&&info.learn[0]?info.learn[0][0]:info.t.replace(/·.*/,"").trim().split(" ").slice(-1)[0]):"";
+    grid+=`<div class="iv-day ${done[d]?'done':''}" data-day="${d}"><span class="dn">${done[d]?"✓":d}</span><span class="dd iv-heb">${ivEsc(kw)}</span></div>`;
+  }
+  return ivBack()+`<h2 class="sec">90-Day Course · שִׁעוּרִים</h2>
+    <div class="iv-phasebar">${phaseBar}</div>
+    ${ivDiffBar()}
+    <h2 class="sec" style="font-size:1.15rem">Phase 1 · Otiyot & Kriah — Days 1–18</h2>
+    <div class="iv-daygrid">${grid}</div>
+    <p class="iv-note">Tap a day. Finish Phase 1 and you’ll read any voweled Hebrew word. Phases 2–5 unlock as we add them.</p>`;
+}
+function ivDay(){
+  const d=IV.day, info=IV_DAYS[d]; if(!info) return ivCourse();
+  const done=(S.ivDays||{})[d];
+  const learn=info.learn?`<div class="iv-daysec"><h4>✨ New today</h4>
+     <div class="iv-grid">${info.learn.map(x=>`<div class="iv-cell" data-say="${ivEsc(ivSayFor(x[0]))}"><div class="L iv-heb">${x[0]}</div><div class="nm">${x[1]}</div><div class="so">${x[2]}</div></div>`).join("")}</div></div>`:"";
+  const read=info.read?`<div class="iv-daysec"><h4>📖 Read it (right → left)</h4>${ivBridge(info.read[0],info.read[1])}
+     <p class="iv-note" style="margin:8px 0 0">Tap any word to hear it${IV.diff==="hard"?" and peek at the English":""}.</p></div>`:"";
+  const tie=info.tie?`<div class="iv-daysec"><h4>🎮 In the game</h4><p style="margin:0;color:var(--ink-dim)">${info.tie}</p></div>`:"";
+  return `<button class="btn ghost sm" data-iv="course">‹ All days</button>
+    <h2 class="sec">Day ${d} · ${info.t}</h2>
+    <p class="iv-goal">${info.goal}</p>
+    ${ivDiffBar()}
+    ${learn}${read}${tie}
+    <div class="iv-actions">
+      ${d>1?`<button class="btn ghost sm" data-day="${d-1}">← Day ${d-1}</button>`:""}
+      <button class="btn sm" data-daydone="${d}">${done?"✓ Done — review":"Mark day done"}</button>
+      ${d<18?`<button class="btn ghost sm" data-day="${d+1}">Day ${d+1} →</button>`:""}
+    </div>`;
+}
+
+/* ---- free Bridge Reader (pick a passage, read at any difficulty) ---- */
+const IV_PASSAGES=[
+  ["I am a boy",[["אֲנִי","I"],["יֶלֶד","a boy"]],"I am a boy."],
+  ["I want water",[["אֲנִי","I"],["רוֹצֶה","want"],["מַיִם","water"]],"I want water."],
+  ["Good boy",[["יֶלֶד","boy"],["טוֹב","good"]],"Good boy."],
+  ["Hello & thank you",[["שָׁלוֹם","hello"],["תּוֹדָה","thank you"]],"Hello, thank you."],
+  ["The Shema",[["שְׁמַע","Hear"],["יִשְׂרָאֵל","Israel"],["ה׳","Hashem"],["אֱלֹהֵינוּ","our God"],["ה׳","Hashem"],["אֶחָד","One"]],"Hear, Israel: Hashem is our God, Hashem is One."]
+];
+let IV_PASS=0;
+function ivReader(){
+  const tabs=IV_PASSAGES.map((p,i)=>`<div class="iv-pill ${i===IV_PASS?'on':''}" data-pass="${i}">${p[0]}</div>`).join("");
+  const p=IV_PASSAGES[IV_PASS];
+  return ivBack()+`<h2 class="sec">Bridge Reader · 📖</h2>
+    <p class="lead">Big Hebrew, right to left. The small English is only a bridge — raise the difficulty to shrink it.</p>
+    ${ivDiffBar()}
+    <div class="iv-pillbar">${tabs}</div>
+    ${ivBridge(p[1],p[2])}
+    <p class="iv-note">The ← under each word and ⟵ under the line train your eye to read right-to-left.</p>`;
+}
+
+/* ---- handlers for course / difficulty / reader / bridge words ---- */
+document.getElementById("ivritStage").addEventListener("click",e=>{
+  const t=e.target.closest("[data-diff],[data-day],[data-daydone],[data-pass],[data-brword],[data-look]");
+  if(!t) return;
+  if(t.hasAttribute("data-look")){ IV.letterIdx=+t.getAttribute("data-look"); renderIvrit("letterdetail"); return; }
+  if(t.hasAttribute("data-diff")){ IV.diff=t.getAttribute("data-diff"); S.ivDiff=IV.diff; save(); renderIvrit(IV.view); return; }
+  if(t.hasAttribute("data-day")){ IV.day=+t.getAttribute("data-day"); renderIvrit("day"); return; }
+  if(t.hasAttribute("data-daydone")){ S.ivDays=S.ivDays||{}; S.ivDays[+t.getAttribute("data-daydone")]=1; save(); renderIvrit("day"); return; }
+  if(t.hasAttribute("data-pass")){ IV_PASS=+t.getAttribute("data-pass"); renderIvrit("reader"); return; }
+  if(t.hasAttribute("data-brword")){ sayHe(t.getAttribute("data-hesay")); t.classList.toggle("peek"); return; }
+});
 </script>
 </body>
 </html>
